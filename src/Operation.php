@@ -5,26 +5,46 @@
     use GuzzleHttp\Client;
     use League\OAuth2\Client\Provider\GenericProvider;
 
+    /**
+     * The most abstract operation wrapper
+     *
+     * @author Art <a.molcanovas@gmail.com>
+     */
     abstract class Operation {
 
+        /**
+         * Dropbox API version
+         *
+         * @var int
+         */
         const API_VERSION = 2;
 
         /**
+         * The access token
+         *
          * @var string
          */
         private $token;
 
         /**
+         * Method to call when sending requests. This will be either send or sendAsync.
+         *
          * @var callable
+         * @see Client::send()
+         * @see Client::sendAsync()
          */
         private $sendCallable;
 
         /**
+         * The oAuth2 provider for request generation
+         *
          * @var GenericProvider
          */
         private static $provider;
 
         /**
+         * The client that will send requests
+         *
          * @var Client
          */
         private static $client;
