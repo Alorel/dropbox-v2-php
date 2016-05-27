@@ -7,6 +7,8 @@
 
     abstract class Operation {
 
+        const API_VERSION = 2;
+
         /**
          * @var string
          */
@@ -39,7 +41,13 @@
             $this->token = $accessToken;
 
             if (!self::$provider) {
-                self::$provider = new GenericProvider();
+                $opts = [
+                    'urlAuthorize'            => 'https://www.dropbox.com/1/oauth2/authorize',
+                    'urlAccessToken'          => 'https://api.dropboxapi.com/1/oauth2/token',
+                    'urlResourceOwnerDetails' => null
+
+                ];
+                self::$provider = new GenericProvider($opts);
             }
 
             if (!self::$client) {
@@ -65,7 +73,7 @@
          * @author Art <a.molcanovas@gmail.com>
          *
          * @param string $httpMethod The HTTP method to use (GET, POST etc)
-         * @param string $url        The URL to call
+         * @param string $url        The URL to call. This is automatically prepended with https:// in this method
          * @param array  $options    Request options
          *
          * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface The promise interface if
@@ -73,11 +81,12 @@
          *                                                                                  request interface if it is
          *                                                                                  set to false
          * @see    \League\OAuth2\Client\Provider\AbstractProvider::getAuthenticatedRequest()
+         * @throws \GuzzleHttp\Exception\ClientException
          */
-        protected final function send(string $httpMethod, string $url, array $options = []) {
+        protected final function sendAbstract(string $httpMethod, string $url, array $options = []) {
             return call_user_func(
                 $this->sendCallable,
-                self::$provider->getAuthenticatedRequest($httpMethod, $url, $this->token, $options)
+                self::$provider->getAuthenticatedRequest($httpMethod, 'https://' . $url, $this->token, $options)
             );
         }
     }

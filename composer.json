@@ -36,6 +36,7 @@
     }
   },
   "require-dev": {
-    "raveren/kint": "^1.0"
+    "raveren/kint": "^1.0",
+    "aloframework/handlers": "^2.0"
   }
 }
