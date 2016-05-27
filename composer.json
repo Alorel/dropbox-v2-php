@@ -34,5 +34,8 @@
     "psr-4": {
       "Alorel\\Dropbox\\": "src"
     }
+  },
+  "require-dev": {
+    "raveren/kint": "^1.0"
   }
 }

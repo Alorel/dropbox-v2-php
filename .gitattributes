@@ -6,3 +6,4 @@
 /.sensiolabs.yml export-ignore
 /.travis.yml export-ignore
 /coverage export-ignore
+/authorise.php export-ignore

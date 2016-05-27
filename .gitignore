@@ -1,3 +1,5 @@
 /.idea
 /composer.lock
 /vendor
+/test-internal
+/API_KEY
