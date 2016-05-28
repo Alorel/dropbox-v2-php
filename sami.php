@@ -17,7 +17,7 @@
     $options = [
         'theme'     => 'default',
         'versions'  => $versions,
-        'title'     => 'Laravel API Documentation',
+        'title'     => 'Dropbox v2 PHP SDK',
         'build_dir' => $out,
         'cache_dir' => $cache,
     ];
