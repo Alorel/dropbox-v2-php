@@ -41,9 +41,14 @@
     class Start extends ContentUploadOperation {
 
         /**
-         * @param string            $path
-         * @param                   $data
-         * @param StartOptions|null $options
+         * Perform the operation
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param string                                            $path    The path to upload the file to
+         * @param string|resource|\Psr\Http\Message\StreamInterface $data    The file contents. Can be a string, a fopen()
+         *                                                                   resource or an instance of StreamInterface
+         * @param StartOptions|null                                 $options Additional options
          *
          * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface The promise interface if
          *                                                                                  async is set to true and the

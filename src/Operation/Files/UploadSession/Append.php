@@ -22,7 +22,32 @@
     namespace Alorel\Dropbox\Operation\Files\UploadSession;
 
     use Alorel\Dropbox\OperationKind\ContentUploadOperation;
+    use Alorel\Dropbox\OptionBuilder\UploadSession\AppendOptions;
 
+    /**
+     * Append more data to an upload session. When the parameter close is set, this call will close the session. A
+     * single request should not upload more than 150 MB of file contents.
+     *
+     * @author Art <a.molcanovas@gmail.com>
+     */
     class Append extends ContentUploadOperation {
 
+        /**
+         * Perform the operation
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param string                                            $path    The path to upload the file to
+         * @param string|resource|\Psr\Http\Message\StreamInterface $data    The file contents. Can be a string, a fopen()
+         * @param AppendOptions|null                                $options Additional operation options
+         *
+         * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface The promise interface if
+         *                                                                                  async is set to true and the
+         *                                                                                  request interface if it is
+         *                                                                                  set to false
+         * @throws \GuzzleHttp\Exception\ClientException
+         */
+        function perform(string $path, $data, AppendOptions $options = null) {
+            return $this->send('upload_session/append_v2', $path, $data, $options);
+        }
     }
