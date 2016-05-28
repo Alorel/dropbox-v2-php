@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>Dropbox v2 PHP SDK</title>
+    <parser>
+        <target>docs</target>
+    </parser>
+    <transformer>
+        <target>docs</target>
+        <template name="xml"/>
+    </transformer>
+    <files>
+        <directory>src</directory>
+    </files>
+    <extensions>
+        <extension>php</extension>
+    </extensions>
+</phpdoc>
