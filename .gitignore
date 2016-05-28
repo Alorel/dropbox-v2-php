@@ -3,4 +3,4 @@
 /vendor
 /test-internal
 /API_KEY
-/docs/phpdoc-cache*
+/.sami-cache

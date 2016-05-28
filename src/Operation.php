@@ -64,7 +64,7 @@
         /**
          * The client that will send requests
          *
-         * @var Client
+         * @var \GuzzleHttp\Client
          */
         private static $client;
 
