@@ -21,6 +21,8 @@
 
     namespace Alorel\Dropbox\Options\Builder\Mixins;
 
+    use Alorel\Dropbox\Options\Option;
+
     /**
      * If true, current session will be closed. You cannot do upload_session/append any more to current session The
      * default for this field is False.
@@ -42,7 +44,7 @@
          * @return self
          */
         function setClose(bool $set) {
-            $this['close'] = $set;
+            $this[Option::CLOSE] = $set;
 
             return $this;
         }

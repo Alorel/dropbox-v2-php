@@ -21,6 +21,8 @@
 
     namespace Alorel\Dropbox\Options\Builder\Mixins;
 
+    use Alorel\Dropbox\Options\Option;
+
     /**
      * If there's a conflict, as determined by mode, have the Dropbox server try to autorename the file to avoid
      * conflict. The default for this field is False.
@@ -40,7 +42,7 @@
          * @return self
          */
         function setAutoRename(bool $set) {
-            $this['autorename'] = $set;
+            $this[Option::AUTO_RENAME] = $set;
 
             return $this;
         }

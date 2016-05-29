@@ -23,19 +23,25 @@
 
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Options\Builder\UploadOptions;
+    use Alorel\Dropbox\Options\Option;
     use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Promise\PromiseInterface;
     use Psr\Http\Message\ResponseInterface;
 
     class UploadTest extends \PHPUnit_Framework_TestCase {
 
-        private $up;
-
         private static $generatedNames = [];
 
-        /** @before */
-        function beforeEach() {
-            $this->up = new Upload(getenv('APIKEY'));
+        function testClientModified() {
+            $filename = TestUtil::genFileName(md5(__CLASS__) . '/', self::$generatedNames);
+
+            $opts = (new UploadOptions())
+                ->setClientModified(new \DateTime('2000-01-01'));
+
+            $rsp = (new Upload(getenv('APIKEY')))->perform($filename, __CLASS__, $opts);
+
+            $this->assertInstanceOf(ResponseInterface::class, $rsp);
+            $this->abstraction($rsp, $filename, $opts);
         }
 
         /**
@@ -46,28 +52,26 @@
             $promise = (new Upload(getenv('APIKEY'), true))->perform($filename, __CLASS__);
             $this->assertInstanceOf(PromiseInterface::class, $promise);
 
-            /** @var ResponseInterface $rsp */
-            $rsp = $promise->wait(true);
-            $body = json_decode($rsp->getBody()->getContents(), true);
+            $this->abstraction($promise->wait(true), $filename, null);
+        }
 
+        function abstraction(ResponseInterface $rsp, string $filename, UploadOptions $opts = null) {
+            $body = json_decode($rsp->getBody()->getContents(), true);
             $this->assertEquals($filename, $body['path_display']);
             $this->assertEquals(strtolower($filename), $body['path_lower']);
             $this->assertEquals(strlen(__CLASS__), $body['size']);
-        }
 
-        function abstraction(string $filename, UploadOptions $opts = null) {
-
+            if (isset($opts[Option::CLIENT_MODIFIED])) {
+                $this->assertEquals($opts[Option::CLIENT_MODIFIED], $body['client_modified']);
+            }
         }
 
         function testGetToken() {
-            $meth = (new \ReflectionClass(get_class($this->up)))->getMethod('getToken');
+            $up = new Upload(getenv('APIKEY'));
+            $meth = (new \ReflectionClass(get_class($up)))->getMethod('getToken');
             $meth->setAccessible(true);
 
-            $this->assertEquals(getenv('APIKEY'), $meth->invoke($this->up));
-        }
-
-        function testClientModified() {
-
+            $this->assertEquals(getenv('APIKEY'), $meth->invoke($up));
         }
 
         /** @afterClass */

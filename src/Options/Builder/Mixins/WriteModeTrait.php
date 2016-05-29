@@ -21,6 +21,7 @@
 
     namespace Alorel\Dropbox\Options\Builder\Mixins;
 
+    use Alorel\Dropbox\Options\Option;
     use Alorel\Dropbox\Parameters\WriteMode;
 
     /**
@@ -64,7 +65,7 @@
          * @return self
          */
         function setWriteMode(WriteMode $set) {
-            $this['mode'] = $set;
+            $this[Option::MODE] = $set;
 
             return $this;
         }

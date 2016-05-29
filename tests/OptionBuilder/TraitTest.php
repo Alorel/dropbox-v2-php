@@ -21,6 +21,7 @@
 
     namespace Alorel\Dropbox\Options\Builder\Mixins;
 
+    use Alorel\Dropbox\Options\Option;
     use Alorel\Dropbox\Options\Options;
     use Alorel\Dropbox\Parameters\WriteMode;
 
@@ -59,17 +60,17 @@
         function allTraits() {
             $dt = new \DateTime();
             $return = [
-                ['setClientModified', 'client_modified', $dt, $dt->format(Options::DATETIME_FORMAT)],
-                ['setWriteMode', 'mode', WriteMode::add()],
-                ['setWriteMode', 'mode', WriteMode::overwrite()],
-                ['setWriteMode', 'mode', WriteMode::update(__CLASS__)]
+                ['setClientModified', Option::CLIENT_MODIFIED, $dt, $dt->format(Options::DATETIME_FORMAT)],
+                ['setWriteMode', Option::MODE, WriteMode::add()],
+                ['setWriteMode', Option::MODE, WriteMode::overwrite()],
+                ['setWriteMode', Option::MODE, WriteMode::update(__CLASS__)]
             ];
 
             // Do booleans
             foreach ([
-                         ['setAutoRename', 'autorename'],
-                         ['setClose', 'close'],
-                         ['setMute', 'mute']
+                         ['setAutoRename', Option::AUTO_RENAME],
+                         ['setClose', Option::CLOSE],
+                         ['setMute', Option::MUTE]
                      ] as $v) {
                 $v[2] = true;
                 $return[] = $v;

@@ -21,6 +21,8 @@
 
     namespace Alorel\Dropbox\Options\Builder\Mixins;
 
+    use Alorel\Dropbox\Options\Option;
+
     /**
      * Normally, users are made aware of any file modifications in their Dropbox account via notifications in the
      * client software. If true, this tells the clients that this modification shouldn't result in a user
@@ -42,7 +44,7 @@
          * @return self
          */
         function setMute(bool $set) {
-            $this['mute'] = $set;
+            $this[Option::MUTE] = $set;
 
             return $this;
         }

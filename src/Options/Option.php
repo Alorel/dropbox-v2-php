@@ -19,35 +19,52 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-    namespace Alorel\Dropbox\Options\Builder\Mixins;
-
-    use Alorel\Dropbox\Options\Option;
-    use Alorel\Dropbox\Options\Options;
-    use DateTimeInterface;
+    namespace Alorel\Dropbox\Options;
 
     /**
-     * The value to store as the client_modified timestamp. Dropbox automatically records the time at which the file
-     * was written to the Dropbox servers. It can also record an additional timestamp, provided by Dropbox desktop
-     * clients, mobile clients, and API apps of when the file was actually created or modified
+     * Option names
      *
      * @author Art <a.molcanovas@gmail.com>
      */
-    trait ClientModifiedTrait {
+    class Option {
 
         /**
-         * The value to store as the client_modified timestamp. Dropbox automatically records the time at which the
-         * file was written to the Dropbox servers. It can also record an additional timestamp, provided by Dropbox
-         * desktop clients, mobile clients, and API apps of when the file was actually created or modified.
+         * Write mode
          *
-         * @author Art <a.molcanovas@gmail.com>
-         *
-         * @param DateTimeInterface $set The setting
-         *
-         * @return self
+         * @var string
+         * @see \Alorel\Dropbox\Options\Builder\Mixins\WriteModeTrait
          */
-        function setClientModified(DateTimeInterface $set) {
-            $this[Option::CLIENT_MODIFIED] = $set->format(Options::DATETIME_FORMAT);
+        const MODE = 'mode';
 
-            return $this;
-        }
+        /**
+         * Mute change notifications
+         *
+         * @var string
+         * @see \Alorel\Dropbox\Options\Builder\Mixins\MuteTrait
+         */
+        const MUTE = 'mute';
+
+        /**
+         * File upload closing
+         *
+         * @var string
+         * @see \Alorel\Dropbox\Options\Builder\Mixins\CloseTrait
+         */
+        const CLOSE = 'close';
+
+        /**
+         * Client modified timestamp
+         *
+         * @var string
+         * @see \Alorel\Dropbox\Options\Builder\Mixins\ClientModifiedTrait
+         */
+        const CLIENT_MODIFIED = 'client_modified';
+
+        /**
+         * File renaming policy
+         *
+         * @var string
+         * @see \Alorel\Dropbox\Options\Builder\Mixins\AutoRenameTrait
+         */
+        const AUTO_RENAME = 'autorename';
     }
