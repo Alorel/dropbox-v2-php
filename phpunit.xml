@@ -36,6 +36,9 @@
         <testsuite name="Parameters">
             <directory>./tests/Parameters</directory>
         </testsuite>
+        <testsuite name="OptionBuilder">
+            <directory>./tests/OptionBuilder</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
@@ -49,8 +52,8 @@
     </filter>
 
     <logging>
-        <log type="coverage-html" target="coverage"/>
         <log type="coverage-text" target="php://stdout"/>
+        <log type="coverage-html" target="coverage"/>
     </logging>
 
     <php>

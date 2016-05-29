@@ -19,57 +19,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-    namespace Alorel\Dropbox\Parameters;
-
-    use Alorel\Dropbox\Util;
-    use JsonSerializable;
+    namespace Alorel\Dropbox;
 
     /**
-     * Topmost abstract parameter class
+     * Miscellaneous utilities
      *
      * @author Art <a.molcanovas@gmail.com>
      */
-    abstract class AbstractParameter implements JsonSerializable {
+    class Util {
 
         /**
-         * Parameter arguments
-         *
-         * @var array
-         */
-        private $args;
-
-        /**
-         * AbstractParameter constructor.
+         * Trims nulls from the input
          *
          * @author Art <a.molcanovas@gmail.com>
          *
-         * @param array $args Arguments to set
+         * @param array $in The input
+         *
+         * @return array The trimmed input
          */
-        protected function __construct(array $args = []) {
-            $this->args = Util::trimNulls($args);
-        }
+        static function trimNulls(array $in):array {
+            foreach ($in as $k => $v) {
+                if ($v === null) {
+                    unset($in[$k]);
+                }
+            }
 
-        /**
-         * Specify data which should be serialized to JSON
-         *
-         * @author Art <a.molcanovas@gmail.com>
-         *
-         * @see    http://php.net/manual/en/jsonserializable.jsonserialize.php
-         * @return array data which can be serialized by <b>json_encode</b>, which is a value of any type other than
-         * a resource.
-         */
-        function jsonSerialize() {
-            return $this->args;
-        }
-
-        /**
-         * A shorthand for JSON-encoding parameters
-         *
-         * @author Art <a.molcanovas@gmail.com>
-         * @return string
-         * @uses   json_encode()
-         */
-        function __toString() {
-            return json_encode($this);
+            return $in;
         }
     }

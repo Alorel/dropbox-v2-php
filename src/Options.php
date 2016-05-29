@@ -50,7 +50,7 @@
          * @param array $defaults Default options
          */
         function __construct(array $defaults = []) {
-            $this->options = $defaults;
+            $this->options = Util::trimNulls($defaults);
         }
 
         /**
@@ -68,12 +68,13 @@
             foreach ($options as $opt) {
                 if (is_array($opt)) {
                     $o = array_merge($o, $opt);
-                } elseif ($opt instanceof Options) {
+                }
+                if ($opt instanceof Options) {
                     $o = array_merge($o, $opt->getOptions());
                 }
             }
 
-            return new self($o);
+            return new self(Util::trimNulls($o));
         }
 
         /**
