@@ -1,28 +1,28 @@
 <?php
     /**
-     * The MIT License (MIT)
-     *
-     * Copyright (c) 2016 Alorel, https://github.com/Alorel
-     *
-     * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-     * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
-     * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
-     * persons to whom the Software is furnished to do so, subject to the following conditions:
-     *
-     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
-     * Software.
-     *
-     * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
-     * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-     * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-     * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-     * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-     */
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2016 Alorel, https://github.com/Alorel
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
+ * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the 
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit 
+ * persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+ * Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT 
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 
     namespace Alorel\Dropbox\Operation\Files\UploadSession;
 
     use Alorel\Dropbox\OperationKind\ContentUploadOperation;
-    use Alorel\Dropbox\OptionBuilder\UploadSession\StartOptions;
+    use Alorel\Dropbox\OptionBuilder\UploadSession\UploadSessionActiveOptions;
 
     /**
      * Upload sessions allow you to upload a single file using multiple requests. This call starts a new upload
@@ -45,10 +45,9 @@
          *
          * @author Art <a.molcanovas@gmail.com>
          *
-         * @param string                                            $path    The path to upload the file to
          * @param string|resource|\Psr\Http\Message\StreamInterface $data    The file contents. Can be a string, a fopen()
          *                                                                   resource or an instance of StreamInterface
-         * @param StartOptions|null                                 $options Additional options
+         * @param UploadSessionActiveOptions|null                   $options Additional options
          *
          * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface The promise interface if
          *                                                                                  async is set to true and the
@@ -56,7 +55,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function perform(string $path, $data, StartOptions $options = null) {
-            return $this->send('files/upload_session/start', $path, $data, $options);
+        function perform($data, UploadSessionActiveOptions $options = null) {
+            return $this->send('files/upload_session/start', null, $data, $options);
         }
     }

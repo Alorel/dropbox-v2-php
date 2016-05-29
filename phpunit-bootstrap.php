@@ -1,5 +1,5 @@
 <?php
-    /**
+/**
  * The MIT License (MIT)
  *
  * Copyright (c) 2016 Alorel, https://github.com/Alorel
@@ -19,20 +19,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-    namespace Alorel\Dropbox\Operation\Files\UploadSession;
-
-    use Alorel\Dropbox\OperationKind\ContentUploadOperation;
-    use Alorel\Dropbox\Parameters\UploadSessionCursor;
-
-    /**
-     * Finish an upload session and save the uploaded data to the given file path. A single request should not upload
-     * more than 150 MB of file contents.
-     *
-     * @author Art <a.molcanovas@gmail.com>
-     */
-    class Finish extends ContentUploadOperation {
-
-        function perform($data, UploadSessionCursor $cursor, string $path) {
-
+if (getenv('APIKEY')) {
+        define('DROPBOX_API_KEY', getenv('APIKEY'));
+    } elseif (file_exists('API_KEY')) {
+        if (is_readable('API_KEY')) {
+            putenv('APIKEY=' . file_get_contents('API_KEY'));
+        } else {
+            trigger_error('The API_KEY file is not readable - do you have the right permissions?', E_USER_ERROR);
         }
+    } else {
+        trigger_error('Please refer to tests/README.md for instructions on how to run unit tests', E_USER_ERROR);
     }
+
+    require_once 'vendor/autoload.php';
+
+    d(getenv('APIKEY'));

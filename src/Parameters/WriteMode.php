@@ -1,5 +1,5 @@
 <?php
-    /**
+/**
  * The MIT License (MIT)
  *
  * Copyright (c) 2016 Alorel, https://github.com/Alorel
@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-    namespace Alorel\Dropbox\OptionBuilder\Mixins;
+namespace Alorel\Dropbox\Parameters;
 
     /**
      * Selects what to do if the file already exists. The default for this union is add.
@@ -36,49 +36,38 @@
      * The conflict checking differs in the case where there's a file at the target path with contents different from
      * the contents you're trying to write
      *
-     * @author  Art <a.molcanovas@gmail.com>
-     * @method $this setOption(string $key, $value)
+     * @author Art <a.molcanovas@gmail.com>
      */
-    trait WriteModeTrait {
+    class WriteMode extends AbstractParameter {
 
         /**
-         * Never overwrite the existing file. The autorename strategy is to append a number to the file name. For
-         * example, "document.txt" might become "document (2).txt".
+         * WriteMode constructor.
          *
          * @author Art <a.molcanovas@gmail.com>
-         * @return self
+         *
+         * @param string      $tag The main write mode
+         * @param string|null $rev The revision, if updating
          */
-        function setWriteModeAdd() {
-            return $this->setOption('mode', ['.tag' => 'add']);
+        protected function __construct(string $tag, string $rev = null) {
+            parent::__construct([
+                                    '.tag'   => $tag,
+                                    'update' => $rev
+                                ]);
         }
 
         /**
-         * Always overwrite the existing file. The autorename strategy is the same as it is for add.
          *
-         * @author Art <a.molcanovas@gmail.com>
-         *
-         * @return self
+         * @return WriteMode
          */
-        function setWriteModeOverwrite() {
-            return $this->setOption('mode', ['.tag' => 'overwrite']);
+        static function add():self {
+            return new self('add');
         }
 
-        /**
-         * Overwrite if the given "rev" matches the existing file's "rev". The autorename strategy is to append the
-         * string "conflicted copy" to the file name. For example, "document.txt" might become "document (conflicted
-         * copy).txt" or "document (Panda's conflicted copy).txt".
-         *
-         * @author Art <a.molcanovas@gmail.com>
-         *
-         * @param string $rev The "rev"
-         *
-         * @return string
-         */
-        function setWriteModeUpdate(string $rev):string {
-            return $this->setOption('mode',
-                                    [
-                                        '.tag' => 'update',
-                                        'rev'  => $rev
-                                    ]);
+        static function overwrite():self {
+            return new self('overwrite');
+        }
+
+        static function update(string $rev):self {
+            return new self('update', $rev);
         }
     }

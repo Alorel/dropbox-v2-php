@@ -19,63 +19,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-    namespace Alorel\Dropbox;
+    namespace Alorel\Dropbox\OptionBuilder\UploadSession;
+
+    use Alorel\Dropbox\OptionBuilder\Mixins\CloseTrait;
+    use Alorel\Dropbox\Options;
 
     /**
-     * Abstract options wrapper
+     * Additional options for upload_session/start
      *
      * @author Art <a.molcanovas@gmail.com>
+     * @see    https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-start
+     * @see    \Alorel\Dropbox\Operation\Files\UploadSession\Start
      */
-    class Options {
+    class UploadSessionActiveOptions extends Options {
 
-        /**
-         * A Dropbox-friendly timestamp wrapper
-         *
-         * @var string
-         */
-        const DATETIME_FORMAT = 'Y-m-d\TH:i:s\Z';
-
-        /**
-         * The generated options
-         *
-         * @var array
-         */
-        private $options;
-
-        /**
-         * Options constructor.
-         *
-         * @author Art <a.molcanovas@gmail.com>
-         *
-         * @param array $defaults Default options
-         */
-        function __construct(array $defaults = []) {
-            $this->options = $defaults;
-        }
-
-        /**
-         * Set an option
-         *
-         * @author Art <a.molcanovas@gmail.com>
-         *
-         * @param string $key   Option key
-         * @param mixed  $value Option value
-         *
-         * @return self
-         */
-        function setOption(string $key, $value) {
-            $this->options[$key] = $value;
-
-            return $this;
-        }
-
-        /**
-         * Return the generated options
-         *
-         * @author Art <a.molcanovas@gmail.com>
-         * @return array
-         */
-        function getOptions():array {
-            return $this->options;
-        }
+        use CloseTrait;
     }

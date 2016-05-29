@@ -1,0 +1,24 @@
+language: php
+
+php:
+  - 7.0
+
+before_script:
+ - phpenv config-rm xdebug.ini
+ - echo 'date.timezone = "Europe/London"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+ - composer update
+ - composer require satooshi/php-coveralls
+
+script:
+ - phpunit -v --coverage-clover build/logs/clover.xml
+
+after_script:
+ - chmod 777 build/logs/clover.xml
+ - php vendor/bin/coveralls -v
+
+notifications:
+ on_success: change
+ on_failure: always
+
+matrix:
+  fast_finish: true

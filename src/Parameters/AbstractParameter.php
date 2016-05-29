@@ -1,5 +1,5 @@
 <?php
-    /**
+/**
  * The MIT License (MIT)
  *
  * Copyright (c) 2016 Alorel, https://github.com/Alorel
@@ -19,63 +19,61 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-    namespace Alorel\Dropbox;
+namespace Alorel\Dropbox\Parameters;
+
+    use JsonSerializable;
 
     /**
-     * Abstract options wrapper
+     * Topmost abstract parameter class
      *
      * @author Art <a.molcanovas@gmail.com>
      */
-    class Options {
+    abstract class AbstractParameter implements JsonSerializable {
 
         /**
-         * A Dropbox-friendly timestamp wrapper
-         *
-         * @var string
-         */
-        const DATETIME_FORMAT = 'Y-m-d\TH:i:s\Z';
-
-        /**
-         * The generated options
+         * Parameter arguments
          *
          * @var array
          */
-        private $options;
+        private $args;
 
         /**
-         * Options constructor.
+         * AbstractParameter constructor.
          *
          * @author Art <a.molcanovas@gmail.com>
          *
-         * @param array $defaults Default options
+         * @param array $args Arguments to set
          */
-        function __construct(array $defaults = []) {
-            $this->options = $defaults;
+        protected function __construct(array $args = []) {
+            foreach ($args as $k => $v) {
+                if ($v === null) {
+                    unset($args[$k]);
+                }
+            }
+            $this->args = $args;
         }
 
         /**
-         * Set an option
+         * Specify data which should be serialized to JSON
          *
          * @author Art <a.molcanovas@gmail.com>
          *
-         * @param string $key   Option key
-         * @param mixed  $value Option value
-         *
-         * @return self
+         * @see    http://php.net/manual/en/jsonserializable.jsonserialize.php
+         * @return array data which can be serialized by <b>json_encode</b>, which is a value of any type other than
+         * a resource.
          */
-        function setOption(string $key, $value) {
-            $this->options[$key] = $value;
-
-            return $this;
+        function jsonSerialize() {
+            return $this->args;
         }
 
         /**
-         * Return the generated options
+         * A shorthand for JSON-encoding parameters
          *
          * @author Art <a.molcanovas@gmail.com>
-         * @return array
+         * @return string
+         * @uses   json_encode()
          */
-        function getOptions():array {
-            return $this->options;
+        function __toString() {
+            return json_encode($this);
         }
     }

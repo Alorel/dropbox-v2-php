@@ -1,5 +1,5 @@
 <?php
-    /**
+/**
  * The MIT License (MIT)
  *
  * Copyright (c) 2016 Alorel, https://github.com/Alorel
@@ -19,63 +19,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-    namespace Alorel\Dropbox;
+namespace Alorel\Dropbox\Parameters;
 
     /**
-     * Abstract options wrapper
+     * Contains the upload session ID and the offset.
      *
      * @author Art <a.molcanovas@gmail.com>
      */
-    class Options {
+    class UploadSessionCursor extends AbstractParameter {
 
         /**
-         * A Dropbox-friendly timestamp wrapper
-         *
-         * @var string
-         */
-        const DATETIME_FORMAT = 'Y-m-d\TH:i:s\Z';
-
-        /**
-         * The generated options
-         *
-         * @var array
-         */
-        private $options;
-
-        /**
-         * Options constructor.
+         * UploadSessionCursor constructor.
          *
          * @author Art <a.molcanovas@gmail.com>
          *
-         * @param array $defaults Default options
+         * @param string $sessionID The upload session ID (returned by upload_session/start).
+         * @param int    $offset    The amount of data that has been uploaded so far. We use this to make sure upload
+         *                          data isn't lost or duplicated in the event of a network error.
          */
-        function __construct(array $defaults = []) {
-            $this->options = $defaults;
-        }
-
-        /**
-         * Set an option
-         *
-         * @author Art <a.molcanovas@gmail.com>
-         *
-         * @param string $key   Option key
-         * @param mixed  $value Option value
-         *
-         * @return self
-         */
-        function setOption(string $key, $value) {
-            $this->options[$key] = $value;
-
-            return $this;
-        }
-
-        /**
-         * Return the generated options
-         *
-         * @author Art <a.molcanovas@gmail.com>
-         * @return array
-         */
-        function getOptions():array {
-            return $this->options;
+        function __construct(string $sessionID, int $offset = 0) {
+            parent::__construct([
+                                    'session_id' => $sessionID,
+                                    'offset'     => $offset
+                                ]);
         }
     }
