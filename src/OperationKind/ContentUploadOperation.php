@@ -22,7 +22,7 @@
     namespace Alorel\Dropbox\OperationKind;
 
     use Alorel\Dropbox\Operation\AbstractOperation;
-    use Alorel\Dropbox\Options;
+    use Alorel\Dropbox\Options\Options;
 
     /**
      * A wrapper for the ContentUpload group of operations
@@ -49,7 +49,7 @@
          * @param string                                            $path The path to upload the file to
          * @param string|resource|\Psr\Http\Message\StreamInterface $body The file contents. Can be a string, a fopen()
          *                                                                resource or an instance of StreamInterface
-         * @param Options|null                                      $opts Any additional, operation-specific options
+         * @param \Alorel\Dropbox\Options\Options|null              $opts Any additional, operation-specific options
          *
          * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface The promise interface if
          *                                                                                  async is set to true and the

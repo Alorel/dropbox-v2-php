@@ -21,7 +21,7 @@
 
     namespace Alorel\Dropbox\Parameters;
 
-    use Alorel\Dropbox\Options;
+    use Alorel\Dropbox\Options\Options;
     use Alorel\Dropbox\Test\TestUtil;
 
     class ParametersTest extends \PHPUnit_Framework_TestCase {

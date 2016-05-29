@@ -22,7 +22,7 @@
     namespace Alorel\Dropbox\Operation\Files\UploadSession;
 
     use Alorel\Dropbox\OperationKind\ContentUploadAbstractOperation;
-    use Alorel\Dropbox\OptionBuilder\UploadSession\UploadSessionActiveOptions;
+    use Alorel\Dropbox\Options\Builder\UploadSession\UploadSessionActiveOptions;
 
     /**
      * Upload sessions allow you to upload a single file using multiple requests. This call starts a new upload

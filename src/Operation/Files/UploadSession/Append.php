@@ -22,8 +22,8 @@
     namespace Alorel\Dropbox\Operation\Files\UploadSession;
 
     use Alorel\Dropbox\OperationKind\ContentUploadAbstractOperation;
-    use Alorel\Dropbox\OptionBuilder\UploadSession\UploadSessionActiveOptions;
-    use Alorel\Dropbox\Options;
+    use Alorel\Dropbox\Options\Builder\UploadSession\UploadSessionActiveOptions;
+    use Alorel\Dropbox\Options\Options;
     use Alorel\Dropbox\Parameters\UploadSessionCursor;
 
     /**

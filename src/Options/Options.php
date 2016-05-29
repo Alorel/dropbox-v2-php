@@ -19,7 +19,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-    namespace Alorel\Dropbox;
+    namespace Alorel\Dropbox\Options;
+
+    use Alorel\Dropbox\Util;
 
     /**
      * Abstract options wrapper

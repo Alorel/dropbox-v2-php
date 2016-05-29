@@ -22,7 +22,7 @@
     namespace Alorel\Dropbox\Operation\Files;
 
     use Alorel\Dropbox\OperationKind\ContentUploadAbstractOperation;
-    use Alorel\Dropbox\OptionBuilder\UploadOptions;
+    use Alorel\Dropbox\Options\Builder\UploadOptions;
 
     /**
      * Create a new file with the contents provided in the request. Do not use this to upload a file larger than

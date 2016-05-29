@@ -19,19 +19,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-    namespace Alorel\Dropbox\OptionBuilder\UploadSession;
-
-    use Alorel\Dropbox\OptionBuilder\Mixins\CloseTrait;
-    use Alorel\Dropbox\Options;
+    namespace Alorel\Dropbox\Options\Builder\Mixins;
 
     /**
-     * Additional options for upload_session/start
+     * If true, current session will be closed. You cannot do upload_session/append any more to current session The
+     * default for this field is False.
      *
      * @author Art <a.molcanovas@gmail.com>
-     * @see    https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-start
-     * @see    \Alorel\Dropbox\Operation\Files\UploadSession\Start
+     * @see    \Alorel\Dropbox\Operation\Files\UploadSession\Append
+     * @see    https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-append_v2
+     * @method $this setOption(string $key, $value)
      */
-    class UploadSessionActiveOptions extends Options {
+    trait CloseTrait {
 
-        use CloseTrait;
+        /**
+         * If true, current session will be closed. You cannot do upload_session/append any more to current session The
+         * default for this field is False.
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param bool $set The switch
+         *
+         * @return self
+         */
+        function setClose(bool $set) {
+            return $this->setOption('close', $set);
+        }
     }

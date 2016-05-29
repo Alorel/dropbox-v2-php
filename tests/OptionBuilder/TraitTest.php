@@ -19,9 +19,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-    namespace Alorel\Dropbox\OptionBuilder\Mixins;
+    namespace Alorel\Dropbox\Options\Builder\Mixins;
 
-    use Alorel\Dropbox\Options;
+    use Alorel\Dropbox\Options\Options;
     use Alorel\Dropbox\Parameters\WriteMode;
 
     class AllTheTraits extends Options {
