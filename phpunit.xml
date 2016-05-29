@@ -33,8 +33,8 @@
 >
 
     <testsuites>
-        <testsuite name="Default">
-            <directory>./tests</directory>
+        <testsuite name="Parameters">
+            <directory>./tests/Parameters</directory>
         </testsuite>
     </testsuites>
 
@@ -48,7 +48,19 @@
         </whitelist>
     </filter>
 
+    <logging>
+        <log type="coverage-html" target="coverage"/>
+        <log type="coverage-text" target="php://stdout"/>
+    </logging>
+
     <php>
-        <env name="APIKEY" value="hallo c:"/>
+        <ini name="xdebug.auto_trace" value="0"/>
+        <ini name="xdebug.cli_color" value="1"/>
+        <ini name="xdebug.collect_assignments" value="0"/>
+        <ini name="xdebug.collect_includes" value="0"/>
+        <ini name="xdebug.collect_params" value="0"/>
+        <ini name="xdebug.collect_return" value="0"/>
+        <ini name="xdebug.collect_vars" value="0"/>
+        <ini name="xdebug.coverage_enable" value="1"/>
     </php>
 </phpunit>

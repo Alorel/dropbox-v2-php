@@ -6,8 +6,7 @@ php:
 before_script:
  - phpenv config-rm xdebug.ini
  - echo 'date.timezone = "Europe/London"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
- - composer update
- - composer require satooshi/php-coveralls
+ - composer require --dev satooshi/php-coveralls
 
 script:
  - phpunit -v --coverage-clover build/logs/clover.xml

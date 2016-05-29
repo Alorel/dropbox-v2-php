@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * The MIT License (MIT)
  *
  * Copyright (c) 2016 Alorel, https://github.com/Alorel
@@ -19,7 +19,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-if (getenv('APIKEY')) {
+    namespace Alorel\Dropbox\Test;
+
+    if (getenv('APIKEY')) {
         define('DROPBOX_API_KEY', getenv('APIKEY'));
     } elseif (file_exists('API_KEY')) {
         if (is_readable('API_KEY')) {
@@ -33,4 +35,15 @@ if (getenv('APIKEY')) {
 
     require_once 'vendor/autoload.php';
 
-    d(getenv('APIKEY'));
+    class TestUtil {
+
+        static function formatParameterArgs(array $args = []) {
+            foreach ($args as $k => $v) {
+                if ($v === null) {
+                    unset($args[$k]);
+                }
+            }
+
+            return $args;
+        }
+    }

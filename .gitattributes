@@ -6,5 +6,6 @@
 /.sensiolabs.yml export-ignore
 /.travis.yml export-ignore
 /coverage export-ignore
-/authorise.php export-ignore
-/phpdoc.xml export-ignore
+/phpunit.xml export-ignore
+/phpunit-bootstrap.php export-ignore
+/sami.php export-ignore

@@ -41,6 +41,27 @@
     class WriteMode extends AbstractParameter {
 
         /**
+         * Used by {@link WriteMode::add()}
+         *
+         * @var string
+         */
+        const TAG_ADD = 'add';
+
+        /**
+         * Used by {@link WriteMode::overwrite()}
+         *
+         * @var string
+         */
+        const TAG_OVERWRITE = 'overwrite';
+
+        /**
+         * Used by {@link WriteMode::update()}
+         *
+         * @var string
+         */
+        const TAG_UPDATE = 'update';
+
+        /**
          * WriteMode constructor.
          *
          * @author Art <a.molcanovas@gmail.com>
@@ -56,18 +77,39 @@
         }
 
         /**
+         * Never overwrite the existing file. The autorename strategy is to append a number to the file name. For
+         * example, "document.txt" might become "document (2).txt".
+         *
+         * @author Art <a.molcanovas@gmail.com>
          *
          * @return WriteMode
          */
         static function add():self {
-            return new self('add');
+            return new self(static::TAG_ADD);
         }
 
+        /**
+         * Always overwrite the existing file. The autorename strategy is the same as it is for add.
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         * @return WriteMode
+         */
         static function overwrite():self {
-            return new self('overwrite');
+            return new self(static::TAG_OVERWRITE);
         }
 
+        /**
+         * Overwrite if the given "rev" matches the existing file's "rev". The autorename strategy is to append the
+         * string "conflicted copy" to the file name. For example, "document.txt" might become "document (conflicted
+         * copy).txt" or "document (Panda's conflicted copy).txt".
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param string $rev The "rev" from the description
+         *
+         * @return WriteMode
+         */
         static function update(string $rev):self {
-            return new self('update', $rev);
+            return new self(static::TAG_UPDATE, $rev);
         }
     }
