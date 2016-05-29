@@ -27,7 +27,6 @@
      * notification. The default for this field is False.
      *
      * @author Art <a.molcanovas@gmail.com>
-     * @method $this setOption(string $key, $value)
      */
     trait MuteTrait {
 
@@ -43,6 +42,8 @@
          * @return self
          */
         function setMute(bool $set) {
-            return $this->setOption('mute', $set);
+            $this['mute'] = $set;
+
+            return $this;
         }
     }

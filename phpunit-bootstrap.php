@@ -37,6 +37,8 @@
 
     class TestUtil {
 
+        private static $generatedNames = [];
+
         static function formatParameterArgs(array $args = []) {
             foreach ($args as $k => $v) {
                 if ($v === null) {
@@ -45,5 +47,25 @@
             }
 
             return $args;
+        }
+
+        static function genFileName(string $prefix = '', array &$storeTo = null) {
+            do {
+                $name = '/' . $prefix . md5(uniqid(__CLASS__, true) + mt_rand(PHP_INT_MIN, PHP_INT_MAX)) . '.txt';
+            } while (array_search($name, self::$generatedNames) !== false);
+
+            self::$generatedNames[] = $name;
+
+            if ($storeTo !== null) {
+                $storeTo[] = $name;
+            }
+
+            return $name;
+        }
+
+        static function releaseName(string ...$names) {
+            foreach ($names as $name) {
+                unset(self::$generatedNames[$name]);
+            }
         }
     }

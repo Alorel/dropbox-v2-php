@@ -43,14 +43,16 @@
         }
 
         function testBlankConstruct() {
-            $this->assertEquals([], (new AllTheTraits())->getOptions());
+            $this->assertEquals([], (new AllTheTraits())->toArray());
         }
 
         /** @dataProvider allTraits */
         function testAllTraits(string $method, string $varname, $value, $outValue = null) {
+            /** @var AllTheTraits $call */
+            $call = call_user_func([$this->cfg, $method], $value);
             $this->assertEquals(
                 [$varname => $outValue ?? $value],
-                call_user_func([$this->cfg, $method], $value)->getOptions()
+                $call->toArray()
             );
         }
 
@@ -78,20 +80,35 @@
             return $return;
         }
 
+        function testOffsets() {
+            $this->assertFalse(isset($this->cfg[__METHOD__]));
+            $this->assertNull($this->cfg[__METHOD__]);
+
+            $this->cfg[__METHOD__] = __CLASS__;
+
+            $this->assertTrue(isset($this->cfg[__METHOD__]));
+            $this->assertEquals(__CLASS__, $this->cfg[__METHOD__]);
+
+            unset($this->cfg[__METHOD__]);
+            $this->assertFalse(isset($this->cfg[__METHOD__]));
+            $this->assertNull($this->cfg[__METHOD__]);
+        }
+
         function testDefaultsConstruct() {
             $a = ['foo' => 'bar'];
-            $this->assertEquals($a, (new AllTheTraits($a))->getOptions());
+            $this->assertEquals($a, (new AllTheTraits($a))->toArray());
         }
 
         /** @dataProvider merge */
         function testMerge(array $final, ...$items) {
             $out = Options::merge(...$items);
 
-            $this->assertEquals($final, $out->getOptions());
+            $this->assertEquals($final, $out->toArray());
         }
 
         function testSetOptionRaw() {
-            $this->assertEquals(new AllTheTraits(['foo' => 'bar']), $this->cfg->setOption('foo', 'bar'));
+            $this->cfg['foo'] = 'bar';
+            $this->assertEquals(new AllTheTraits(['foo' => 'bar']), $this->cfg);
         }
 
         function merge() {

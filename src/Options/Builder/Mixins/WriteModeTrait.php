@@ -39,7 +39,6 @@
      * the contents you're trying to write
      *
      * @author  Art <a.molcanovas@gmail.com>
-     * @method $this setOption(string $key, $value)
      */
     trait WriteModeTrait {
 
@@ -65,6 +64,8 @@
          * @return self
          */
         function setWriteMode(WriteMode $set) {
-            return $this->setOption('mode', $set);
+            $this['mode'] = $set;
+
+            return $this;
         }
     }

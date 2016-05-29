@@ -28,7 +28,6 @@
      * @author Art <a.molcanovas@gmail.com>
      * @see    \Alorel\Dropbox\Operation\Files\UploadSession\Append
      * @see    https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-append_v2
-     * @method $this setOption(string $key, $value)
      */
     trait CloseTrait {
 
@@ -43,6 +42,8 @@
          * @return self
          */
         function setClose(bool $set) {
-            return $this->setOption('close', $set);
+            $this['close'] = $set;
+
+            return $this;
         }
     }

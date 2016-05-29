@@ -20,13 +20,13 @@
   -->
 
 <phpunit backupGlobals="true"
-         backupStaticAttributes="true"
+         backupStaticAttributes="false"
          colors="true"
          bootstrap="phpunit-bootstrap.php"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
-         processIsolation="true"
+         processIsolation="false"
          stopOnFailure="true"
          syntaxCheck="true"
          verbose="true"
@@ -38,6 +38,9 @@
         </testsuite>
         <testsuite name="OptionBuilder">
             <directory>./tests/OptionBuilder</directory>
+        </testsuite>
+        <testsuite name="Files">
+            <directory>./tests/Operations/Files</directory>
         </testsuite>
     </testsuites>
 

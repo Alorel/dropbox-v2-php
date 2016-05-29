@@ -26,7 +26,6 @@
      * conflict. The default for this field is False.
      *
      * @author Art <a.molcanovas@gmail.com>
-     * @method $this setOption(string $key, $value)
      */
     trait AutoRenameTrait {
 
@@ -41,6 +40,8 @@
          * @return self
          */
         function setAutoRename(bool $set) {
-            return $this->setOption('autorename', $set);
+            $this['autorename'] = $set;
+
+            return $this;
         }
     }

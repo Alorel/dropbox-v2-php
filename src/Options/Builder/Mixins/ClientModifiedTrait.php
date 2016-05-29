@@ -30,7 +30,6 @@
      * clients, mobile clients, and API apps of when the file was actually created or modified
      *
      * @author Art <a.molcanovas@gmail.com>
-     * @method $this setOption(string $key, $value)
      */
     trait ClientModifiedTrait {
 
@@ -46,6 +45,8 @@
          * @return self
          */
         function setClientModified(DateTimeInterface $set) {
-            return $this->setOption('client_modified', $set->format(Options::DATETIME_FORMAT));
+            $this['client_modified'] = $set->format(Options::DATETIME_FORMAT);
+
+            return $this;
         }
     }

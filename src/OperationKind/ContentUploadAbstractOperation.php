@@ -71,7 +71,7 @@
             }
 
             if ($opts) {
-                $arg = array_merge($arg, $opts->getOptions());
+                $arg = array_merge($arg, $opts->toArray());
             }
 
             $arg = json_encode($arg);
