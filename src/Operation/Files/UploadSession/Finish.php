@@ -21,7 +21,8 @@
 
     namespace Alorel\Dropbox\Operation\Files\UploadSession;
 
-    use Alorel\Dropbox\OperationKind\ContentUploadOperation;
+    use Alorel\Dropbox\OperationKind\ContentUploadAbstractOperation;
+    use Alorel\Dropbox\Parameters\CommitInfo;
     use Alorel\Dropbox\Parameters\UploadSessionCursor;
 
     /**
@@ -30,9 +31,33 @@
      *
      * @author Art <a.molcanovas@gmail.com>
      */
-    class Finish extends ContentUploadOperation {
+    class Finish extends ContentUploadAbstractOperation {
 
-        function perform($data, UploadSessionCursor $cursor, string $path) {
-
+        /**
+         * Perform the operation
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param string|resource|\Psr\Http\Message\StreamInterface $data       The file contents. Can be a string, a fopen()
+         *                                                                      resource or an instance of StreamInterface
+         * @param UploadSessionCursor                               $cursor     The upload session cursor
+         * @param CommitInfo                                        $commitInfo Final info, such as path and options
+         *                                                                      available to the regular upload
+         *                                                                      operation
+         *
+         * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface The promise interface if
+         *                                                                                  async is set to true and the
+         *                                                                                  request interface if it is
+         *                                                                                  set to false
+         * @throws \GuzzleHttp\Exception\ClientException
+         */
+        function perform($data, UploadSessionCursor $cursor, CommitInfo $commitInfo) {
+            return $this->send('files/upload_session/finish',
+                               null,
+                               $data,
+                               [
+                                   'cursor' => $cursor,
+                                   'commit' => $commitInfo
+                               ]);
         }
     }

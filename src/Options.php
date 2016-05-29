@@ -54,6 +54,39 @@
         }
 
         /**
+         * Create an Options object from a combination of configuration arrays and other option objects
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param array ...$options The items to merge
+         *
+         * @return Options
+         */
+        static function merge(...$options):self {
+            $o = [];
+
+            foreach ($options as $opt) {
+                if (is_array($opt)) {
+                    $o = array_merge($o, $opt);
+                } elseif ($opt instanceof Options) {
+                    $o = array_merge($o, $opt->getOptions());
+                }
+            }
+
+            return new self($o);
+        }
+
+        /**
+         * Return the generated options
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         * @return array
+         */
+        function getOptions():array {
+            return $this->options;
+        }
+
+        /**
          * Set an option
          *
          * @author Art <a.molcanovas@gmail.com>
@@ -67,15 +100,5 @@
             $this->options[$key] = $value;
 
             return $this;
-        }
-
-        /**
-         * Return the generated options
-         *
-         * @author Art <a.molcanovas@gmail.com>
-         * @return array
-         */
-        function getOptions():array {
-            return $this->options;
         }
     }

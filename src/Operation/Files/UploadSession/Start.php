@@ -21,7 +21,7 @@
 
     namespace Alorel\Dropbox\Operation\Files\UploadSession;
 
-    use Alorel\Dropbox\OperationKind\ContentUploadOperation;
+    use Alorel\Dropbox\OperationKind\ContentUploadAbstractOperation;
     use Alorel\Dropbox\OptionBuilder\UploadSession\UploadSessionActiveOptions;
 
     /**
@@ -38,7 +38,7 @@
      * @see    Append
      * @see    Finish
      */
-    class Start extends ContentUploadOperation {
+    class Start extends ContentUploadAbstractOperation {
 
         /**
          * Perform the operation

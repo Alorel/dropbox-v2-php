@@ -21,7 +21,7 @@
 
     namespace Alorel\Dropbox\Operation\Files\UploadSession;
 
-    use Alorel\Dropbox\OperationKind\ContentUploadOperation;
+    use Alorel\Dropbox\OperationKind\ContentUploadAbstractOperation;
     use Alorel\Dropbox\OptionBuilder\UploadSession\UploadSessionActiveOptions;
     use Alorel\Dropbox\Options;
     use Alorel\Dropbox\Parameters\UploadSessionCursor;
@@ -32,7 +32,7 @@
      *
      * @author Art <a.molcanovas@gmail.com>
      */
-    class Append extends ContentUploadOperation {
+    class Append extends ContentUploadAbstractOperation {
 
         /**
          * Perform the operation
@@ -50,12 +50,12 @@
          * @throws \GuzzleHttp\Exception\ClientException
          */
         function perform($data, UploadSessionCursor $cursor, UploadSessionActiveOptions $options = null) {
-            if (!$options) {
-                $options = new Options(['cursor' => $cursor]);
-            } else {
-                $options->setOption('cursor', $cursor);
-            }
-
-            return $this->send('upload_session/append_v2', null, $data, $options);
+            return $this->send('upload_session/append_v2',
+                               null,
+                               $data,
+                               Options::merge(
+                                   $options,
+                                   ['cursor' => $cursor]
+                               ));
         }
     }

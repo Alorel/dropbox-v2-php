@@ -21,7 +21,7 @@
 
     namespace Alorel\Dropbox\OperationKind;
 
-    use Alorel\Dropbox\Operation;
+    use Alorel\Dropbox\Operation\AbstractOperation;
     use Alorel\Dropbox\Options;
 
     /**
@@ -30,7 +30,7 @@
      * @author Art <a.molcanovas@gmail.com>
      * @see    https://www.dropbox.com/developers/documentation/http/documentation#formats
      */
-    abstract class ContentUploadOperation extends Operation {
+    abstract class ContentUploadAbstractOperation extends AbstractOperation {
 
         /**
          * The hostname for these operations

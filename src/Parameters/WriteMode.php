@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * The MIT License (MIT)
  *
  * Copyright (c) 2016 Alorel, https://github.com/Alorel
@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace Alorel\Dropbox\Parameters;
+    namespace Alorel\Dropbox\Parameters;
 
     /**
      * Selects what to do if the file already exists. The default for this union is add.
