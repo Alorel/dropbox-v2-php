@@ -6,6 +6,8 @@
 
     namespace Alorel\Dropbox\Parameters;
 
+    use Alorel\Dropbox\Options\Option as O;
+
     /**
      * Selects what to do if the file already exists. The default for this union is add.
      * <br/><br/>
@@ -56,8 +58,8 @@
          */
         protected function __construct(string $tag, string $rev = null) {
             parent::__construct([
-                                    '.tag'   => $tag,
-                                    'update' => $rev
+                                    O::DOT_TAG => $tag,
+                                    O::UPDATE  => $rev
                                 ]);
         }
 

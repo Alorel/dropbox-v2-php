@@ -36,6 +36,6 @@
          * @throws \GuzzleHttp\Exception\ClientException
          */
         function raw(string $path, $data, UploadOptions $options = null) {
-            return $this->send('files/upload', $path, $data, $options);
+            return $this->send('upload', $path, $data, $options);
         }
     }

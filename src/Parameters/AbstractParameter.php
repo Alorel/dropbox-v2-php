@@ -35,6 +35,24 @@
         }
 
         /**
+         * Sets an argument value
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param string $key   The argument
+         * @param mixed  $value The value
+         *
+         * @return self
+         */
+        protected function setArg(string $key, $value) {
+            if ($value !== null) {
+                $this->args[$key] = $value;
+            }
+
+            return $this;
+        }
+
+        /**
          * Specify data which should be serialized to JSON
          *
          * @author Art <a.molcanovas@gmail.com>

@@ -30,7 +30,7 @@
          * @author Art <a.molcanovas@gmail.com>
          *
          * @param string                                            $url  The URL to send to. This will be prepended
-         *                                                                with the HOST and API version
+         *                                                                with the HOST, API version and "files/"
          * @param string                                            $path The path to upload the file to
          * @param string|resource|\Psr\Http\Message\StreamInterface $body The file contents. Can be a string, a fopen()
          *                                                                resource or an instance of StreamInterface
@@ -44,7 +44,7 @@
          * @see    ContentUploadOperation::HOST
          * @see    Operation::API_VERSION
          */
-        protected function send(string $url, string $path, $body, Options $opts = null) {
+        protected function send(string $url, $path, $body, Options $opts = null) {
             $headers = [
                 'Content-Type'    => 'application/octet-stream',
                 'Dropbox-API-Arg' => []
@@ -59,14 +59,18 @@
                 $arg = array_merge($arg, $opts->toArray());
             }
 
-            $arg = json_encode($arg);
+            $arg = $arg ? json_encode($arg) : '{}';
+
+            $params = [
+                'headers' => $headers
+            ];
+            if ($body !== null) {
+                $params['body'] = $body;
+            }
 
             return $this->sendAbstract('POST',
-                                       self::HOST . '/' . self::API_VERSION . '/' . $url,
-                                       [
-                                           'headers' => $headers,
-                                           'body'    => $body
-                                       ]);
+                                       self::HOST . '/' . self::API_VERSION . '/files/' . $url,
+                                       $params);
         }
 
     }

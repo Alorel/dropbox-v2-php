@@ -7,6 +7,7 @@
     namespace Alorel\Dropbox\Operation\Files\UploadSession;
 
     use Alorel\Dropbox\OperationKind\ContentUploadAbstractOperation;
+    use Alorel\Dropbox\Options\Options;
     use Alorel\Dropbox\Parameters\CommitInfo;
     use Alorel\Dropbox\Parameters\UploadSessionCursor;
 
@@ -37,12 +38,12 @@
          * @throws \GuzzleHttp\Exception\ClientException
          */
         function raw($data, UploadSessionCursor $cursor, CommitInfo $commitInfo) {
-            return $this->send('files/upload_session/finish',
+            return $this->send('upload_session/finish',
                                null,
                                $data,
-                               [
-                                   'cursor' => $cursor,
-                                   'commit' => $commitInfo
-                               ]);
+                               new Options([
+                                               'cursor' => $cursor,
+                                               'commit' => $commitInfo
+                                           ]));
         }
     }

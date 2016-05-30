@@ -6,6 +6,7 @@
 
     namespace Alorel\Dropbox\Parameters;
 
+    use Alorel\Dropbox\Options\Option as O;
     use Alorel\Dropbox\Options\Options;
     use DateTimeInterface;
 
@@ -46,12 +47,12 @@
                              bool $mute = false,
                              DateTimeInterface $clientModified = null) {
             parent::__construct([
-                                    'path'            => $path,
-                                    'mode'            => $writeMode,
-                                    'autorename'      => $autorename,
-                                    'client_modified' => $clientModified ?
+                                    O::PATH            => $path,
+                                    O::MODE            => $writeMode,
+                                    O::AUTO_RENAME     => $autorename,
+                                    O::CLIENT_MODIFIED => $clientModified ?
                                         $clientModified->format(Options::DATETIME_FORMAT) : null,
-                                    'mute'            => $mute
+                                    O::MUTE            => $mute
                                 ]);
         }
     }

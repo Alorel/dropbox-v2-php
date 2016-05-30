@@ -14,6 +14,7 @@
     use Alorel\Dropbox\Options\Builder\GetMetadataOptions;
     use Alorel\Dropbox\Options\Builder\UploadOptions;
     use Alorel\Dropbox\Options\Options;
+    use Alorel\Dropbox\Response\ResponseAttribute as R;
     use Alorel\Dropbox\Test\NameGenerator;
     use GuzzleHttp\Exception\ClientException;
 
@@ -33,12 +34,12 @@
                 true
             );
 
-            $this->assertEquals('file', $meta['.tag']);
-            $this->assertEquals($filename, $meta['path_display']);
-            $this->assertEquals(strtolower($filename), $meta['path_lower']);
-            $this->assertEquals($dt->format(Options::DATETIME_FORMAT), $meta['client_modified']);
-            $this->assertEquals(strlen(__METHOD__), $meta['size']);
-            $this->assertTrue(is_bool($meta['has_explicit_shared_members']));
+            $this->assertEquals('file', $meta[R::DOT_TAG]);
+            $this->assertEquals($filename, $meta[R::PATH_DISPLAY]);
+            $this->assertEquals(strtolower($filename), $meta[R::PATH_LOWERCASE]);
+            $this->assertEquals($dt->format(Options::DATETIME_FORMAT), $meta[R::CLIENT_MODIFIED]);
+            $this->assertEquals(strlen(__METHOD__), $meta[R::SIZE]);
+            $this->assertTrue(is_bool($meta[R::HAS_EXPLICIT_SHARED_MEMBERS]));
         }
 
         /** @dataProvider providerDelete */
@@ -52,7 +53,7 @@
                                 json_decode(
                                     $meta->raw($filename, $options)->getBody()->getContents(),
                                     true
-                                )['.tag']);
+                                )[R::DOT_TAG]);
 
             /** @var SingleArgumentRPCOperation $obj */
             $obj = new $class();
@@ -62,7 +63,7 @@
                                     json_decode(
                                         $meta->raw($filename, $options)->getBody()->getContents(),
                                         true
-                                    )['.tag']);
+                                    )[R::DOT_TAG]);
             } else {
                 try {
                     $obj->raw($filename);

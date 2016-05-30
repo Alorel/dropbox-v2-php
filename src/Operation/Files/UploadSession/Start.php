@@ -30,9 +30,7 @@
          *
          * @author Art <a.molcanovas@gmail.com>
          *
-         * @param string|resource|\Psr\Http\Message\StreamInterface $data    The file contents. Can be a string, a fopen()
-         *                                                                   resource or an instance of StreamInterface
-         * @param UploadSessionActiveOptions|null                   $options Additional options
+         * @param UploadSessionActiveOptions|null $options Additional options
          *
          * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface The promise interface if
          *                                                                                  async is set to true and the
@@ -40,7 +38,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function raw($data, UploadSessionActiveOptions $options = null) {
-            return $this->send('files/upload_session/start', null, $data, $options);
+        function raw(UploadSessionActiveOptions $options = null) {
+            return $this->send('upload_session/start', null, null, $options);
         }
     }

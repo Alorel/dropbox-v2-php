@@ -68,4 +68,39 @@
          * @var string
          */
         const INCLUDE_HAS_EXPLICIT_SHARED_MEMBERS = 'include_has_explicit_shared_members';
+
+        /**
+         * The main target path
+         *
+         * @var string
+         */
+        const PATH = 'path';
+
+        /**
+         * The upload session ID
+         *
+         * @var string
+         */
+        const SESSION_ID = 'session_id';
+
+        /**
+         * The session offset
+         *
+         * @var string
+         */
+        const OFFSET = 'offset';
+
+        /**
+         * Tags
+         *
+         * @var string
+         */
+        const DOT_TAG = '.tag';
+
+        /**
+         * Update revision
+         *
+         * @var string
+         */
+        const UPDATE = 'update';
     }

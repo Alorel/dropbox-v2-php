@@ -6,6 +6,8 @@
 
     namespace Alorel\Dropbox\Parameters;
 
+    use Alorel\Dropbox\Options\Option as O;
+
     /**
      * Contains the upload session ID and the offset.
      *
@@ -24,8 +26,12 @@
          */
         function __construct(string $sessionID, int $offset = 0) {
             parent::__construct([
-                                    'session_id' => $sessionID,
-                                    'offset'     => $offset
+                                    O::SESSION_ID => $sessionID,
+                                    O::OFFSET     => $offset
                                 ]);
+        }
+
+        function setOffset(int $offset) {
+            return $this->setArg(O::OFFSET, $offset);
         }
     }

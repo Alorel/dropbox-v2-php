@@ -9,24 +9,64 @@
     use Alorel\Dropbox\Exception\NoTokenException;
     use Alorel\Dropbox\Operation\AbstractOperation;
     use Alorel\Dropbox\Operation\Files\Upload;
+    use Alorel\Dropbox\Operation\Files\UploadSession\Append;
+    use Alorel\Dropbox\Operation\Files\UploadSession\Finish;
+    use Alorel\Dropbox\Operation\Files\UploadSession\Start;
     use Alorel\Dropbox\Options\Builder\UploadOptions;
-    use Alorel\Dropbox\Options\Option;
+    use Alorel\Dropbox\Options\Option as O;
+    use Alorel\Dropbox\Parameters\CommitInfo;
+    use Alorel\Dropbox\Parameters\UploadSessionCursor;
+    use Alorel\Dropbox\Response\ResponseAttribute as R;
     use Alorel\Dropbox\Test\NameGenerator;
     use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Promise\PromiseInterface;
     use Psr\Http\Message\ResponseInterface;
 
-    //@todo clean files after delete is implemented
     class UploadAndAbstractTest extends \PHPUnit_Framework_TestCase {
 
         use NameGenerator;
-
-        private static $generatedNames = [];
 
         private static $fileLength;
 
         static function setUpBeforeClass() {
             self::$fileLength = strlen(file_get_contents(__FILE__));
+        }
+
+        function testUploadSession() {
+            $chunks = [
+                '123' => 0,
+                '456' => 3,
+                '789' => 6,
+                '!'   => 9
+            ];
+            $sessionID = json_decode(
+                             (new Start())->raw()->getBody()->getContents(),
+                             true
+                         )[R::SESSION_ID];
+
+            $append = new Append();
+            $lastOffset = $chunks[array_keys($chunks)[count($chunks) - 1]];
+            $cursor = new UploadSessionCursor($sessionID);
+
+            foreach ($chunks as $data => $offset) {
+                $cursor->setOffset($offset);
+                $filename = self::genFileName();
+                if ($offset == $lastOffset) {
+                    $r = (new Finish())
+                        ->raw(
+                            $data,
+                            $cursor,
+                            new CommitInfo($filename)
+                        );
+                    $r = json_decode($r->getBody()->getContents(), true);
+
+                    $this->assertEquals($filename, $r[R::PATH_DISPLAY]);
+                    $this->assertEquals(strtolower($filename), $r[R::PATH_LOWERCASE]);
+                    $this->assertEquals(10, $r[R::SIZE]);
+                } else {
+                    $append->raw($data, $cursor);
+                }
+            }
         }
 
         function testClientModified() {
@@ -45,7 +85,7 @@
             $filename = self::genFileName();
             $rsp = (new Upload())->raw($filename, fopen(__FILE__, 'r'));
 
-            $this->assertEquals(self::$fileLength, json_decode($rsp->getBody(), true)['size']);
+            $this->assertEquals(self::$fileLength, json_decode($rsp->getBody(), true)[R::SIZE]);
         }
 
         function testStreamUpload() {
@@ -55,7 +95,7 @@
                 $filename = self::genFileName();
                 $rsp = (new Upload())->raw($filename, $stream);
 
-                $this->assertEquals(self::$fileLength, json_decode($rsp->getBody(), true)['size']);
+                $this->assertEquals(self::$fileLength, json_decode($rsp->getBody(), true)[R::SIZE]);
             } finally {
                 $stream->close();
             }
@@ -112,12 +152,12 @@
 
         function abstraction(ResponseInterface $rsp, string $filename, UploadOptions $opts = null) {
             $body = json_decode($rsp->getBody()->getContents(), true);
-            $this->assertEquals($filename, $body['path_display']);
-            $this->assertEquals(strtolower($filename), $body['path_lower']);
-            $this->assertEquals(strlen(__CLASS__), $body['size']);
+            $this->assertEquals($filename, $body[R::PATH_DISPLAY]);
+            $this->assertEquals(strtolower($filename), $body[R::PATH_LOWERCASE]);
+            $this->assertEquals(strlen(__CLASS__), $body[R::SIZE]);
 
-            if (isset($opts[Option::CLIENT_MODIFIED])) {
-                $this->assertEquals($opts[Option::CLIENT_MODIFIED], $body['client_modified']);
+            if (isset($opts[O::CLIENT_MODIFIED])) {
+                $this->assertEquals($opts[O::CLIENT_MODIFIED], $body[R::CLIENT_MODIFIED]);
             }
         }
 
