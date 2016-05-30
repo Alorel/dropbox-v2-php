@@ -1,26 +1,12 @@
 <?php
     /**
- * The MIT License (MIT)
- *
  * Copyright (c) 2016 Alorel, https://github.com/Alorel
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
- * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the 
- * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit 
- * persons to whom the Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
- * Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT 
- * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
  */
 
     namespace Alorel\Dropbox\Operation;
 
+    use Alorel\Dropbox\Exception\NoTokenException;
     use GuzzleHttp\Client;
     use League\OAuth2\Client\Provider\GenericProvider;
 
@@ -69,15 +55,41 @@
         private static $client;
 
         /**
+         * The default access token to use across requests
+         *
+         * @var string
+         */
+        private static $defaultToken = null;
+
+        /**
+         * The default behaviour - sync or async
+         *
+         * @var bool
+         */
+        private static $defaultAsync = false;
+
+        /**
+         * Whether we're operating in async mode
+         *
+         * @var bool
+         */
+        private $async;
+
+        /**
          * Operation constructor.
          *
          * @author Art <a.molcanovas@gmail.com>
          *
-         * @param string $accessToken Our access token
          * @param bool   $async       Whether requests should be asynchronous
+         * @param string $accessToken Our access token
+         *
+         * @throws NoTokenException If $accessToken is not provided and the {@link AbstractOperation::$defaultToken default token} hasn't been set via {@link AbstractOperation::setDefaultToken() setDefaultToken()}
          */
-        function __construct(string $accessToken, bool $async = false) {
-            $this->token = $accessToken;
+        function __construct($async = null, string $accessToken = null) {
+            $this->token = $accessToken ?? self::$defaultToken;
+            if (!$this->token) {
+                throw new NoTokenException();
+            }
 
             if (!self::$provider) {
                 $opts = [
@@ -93,7 +105,48 @@
                 self::$client = new Client();
             }
 
-            $this->sendCallable = [self::$client, $async ? 'sendAsync' : 'send'];
+            $this->setAsync((bool)($async ?? self::$defaultAsync));
+        }
+
+        static function setDefaultToken(string $token) {
+            self::$defaultToken = $token;
+        }
+
+        /**
+         * Return whether we're operating in async mode
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         * @return boolean
+         */
+        public function isAsync() {
+            return $this->async;
+        }
+
+        /**
+         * Sets the sync/async operation mode
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param bool $async true to perform operations in async mode, false to perform them in sync
+         *
+         * @return self
+         */
+        public function setAsync(bool $async) {
+            $this->async = $async;
+            $this->sendCallable = [self::$client, $this->async ? 'sendAsync' : 'send'];
+
+            return $this;
+        }
+
+        /**
+         * Sets the default $async value for the constructor
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param bool $async The default async value
+         */
+        static function setDefaultAsync(bool $async) {
+            self::$defaultAsync = $async;
         }
 
         /**
