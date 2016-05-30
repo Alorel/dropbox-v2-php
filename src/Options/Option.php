@@ -14,6 +14,20 @@
     class Option {
 
         /**
+         * Session cursor
+         *
+         * @var string
+         */
+        const CURSOR = 'cursor';
+
+        /**
+         * Session commit information
+         *
+         * @var string
+         */
+        const COMMIT_INFO = 'commit';
+
+        /**
          * Write mode
          *
          * @var string
@@ -75,6 +89,20 @@
          * @var string
          */
         const PATH = 'path';
+
+        /**
+         * The source path
+         *
+         * @var string
+         */
+        const PATH_SRC = 'from_path';
+
+        /**
+         * Destination path
+         *
+         * @var string
+         */
+        const PATH_DEST = 'to_path';
 
         /**
          * The upload session ID

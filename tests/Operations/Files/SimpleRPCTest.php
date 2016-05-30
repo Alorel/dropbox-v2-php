@@ -6,8 +6,10 @@
 
     namespace Alorel\Dropbox\Operations\Files;
 
+    use Alorel\Dropbox\Operation\Files\Copy;
     use Alorel\Dropbox\Operation\Files\Delete;
     use Alorel\Dropbox\Operation\Files\GetMetadata;
+    use Alorel\Dropbox\Operation\Files\Move;
     use Alorel\Dropbox\Operation\Files\PermanentlyDelete;
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\OperationKind\SingleArgumentRPCOperation;
@@ -40,6 +42,35 @@
             $this->assertEquals($dt->format(Options::DATETIME_FORMAT), $meta[R::CLIENT_MODIFIED]);
             $this->assertEquals(strlen(__METHOD__), $meta[R::SIZE]);
             $this->assertTrue(is_bool($meta[R::HAS_EXPLICIT_SHARED_MEMBERS]));
+        }
+
+        function testCopy() {
+            $src = self::genFileName();
+            $dest = self::genFileName();
+            $meta = new GetMetadata();
+
+            (new Upload())->raw($src, __METHOD__);
+            (new Copy())->raw($src, $dest);
+
+            $this->assertEquals(
+                json_decode($meta->raw($src)->getBody()->getContents(), true)[R::SIZE],
+                json_decode($meta->raw($dest)->getBody()->getContents(), true)[R::SIZE]
+            );
+        }
+
+        function testMove() {
+            $src = self::genFileName();
+            $dest = self::genFileName();
+            $meta = new GetMetadata();
+
+            $srcSize = json_decode((new Upload())->raw($src, __METHOD__)->getBody()->getContents(), true)[R::SIZE];
+            (new Move())->raw($src, $dest);
+
+            $this->assertEquals($srcSize, json_decode($meta->raw($dest)->getBody()->getContents(), true)[R::SIZE]);
+
+            $this->expectException(ClientException::class);
+            $this->expectExceptionCode(409);
+            $meta->raw($src);
         }
 
         /** @dataProvider providerDelete */

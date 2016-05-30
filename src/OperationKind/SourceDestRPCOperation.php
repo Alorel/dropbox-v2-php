@@ -6,15 +6,16 @@
 
     namespace Alorel\Dropbox\OperationKind;
 
-    use Alorel\Dropbox\Operation\Files\Delete;
-    use Alorel\Dropbox\Operation\Files\PermanentlyDelete;
+    use Alorel\Dropbox\Operation\Files\Copy;
+    use Alorel\Dropbox\Operation\Files\Move;
+    use Alorel\Dropbox\Options\Option as O;
 
     /**
-     * A subtype of RPC that only accepts a single argument
+     * A subtype of RPC that only needs a source path and a destination path
      *
      * @author Art <a.molcanovas@gmail.com>
      */
-    class SingleArgumentRPCOperation extends RPCOperation {
+    class SourceDestRPCOperation extends RPCOperation {
 
         /**
          * Class to URL mapping
@@ -22,8 +23,8 @@
          * @var string[]
          */
         private static $map = [
-            Delete::class            => 'files/delete',
-            PermanentlyDelete::class => 'files/permanently_delete'
+            Move::class => 'files/move',
+            Copy::class => 'files/copy'
         ];
 
         /**
@@ -31,7 +32,8 @@
          *
          * @author Art <a.molcanovas@gmail.com>
          *
-         * @param string $path The path operate on
+         * @param string $from The source path
+         * @param string $to   The destination path
          *
          * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface The promise interface if
          *                                                                                  async is set to true and the
@@ -39,7 +41,11 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function raw(string $path) {
-            return $this->send(self::$map[get_class($this)], $path);
+        function raw(string $from, string $to) {
+            return $this->send(self::$map[get_class($this)],
+                               [
+                                   O::PATH_SRC  => $from,
+                                   O::PATH_DEST => $to
+                               ]);
         }
     }

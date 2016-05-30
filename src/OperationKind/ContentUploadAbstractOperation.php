@@ -7,6 +7,7 @@
     namespace Alorel\Dropbox\OperationKind;
 
     use Alorel\Dropbox\Operation\AbstractOperation;
+    use Alorel\Dropbox\Options\Option;
     use Alorel\Dropbox\Options\Options;
 
     /**
@@ -52,7 +53,7 @@
             $arg = &$headers['Dropbox-API-Arg'];
 
             if ($path) {
-                $arg['path'] = $path;
+                $arg[Option::PATH] = $path;
             }
 
             if ($opts) {

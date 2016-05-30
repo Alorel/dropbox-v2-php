@@ -7,6 +7,7 @@
     namespace Alorel\Dropbox\OperationKind;
 
     use Alorel\Dropbox\Operation\AbstractOperation;
+    use Alorel\Dropbox\Options\Option;
     use Alorel\Dropbox\Options\Options;
 
     /**
@@ -41,7 +42,7 @@
          */
         protected function send(string $url, $path, Options $options = null) {
             $body = is_array($path) ? $path : [
-                'path' => $path
+                Option::PATH => $path
             ];
             if ($options) {
                 $body = array_merge($body, $options->toArray());

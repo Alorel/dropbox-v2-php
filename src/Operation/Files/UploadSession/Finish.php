@@ -7,6 +7,7 @@
     namespace Alorel\Dropbox\Operation\Files\UploadSession;
 
     use Alorel\Dropbox\OperationKind\ContentUploadAbstractOperation;
+    use Alorel\Dropbox\Options\Option as O;
     use Alorel\Dropbox\Options\Options;
     use Alorel\Dropbox\Parameters\CommitInfo;
     use Alorel\Dropbox\Parameters\UploadSessionCursor;
@@ -42,8 +43,8 @@
                                null,
                                $data,
                                new Options([
-                                               'cursor' => $cursor,
-                                               'commit' => $commitInfo
+                                               O::CURSOR      => $cursor,
+                                               O::COMMIT_INFO => $commitInfo
                                            ]));
         }
     }

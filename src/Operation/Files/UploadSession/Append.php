@@ -8,6 +8,7 @@
 
     use Alorel\Dropbox\OperationKind\ContentUploadAbstractOperation;
     use Alorel\Dropbox\Options\Builder\UploadSession\UploadSessionActiveOptions;
+    use Alorel\Dropbox\Options\Option;
     use Alorel\Dropbox\Options\Options;
     use Alorel\Dropbox\Parameters\UploadSessionCursor;
 
@@ -40,7 +41,7 @@
                                $data,
                                Options::merge(
                                    $options,
-                                   ['cursor' => $cursor]
+                                   [Option::CURSOR => $cursor]
                                ));
         }
     }
