@@ -9,6 +9,7 @@
     use Alorel\Dropbox\Operation\Files\Copy;
     use Alorel\Dropbox\Operation\Files\CopyReference\Get;
     use Alorel\Dropbox\Operation\Files\CopyReference\Save;
+    use Alorel\Dropbox\Operation\Files\CreateFolder;
     use Alorel\Dropbox\Operation\Files\Delete;
     use Alorel\Dropbox\Operation\Files\GetMetadata;
     use Alorel\Dropbox\Operation\Files\Move;
@@ -45,6 +46,23 @@
             $this->assertEquals($dt->format(Options::DATETIME_FORMAT), $meta[R::CLIENT_MODIFIED]);
             $this->assertEquals(strlen(__METHOD__), $meta[R::SIZE]);
             $this->assertTrue(is_bool($meta[R::HAS_EXPLICIT_SHARED_MEMBERS]));
+        }
+
+        function testCreateFolder() {
+            $srcFile = '/' . md5(__CLASS__ . __METHOD__);
+
+            try {
+                (new CreateFolder())->raw($srcFile);
+                $ae = json_decode((new GetMetadata())->raw($srcFile)->getBody()->getContents(), true)[R::DOT_TAG];
+                $this->assertEquals('folder', $ae);
+            } finally {
+                try {
+                    (new Delete())->raw($srcFile);
+                } catch (ClientException $e) {
+
+                }
+            }
+
         }
 
         function testCopyReference() {

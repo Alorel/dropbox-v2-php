@@ -7,6 +7,7 @@
     namespace Alorel\Dropbox\OperationKind;
 
     use Alorel\Dropbox\Operation\Files\CopyReference\Get;
+    use Alorel\Dropbox\Operation\Files\CreateFolder;
     use Alorel\Dropbox\Operation\Files\Delete;
     use Alorel\Dropbox\Operation\Files\PermanentlyDelete;
 
@@ -25,7 +26,8 @@
         private static $map = [
             Delete::class            => 'files/delete',
             PermanentlyDelete::class => 'files/permanently_delete',
-            Get::class               => 'files/copy_reference/get'
+            Get::class               => 'files/copy_reference/get',
+            CreateFolder::class      => 'files/create_folder'
         ];
 
         /**
