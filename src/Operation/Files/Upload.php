@@ -20,8 +20,7 @@
     class Upload extends ContentUploadAbstractOperation {
 
         /**
-         * Create a new file with the contents provided in the request. Do not use this to upload a file larger than
-         * 150 MB. Instead, create an upload session with upload_session/start.
+         * Perform the operation, returning a promise or raw response object
          *
          * @author Art <a.molcanovas@gmail.com>
          *
@@ -36,7 +35,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function perform(string $path, $data, UploadOptions $options = null) {
+        function raw(string $path, $data, UploadOptions $options = null) {
             return $this->send('files/upload', $path, $data, $options);
         }
     }

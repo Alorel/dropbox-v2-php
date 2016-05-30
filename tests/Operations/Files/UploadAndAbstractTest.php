@@ -8,6 +8,7 @@
 
     use Alorel\Dropbox\Exception\NoTokenException;
     use Alorel\Dropbox\Operation\AbstractOperation;
+    use Alorel\Dropbox\Operation\Files\Delete;
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Options\Builder\UploadOptions;
     use Alorel\Dropbox\Options\Option;
@@ -22,8 +23,11 @@
 
         private static $fileLength;
 
+        private static $prefix;
+
         static function setUpBeforeClass() {
             self::$fileLength = strlen(file_get_contents(__FILE__));
+            self::$prefix = md5(__CLASS__) . '/';
         }
 
         function testClientModified() {
@@ -32,18 +36,30 @@
             $opts = (new UploadOptions())
                 ->setClientModified(new \DateTime('2000-01-01'));
 
-            $rsp = (new Upload())->perform($filename, __CLASS__, $opts);
+            $rsp = (new Upload())->raw($filename, __CLASS__, $opts);
 
             $this->assertInstanceOf(ResponseInterface::class, $rsp);
             $this->abstraction($rsp, $filename, $opts);
         }
 
         function testResourceUpload() {
+            $filename = self::genFileName();
+            $rsp = (new Upload())->raw($filename, fopen(__FILE__, 'r'));
 
+            $this->assertEquals(self::$fileLength, json_decode($rsp->getBody(), true)['size']);
         }
 
         function testStreamUpload() {
+            $stream = \GuzzleHttp\Psr7\stream_for(fopen(__FILE__, 'r'));
 
+            try {
+                $filename = self::genFileName();
+                $rsp = (new Upload())->raw($filename, $stream);
+
+                $this->assertEquals(self::$fileLength, json_decode($rsp->getBody(), true)['size']);
+            } finally {
+                $stream->close();
+            }
         }
 
         function testDefaultToken() {
@@ -88,15 +104,12 @@
         }
 
         private static function genFileName() {
-            return TestUtil::genFileName(md5(__CLASS__) . '/', self::$generatedNames);
+            return TestUtil::genFileName(self::$prefix, self::$generatedNames);
         }
 
-        /**
-         * @long
-         */
         function testAsync() {
             $filename = self::genFileName();
-            $promise = (new Upload(true))->perform($filename, __CLASS__);
+            $promise = (new Upload(true))->raw($filename, __CLASS__);
             $this->assertInstanceOf(PromiseInterface::class, $promise);
 
             $this->abstraction($promise->wait(true), $filename, null);
@@ -120,5 +133,6 @@
 
         static function tearDownAfterClass() {
             TestUtil::releaseName(...self::$generatedNames);
+            (new Delete())->raw('/' . rtrim(self::$prefix, '/'));
         }
     }

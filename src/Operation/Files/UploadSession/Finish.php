@@ -19,7 +19,7 @@
     class Finish extends ContentUploadAbstractOperation {
 
         /**
-         * Perform the operation
+         * Perform the operation, returning a promise or raw response object
          *
          * @author Art <a.molcanovas@gmail.com>
          *
@@ -36,7 +36,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function perform($data, UploadSessionCursor $cursor, CommitInfo $commitInfo) {
+        function raw($data, UploadSessionCursor $cursor, CommitInfo $commitInfo) {
             return $this->send('files/upload_session/finish',
                                null,
                                $data,

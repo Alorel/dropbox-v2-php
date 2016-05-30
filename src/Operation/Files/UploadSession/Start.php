@@ -26,7 +26,7 @@
     class Start extends ContentUploadAbstractOperation {
 
         /**
-         * Perform the operation
+         * Perform the operation, returning a promise or raw response object
          *
          * @author Art <a.molcanovas@gmail.com>
          *
@@ -40,7 +40,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function perform($data, UploadSessionActiveOptions $options = null) {
+        function raw($data, UploadSessionActiveOptions $options = null) {
             return $this->send('files/upload_session/start', null, $data, $options);
         }
     }

@@ -1,0 +1,43 @@
+<?php
+    /**
+ * Copyright (c) 2016 Alorel, https://github.com/Alorel
+ * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+ */
+
+    namespace Alorel\Dropbox\OperationKind;
+
+    use Alorel\Dropbox\Operation\Files\Delete;
+    use Alorel\Dropbox\Operation\Files\PermanentlyDelete;
+
+    /**
+     * A subtype of RPC that only accepts a single argument
+     */
+    class SingleArgumentRPCOperation extends RPCOperation {
+
+        /**
+         * Class to URL mapping
+         *
+         * @var string[]
+         */
+        private static $map = [
+            Delete::class            => 'files/delete',
+            PermanentlyDelete::class => 'files/permanently_delete'
+        ];
+
+        /**
+         * Perform the operation, returning a promise or raw response object
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param string $path The path operate on
+         *
+         * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface The promise interface if
+         *                                                                                  async is set to true and the
+         *                                                                                  request interface if it is
+         *                                                                                  set to false
+         * @throws \GuzzleHttp\Exception\ClientException
+         */
+        function raw(string $path) {
+            return $this->send(self::$map[get_class($this)], $path);
+        }
+    }
