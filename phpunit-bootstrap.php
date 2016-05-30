@@ -7,6 +7,7 @@
     namespace Alorel\Dropbox\Test;
 
     use Alorel\Dropbox\Operation\AbstractOperation;
+    use Alorel\Dropbox\Operation\Files\Delete;
 
     if (!getenv('APIKEY')) {
         if (file_exists('API_KEY')) {
@@ -95,6 +96,24 @@
         static function releaseName(string ...$names) {
             foreach ($names as $name) {
                 unset(self::$generatedNames[$name]);
+            }
+        }
+    }
+
+    trait NameGenerator {
+
+        private static $generatedNames = [];
+
+        private static function genFileName() {
+            return TestUtil::genFileName(md5(__CLASS__) . '/', self::$generatedNames);
+        }
+
+        static function tearDownAfterClass() {
+            TestUtil::releaseName(...self::$generatedNames);
+            try {
+                (new Delete())->raw('/' . md5(__CLASS__));
+            } catch (\Exception $e) {
+                fwrite(STDERR, $e->getMessage());
             }
         }
     }

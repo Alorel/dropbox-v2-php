@@ -8,10 +8,10 @@
 
     use Alorel\Dropbox\Exception\NoTokenException;
     use Alorel\Dropbox\Operation\AbstractOperation;
-    use Alorel\Dropbox\Operation\Files\Delete;
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Options\Builder\UploadOptions;
     use Alorel\Dropbox\Options\Option;
+    use Alorel\Dropbox\Test\NameGenerator;
     use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Promise\PromiseInterface;
     use Psr\Http\Message\ResponseInterface;
@@ -19,15 +19,14 @@
     //@todo clean files after delete is implemented
     class UploadAndAbstractTest extends \PHPUnit_Framework_TestCase {
 
+        use NameGenerator;
+
         private static $generatedNames = [];
 
         private static $fileLength;
 
-        private static $prefix;
-
         static function setUpBeforeClass() {
             self::$fileLength = strlen(file_get_contents(__FILE__));
-            self::$prefix = md5(__CLASS__) . '/';
         }
 
         function testClientModified() {
@@ -103,10 +102,6 @@
             }
         }
 
-        private static function genFileName() {
-            return TestUtil::genFileName(self::$prefix, self::$generatedNames);
-        }
-
         function testAsync() {
             $filename = self::genFileName();
             $promise = (new Upload(true))->raw($filename, __CLASS__);
@@ -129,10 +124,5 @@
         function testGetToken() {
             $key = 'foo';
             $this->assertEquals($key, TestUtil::invokeMethod(new Upload(false, $key), 'getToken'));
-        }
-
-        static function tearDownAfterClass() {
-            TestUtil::releaseName(...self::$generatedNames);
-            (new Delete())->raw('/' . rtrim(self::$prefix, '/'));
         }
     }
