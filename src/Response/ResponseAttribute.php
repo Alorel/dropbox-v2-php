@@ -14,6 +14,20 @@
     class ResponseAttribute {
 
         /**
+         * A copy reference
+         *
+         * @var string
+         */
+        const COPY_REFERENCE = 'copy_reference';
+
+        /**
+         * Metadata
+         *
+         * @var string
+         */
+        const METADATA = 'metadata';
+
+        /**
          * A tag
          *
          * @var string

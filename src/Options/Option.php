@@ -14,6 +14,13 @@
     class Option {
 
         /**
+         * A copy reference
+         *
+         * @var string
+         */
+        const COPY_REFERENCE = 'copy_reference';
+
+        /**
          * Session cursor
          *
          * @var string

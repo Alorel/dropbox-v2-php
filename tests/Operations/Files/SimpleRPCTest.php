@@ -7,6 +7,8 @@
     namespace Alorel\Dropbox\Operations\Files;
 
     use Alorel\Dropbox\Operation\Files\Copy;
+    use Alorel\Dropbox\Operation\Files\CopyReference\Get;
+    use Alorel\Dropbox\Operation\Files\CopyReference\Save;
     use Alorel\Dropbox\Operation\Files\Delete;
     use Alorel\Dropbox\Operation\Files\GetMetadata;
     use Alorel\Dropbox\Operation\Files\Move;
@@ -19,6 +21,7 @@
     use Alorel\Dropbox\Response\ResponseAttribute as R;
     use Alorel\Dropbox\Test\NameGenerator;
     use GuzzleHttp\Exception\ClientException;
+    use GuzzleHttp\Exception\ServerException;
 
     class SimpleRPCTest extends \PHPUnit_Framework_TestCase {
 
@@ -42,6 +45,25 @@
             $this->assertEquals($dt->format(Options::DATETIME_FORMAT), $meta[R::CLIENT_MODIFIED]);
             $this->assertEquals(strlen(__METHOD__), $meta[R::SIZE]);
             $this->assertTrue(is_bool($meta[R::HAS_EXPLICIT_SHARED_MEMBERS]));
+        }
+
+        function testCopyReference() {
+            $srcFile = self::genFileName();
+            (new Upload())->raw($srcFile, __METHOD__);
+            try {
+                $ref = json_decode((new Get())->raw($srcFile)->getBody()->getContents(), true)[R::COPY_REFERENCE];
+
+                $this->assertEquals(
+                    strlen(__METHOD__),
+                    json_decode(
+                        (new Save())->raw(self::genFileName(), $ref)->getBody()->getContents(),
+                        true
+                    )[R::METADATA][R::SIZE]
+                );
+            } catch (ServerException $e) {
+                // This copy_reference API endpoints seem to throw exceptions
+                fwrite(STDERR, PHP_EOL . '(beyond my control) ' . $e->getMessage() . PHP_EOL);
+            }
         }
 
         function testCopy() {

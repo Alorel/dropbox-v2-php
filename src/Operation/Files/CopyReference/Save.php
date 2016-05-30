@@ -4,36 +4,26 @@
  * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
  */
 
-    namespace Alorel\Dropbox\OperationKind;
+    namespace Alorel\Dropbox\Operation\Files\CopyReference;
 
-    use Alorel\Dropbox\Operation\Files\CopyReference\Get;
-    use Alorel\Dropbox\Operation\Files\Delete;
-    use Alorel\Dropbox\Operation\Files\PermanentlyDelete;
+    use Alorel\Dropbox\OperationKind\RPCOperation;
+    use Alorel\Dropbox\Options\Option as O;
 
     /**
-     * A subtype of RPC that only accepts a single argument
+     * Save a copy reference returned by copy_reference/get to the user's Dropbox.
      *
      * @author Art <a.molcanovas@gmail.com>
+     * @see    https://www.dropbox.com/developers/documentation/http/documentation#files-copy_reference-save
      */
-    class SingleArgumentRPCOperation extends RPCOperation {
-
-        /**
-         * Class to URL mapping
-         *
-         * @var string[]
-         */
-        private static $map = [
-            Delete::class            => 'files/delete',
-            PermanentlyDelete::class => 'files/permanently_delete',
-            Get::class               => 'files/copy_reference/get'
-        ];
+    class Save extends RPCOperation {
 
         /**
          * Perform the operation, returning a promise or raw response object
          *
          * @author Art <a.molcanovas@gmail.com>
          *
-         * @param string $path The path operate on
+         * @param string $destPath      Path in the user's Dropbox that is the destination.
+         * @param string $copyReference A copy reference returned by copy_reference/get.
          *
          * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface The promise interface if
          *                                                                                  async is set to true and the
@@ -41,7 +31,11 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function raw(string $path) {
-            return $this->send(self::$map[get_class($this)], $path);
+        function raw(string $destPath, string $copyReference) {
+            return $this->send('files/copy_reference/get',
+                               [
+                                   O::PATH           => $destPath,
+                                   O::COPY_REFERENCE => $copyReference
+                               ]);
         }
     }
