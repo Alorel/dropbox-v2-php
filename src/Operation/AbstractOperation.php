@@ -8,7 +8,7 @@
 
     use Alorel\Dropbox\Exception\NoTokenException;
     use GuzzleHttp\Client;
-    use League\OAuth2\Client\Provider\GenericProvider;
+    use GuzzleHttp\Psr7\Request;
 
     /**
      * The most abstract operation wrapper
@@ -39,13 +39,6 @@
          * @see Client::sendAsync()
          */
         private $sendCallable;
-
-        /**
-         * The oAuth2 provider for request generation
-         *
-         * @var GenericProvider
-         */
-        private static $provider;
 
         /**
          * The client that will send requests
@@ -91,16 +84,6 @@
                 throw new NoTokenException();
             }
 
-            if (!self::$provider) {
-                $opts = [
-                    'urlAuthorize'            => 'https://www.dropbox.com/1/oauth2/authorize',
-                    'urlAccessToken'          => 'https://api.dropboxapi.com/1/oauth2/token',
-                    'urlResourceOwnerDetails' => null
-
-                ];
-                self::$provider = new GenericProvider($opts);
-            }
-
             if (!self::$client) {
                 self::$client = new Client();
             }
@@ -108,7 +91,7 @@
             $this->setAsync((bool)($async ?? self::$defaultAsync));
         }
 
-        static function setDefaultToken(string $token) {
+        static final function setDefaultToken(string $token) {
             self::$defaultToken = $token;
         }
 
@@ -118,7 +101,7 @@
          * @author Art <a.molcanovas@gmail.com>
          * @return boolean
          */
-        public function isAsync() {
+        public function isAsync():bool {
             return $this->async;
         }
 
@@ -131,7 +114,7 @@
          *
          * @return self
          */
-        public function setAsync(bool $async) {
+        public final function setAsync(bool $async) {
             $this->async = $async;
             $this->sendCallable = [self::$client, $this->async ? 'sendAsync' : 'send'];
 
@@ -145,7 +128,7 @@
          *
          * @param bool $async The default async value
          */
-        static function setDefaultAsync(bool $async) {
+        static final function setDefaultAsync(bool $async) {
             self::$defaultAsync = $async;
         }
 
@@ -155,7 +138,7 @@
          * @author Art <a.molcanovas@gmail.com>
          * @return string
          */
-        protected final function getToken():string {
+        protected function getToken():string {
             return $this->token;
         }
 
@@ -178,7 +161,14 @@
         protected final function sendAbstract(string $httpMethod, string $url, array $options = []) {
             return call_user_func(
                 $this->sendCallable,
-                self::$provider->getAuthenticatedRequest($httpMethod, 'https://' . $url, $this->token, $options)
+                new Request(
+                    $httpMethod,
+                    'https://' . $url,
+                    array_merge(
+                        ['authorization' => 'Bearer ' . $this->token],
+                        $options['headers'] ?? []
+                    ),
+                    $options['body'] ?? null)
             );
         }
     }

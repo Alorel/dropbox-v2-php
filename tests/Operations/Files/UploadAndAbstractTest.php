@@ -15,9 +15,16 @@
     use GuzzleHttp\Promise\PromiseInterface;
     use Psr\Http\Message\ResponseInterface;
 
+    //@todo clean files after delete is implemented
     class UploadAndAbstractTest extends \PHPUnit_Framework_TestCase {
 
         private static $generatedNames = [];
+
+        private static $fileLength;
+
+        static function setUpBeforeClass() {
+            self::$fileLength = strlen(file_get_contents(__FILE__));
+        }
 
         function testClientModified() {
             $filename = self::genFileName();
@@ -29,6 +36,14 @@
 
             $this->assertInstanceOf(ResponseInterface::class, $rsp);
             $this->abstraction($rsp, $filename, $opts);
+        }
+
+        function testResourceUpload() {
+
+        }
+
+        function testStreamUpload() {
+
         }
 
         function testDefaultToken() {
@@ -103,8 +118,7 @@
             $this->assertEquals($key, TestUtil::invokeMethod(new Upload(false, $key), 'getToken'));
         }
 
-        /** @afterClass */
-        static function afterClass() {
+        static function tearDownAfterClass() {
             TestUtil::releaseName(...self::$generatedNames);
         }
     }
