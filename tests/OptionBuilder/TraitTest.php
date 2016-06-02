@@ -4,10 +4,12 @@
  * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
  */
 
-    namespace Alorel\Dropbox\Options\Builder\Mixins;
+    namespace Alorel\Dropbox\Options\Mixins;
 
     use Alorel\Dropbox\Options\Option;
     use Alorel\Dropbox\Options\Options;
+    use Alorel\Dropbox\Parameters\ThumbnailFormat;
+    use Alorel\Dropbox\Parameters\ThumbnailSize;
     use Alorel\Dropbox\Parameters\WriteMode;
 
     class AllTheTraits extends Options {
@@ -19,6 +21,8 @@
         use IncludeDeletedTrait;
         use IncludeMediaInfoTrait;
         use IncludeHasExplicitSharedMembersTrait;
+        use ThumbnailFormatTrait;
+        use ThumbnailSizeTrait;
     }
 
     class TraitTest extends \PHPUnit_Framework_TestCase {
@@ -51,7 +55,14 @@
                 ['setClientModified', Option::CLIENT_MODIFIED, $dt, $dt->format(Options::DATETIME_FORMAT)],
                 ['setWriteMode', Option::MODE, WriteMode::add()],
                 ['setWriteMode', Option::MODE, WriteMode::overwrite()],
-                ['setWriteMode', Option::MODE, WriteMode::update(__CLASS__)]
+                ['setWriteMode', Option::MODE, WriteMode::update(__CLASS__)],
+                ['setThumbnailSize', Option::SIZE, ThumbnailSize::w32h32()],
+                ['setThumbnailSize', Option::SIZE, ThumbnailSize::w64h64()],
+                ['setThumbnailSize', Option::SIZE, ThumbnailSize::w128h128()],
+                ['setThumbnailSize', Option::SIZE, ThumbnailSize::w640h480()],
+                ['setThumbnailSize', Option::SIZE, ThumbnailSize::w1024h768()],
+                ['setThumbnailFormat', Option::FORMAT, ThumbnailFormat::jpeg()],
+                ['setThumbnailFormat', Option::FORMAT, ThumbnailFormat::png()]
             ];
 
             // Do booleans

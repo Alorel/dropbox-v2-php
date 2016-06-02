@@ -12,6 +12,7 @@
      * Download a file
      *
      * @author Art <a.molcanovas@gmail.com>
+     * @see    https://www.dropbox.com/developers/documentation/http/documentation#files-download
      */
     class Download extends ContentDownloadOperation {
 

@@ -6,10 +6,10 @@
 
     namespace Alorel\Dropbox\Options\Builder;
 
-    use Alorel\Dropbox\Options\Builder\Mixins\AutoRenameTrait;
-    use Alorel\Dropbox\Options\Builder\Mixins\ClientModifiedTrait;
-    use Alorel\Dropbox\Options\Builder\Mixins\MuteTrait;
-    use Alorel\Dropbox\Options\Builder\Mixins\WriteModeTrait;
+    use Alorel\Dropbox\Options\Mixins\AutoRenameTrait;
+    use Alorel\Dropbox\Options\Mixins\ClientModifiedTrait;
+    use Alorel\Dropbox\Options\Mixins\MuteTrait;
+    use Alorel\Dropbox\Options\Mixins\WriteModeTrait;
     use Alorel\Dropbox\Options\Options;
 
     /**

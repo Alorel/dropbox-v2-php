@@ -21,6 +21,13 @@
         const COPY_REFERENCE = 'copy_reference';
 
         /**
+         * Image size
+         *
+         * @var string
+         */
+        const SIZE = 'size';
+
+        /**
          * Session cursor
          *
          * @var string
@@ -68,6 +75,13 @@
          * @var string
          */
         const AUTO_RENAME = 'autorename';
+
+        /**
+         * File format
+         *
+         * @var string
+         */
+        const FORMAT = 'format';
 
         /**
          * Whether to include deleted entries

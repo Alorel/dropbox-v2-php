@@ -6,7 +6,7 @@
 
     namespace Alorel\Dropbox\Options\Builder\UploadSession;
 
-    use Alorel\Dropbox\Options\Builder\Mixins\CloseTrait;
+    use Alorel\Dropbox\Options\Mixins\CloseTrait;
     use Alorel\Dropbox\Options\Options;
 
     /**

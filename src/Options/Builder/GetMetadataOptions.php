@@ -6,9 +6,9 @@
 
     namespace Alorel\Dropbox\Options\Builder;
 
-    use Alorel\Dropbox\Options\Builder\Mixins\IncludeDeletedTrait;
-    use Alorel\Dropbox\Options\Builder\Mixins\IncludeHasExplicitSharedMembersTrait;
-    use Alorel\Dropbox\Options\Builder\Mixins\IncludeMediaInfoTrait;
+    use Alorel\Dropbox\Options\Mixins\IncludeDeletedTrait;
+    use Alorel\Dropbox\Options\Mixins\IncludeHasExplicitSharedMembersTrait;
+    use Alorel\Dropbox\Options\Mixins\IncludeMediaInfoTrait;
     use Alorel\Dropbox\Options\Options;
 
     /**

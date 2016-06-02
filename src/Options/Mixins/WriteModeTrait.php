@@ -4,7 +4,7 @@
  * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
  */
 
-    namespace Alorel\Dropbox\Options\Builder\Mixins;
+    namespace Alorel\Dropbox\Options\Mixins;
 
     use Alorel\Dropbox\Options\Option;
     use Alorel\Dropbox\Parameters\WriteMode;
