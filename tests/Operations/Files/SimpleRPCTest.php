@@ -11,6 +11,7 @@
     use Alorel\Dropbox\Operation\Files\CopyReference\Save;
     use Alorel\Dropbox\Operation\Files\CreateFolder;
     use Alorel\Dropbox\Operation\Files\Delete;
+    use Alorel\Dropbox\Operation\Files\Download;
     use Alorel\Dropbox\Operation\Files\GetMetadata;
     use Alorel\Dropbox\Operation\Files\GetPreview;
     use Alorel\Dropbox\Operation\Files\Move;
@@ -47,6 +48,15 @@
             $this->assertEquals($dt->format(Options::DATETIME_FORMAT), $meta[R::CLIENT_MODIFIED]);
             $this->assertEquals(strlen(__METHOD__), $meta[R::SIZE]);
             $this->assertTrue(is_bool($meta[R::HAS_EXPLICIT_SHARED_MEMBERS]));
+        }
+
+        function testDownload() {
+            $fn = self::genFileName();
+            (new Upload())->raw($fn, fopen(__FILE__, 'r'));
+            $r = (new Download())->raw($fn);
+
+            $this->assertEquals(filesize(__FILE__), $r->getHeaderLine('content-length'));
+            $this->assertEquals('application/octet-stream', $r->getHeaderLine('content-type'));
         }
 
         function testGetPreview() {
