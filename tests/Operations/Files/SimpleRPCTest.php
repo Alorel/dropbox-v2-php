@@ -12,6 +12,7 @@
     use Alorel\Dropbox\Operation\Files\CreateFolder;
     use Alorel\Dropbox\Operation\Files\Delete;
     use Alorel\Dropbox\Operation\Files\GetMetadata;
+    use Alorel\Dropbox\Operation\Files\GetPreview;
     use Alorel\Dropbox\Operation\Files\Move;
     use Alorel\Dropbox\Operation\Files\PermanentlyDelete;
     use Alorel\Dropbox\Operation\Files\Upload;
@@ -46,6 +47,22 @@
             $this->assertEquals($dt->format(Options::DATETIME_FORMAT), $meta[R::CLIENT_MODIFIED]);
             $this->assertEquals(strlen(__METHOD__), $meta[R::SIZE]);
             $this->assertTrue(is_bool($meta[R::HAS_EXPLICIT_SHARED_MEMBERS]));
+        }
+
+        function testGetPreview() {
+            $filename = '/' . md5(__METHOD__) . '.docx';
+            try {
+                (new Upload())->raw($filename, fopen(__DIR__ . DIRECTORY_SEPARATOR . 'forPreview.docx', 'r'));
+                $response = (new GetPreview())->raw($filename);
+
+                $this->assertEquals('application/octet-stream', $response->getHeaderLine('content-type'));
+            } finally {
+                try {
+                    (new Delete())->raw($filename);
+                } catch (\Exception $e) {
+                    fwrite(STDERR, $e->getMessage());
+                }
+            }
         }
 
         function testCreateFolder() {

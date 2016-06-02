@@ -9,6 +9,7 @@
     use Alorel\Dropbox\Operation\Files\CopyReference\Get;
     use Alorel\Dropbox\Operation\Files\CreateFolder;
     use Alorel\Dropbox\Operation\Files\Delete;
+    use Alorel\Dropbox\Operation\Files\GetPreview;
     use Alorel\Dropbox\Operation\Files\PermanentlyDelete;
 
     /**
@@ -27,7 +28,8 @@
             Delete::class            => 'files/delete',
             PermanentlyDelete::class => 'files/permanently_delete',
             Get::class               => 'files/copy_reference/get',
-            CreateFolder::class      => 'files/create_folder'
+            CreateFolder::class      => 'files/create_folder',
+            GetPreview::class        => 'files/get_preview'
         ];
 
         /**
