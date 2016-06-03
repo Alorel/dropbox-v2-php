@@ -6,6 +6,7 @@
 
     namespace Alorel\Dropbox\Operations\Files;
 
+    use Alorel\Dropbox\Operation\Files\ListFolder\GetLatestCursor;
     use Alorel\Dropbox\Operation\Files\ListFolder\ListFolder;
     use Alorel\Dropbox\Operation\Files\ListFolder\ListFolderContinue;
     use Alorel\Dropbox\Operation\Files\Upload;
@@ -42,22 +43,20 @@
             $this->assertTrue(is_array($lf['entries']));
             $this->assertTrue(is_string($lf['cursor']));
             $this->assertEquals(2, count($lf['entries']));
-        }
 
-        /**
-         * @long
-         * @depends testListFolder
-         */
-        function testContinue() {
-            $lf = json_decode((new ListFolder())->raw(self::$dir)->getBody()->getContents(), true);
-            $firstCursor = $lf['cursor'];
-
-            $lf = json_decode((new ListFolderContinue())->raw($firstCursor)->getBody()->getContents(), true);
+            $prevCursor = $lf['cursor'];
+            $lf = json_decode((new ListFolderContinue())->raw($prevCursor)->getBody()->getContents(), true);
 
             $this->assertFalse($lf['has_more']);
             $this->assertTrue(is_array($lf['entries']));
             $this->assertTrue(is_string($lf['cursor']));
             $this->assertEmpty($lf['entries']);
-            $this->assertNotEquals($lf['cursor'], $firstCursor);
+            $this->assertNotEquals($lf['cursor'], $prevCursor);
+        }
+
+        function testGetLatestCursor() {
+            $r = json_decode((new GetLatestCursor())->raw()->getBody()->getContents(), true);
+            $this->assertEquals(['cursor'], array_keys($r));
+            $this->assertTrue(is_string($r['cursor']));
         }
     }

@@ -6,11 +6,7 @@
 
     namespace Alorel\Dropbox\Options\Builder;
 
-    use Alorel\Dropbox\Options\Mixins\IncludeDeletedTrait;
-    use Alorel\Dropbox\Options\Mixins\IncludeHasExplicitSharedMembersTrait;
-    use Alorel\Dropbox\Options\Mixins\IncludeMediaInfoTrait;
     use Alorel\Dropbox\Options\Mixins\RecursiveTrait;
-    use Alorel\Dropbox\Options\Options;
 
     /**
      * Additional options for the ListFolder operation
@@ -18,9 +14,6 @@
      * @author Art <a.molcanovas@gmail.com>
      * @see    https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder
      */
-    class ListFolderOptions extends Options {
-        use IncludeDeletedTrait;
-        use IncludeHasExplicitSharedMembersTrait;
-        use IncludeMediaInfoTrait;
+    class ListFolderOptions extends GetMetadataOptions {
         use RecursiveTrait;
     }

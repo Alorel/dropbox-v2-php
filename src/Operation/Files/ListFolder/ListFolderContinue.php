@@ -10,7 +10,8 @@
     use Alorel\Dropbox\OperationKind\RPCOperation;
 
     /**
-     * The list_folder/continue operation
+     * Once a cursor has been retrieved from list_folder, use this to paginate through all files and retrieve updates
+     * to the folder.
      *
      * @author Art <a.molcanovas@gmail.com>
      * @see    https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder-continue
