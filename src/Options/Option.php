@@ -77,6 +77,13 @@
         const AUTO_RENAME = 'autorename';
 
         /**
+         * Recursion setting
+         *
+         * @var string
+         */
+        const RECURSIVE = 'recursive';
+
+        /**
          * File format
          *
          * @var string

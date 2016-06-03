@@ -6,11 +6,11 @@
 
     namespace Alorel\Dropbox\Options\Mixins;
 
-    use Alorel\Dropbox\Options\Option;
+    use Alorel\Dropbox\Options\Option as O;
     use Alorel\Dropbox\Options\Options;
-    use Alorel\Dropbox\Parameters\ThumbnailFormat;
-    use Alorel\Dropbox\Parameters\ThumbnailSize;
-    use Alorel\Dropbox\Parameters\WriteMode;
+    use Alorel\Dropbox\Parameters\ThumbnailFormat as TF;
+    use Alorel\Dropbox\Parameters\ThumbnailSize as TS;
+    use Alorel\Dropbox\Parameters\WriteMode as WM;
 
     class AllTheTraits extends Options {
         use AutoRenameTrait;
@@ -23,6 +23,7 @@
         use IncludeHasExplicitSharedMembersTrait;
         use ThumbnailFormatTrait;
         use ThumbnailSizeTrait;
+        use RecursiveTrait;
     }
 
     class TraitTest extends \PHPUnit_Framework_TestCase {
@@ -52,27 +53,28 @@
         function allTraits() {
             $dt = new \DateTime();
             $return = [
-                ['setClientModified', Option::CLIENT_MODIFIED, $dt, $dt->format(Options::DATETIME_FORMAT)],
-                ['setWriteMode', Option::MODE, WriteMode::add()],
-                ['setWriteMode', Option::MODE, WriteMode::overwrite()],
-                ['setWriteMode', Option::MODE, WriteMode::update(__CLASS__)],
-                ['setThumbnailSize', Option::SIZE, ThumbnailSize::w32h32()],
-                ['setThumbnailSize', Option::SIZE, ThumbnailSize::w64h64()],
-                ['setThumbnailSize', Option::SIZE, ThumbnailSize::w128h128()],
-                ['setThumbnailSize', Option::SIZE, ThumbnailSize::w640h480()],
-                ['setThumbnailSize', Option::SIZE, ThumbnailSize::w1024h768()],
-                ['setThumbnailFormat', Option::FORMAT, ThumbnailFormat::jpeg()],
-                ['setThumbnailFormat', Option::FORMAT, ThumbnailFormat::png()]
+                ['setClientModified', O::CLIENT_MODIFIED, $dt, $dt->format(Options::DATETIME_FORMAT)],
+                ['setWriteMode', O::MODE, WM::add()],
+                ['setWriteMode', O::MODE, WM::overwrite()],
+                ['setWriteMode', O::MODE, WM::update(__CLASS__)],
+                ['setThumbnailSize', O::SIZE, TS::w32h32()],
+                ['setThumbnailSize', O::SIZE, TS::w64h64()],
+                ['setThumbnailSize', O::SIZE, TS::w128h128()],
+                ['setThumbnailSize', O::SIZE, TS::w640h480()],
+                ['setThumbnailSize', O::SIZE, TS::w1024h768()],
+                ['setThumbnailFormat', O::FORMAT, TF::jpeg()],
+                ['setThumbnailFormat', O::FORMAT, TF::png()]
             ];
 
             // Do booleans
             foreach ([
-                         ['setAutoRename', Option::AUTO_RENAME],
-                         ['setClose', Option::CLOSE],
-                         ['setMute', Option::MUTE],
-                         ['setIncludeDeleted', Option::INCLUDE_DELETED],
-                         ['setIncludeHasExplicitSharedMembers', Option::INCLUDE_HAS_EXPLICIT_SHARED_MEMBERS],
-                         ['setIncludeMediaInfo', Option::INCLUDE_MEDIA_INFO]
+                         ['setAutoRename', O::AUTO_RENAME],
+                         ['setClose', O::CLOSE],
+                         ['setMute', O::MUTE],
+                         ['setIncludeDeleted', O::INCLUDE_DELETED],
+                         ['setIncludeHasExplicitSharedMembers', O::INCLUDE_HAS_EXPLICIT_SHARED_MEMBERS],
+                         ['setIncludeMediaInfo', O::INCLUDE_MEDIA_INFO],
+                         ['setRecursive' . O::RECURSIVE]
                      ] as $v) {
                 $v[2] = true;
                 $return[] = $v;
