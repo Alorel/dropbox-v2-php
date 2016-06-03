@@ -84,6 +84,13 @@
         const RECURSIVE = 'recursive';
 
         /**
+         * The timeout setting
+         *
+         * @var string
+         */
+        const TIMEOUT = 'timeout';
+
+        /**
          * File format
          *
          * @var string
