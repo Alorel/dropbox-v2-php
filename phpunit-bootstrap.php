@@ -79,9 +79,9 @@
             return $meth->invokeArgs($object, $args);
         }
 
-        static function genFileName(string $prefix = '', array &$storeTo = null) {
+        static function genFileName(string $prefix = '', array &$storeTo = null, string $ext = 'txt') {
             do {
-                $name = '/' . $prefix . md5(uniqid(__CLASS__, true) . mt_rand(PHP_INT_MIN, PHP_INT_MAX)) . '.txt';
+                $name = '/' . $prefix . md5(uniqid(__METHOD__, true) . mt_rand(PHP_INT_MIN, PHP_INT_MAX)) . ".$ext";
             } while (array_search($name, self::$generatedNames) !== false);
 
             self::$generatedNames[] = $name;
@@ -104,16 +104,24 @@
 
         private static $generatedNames = [];
 
-        private static function genFileName() {
-            return TestUtil::genFileName(md5(__CLASS__) . '/', self::$generatedNames);
+        public static $uniqid;
+
+        private static function genFileName(string $ext = 'txt') {
+            return TestUtil::genFileName(self::generatorPrefix() . '/', self::$generatedNames, $ext);
+        }
+
+        private static function generatorPrefix() {
+            return md5(self::$uniqid . __CLASS__);
         }
 
         static function tearDownAfterClass() {
             TestUtil::releaseName(...self::$generatedNames);
             try {
-                (new Delete())->raw('/' . md5(__CLASS__));
+                (new Delete())->raw('/' . self::generatorPrefix());
             } catch (\Exception $e) {
                 fwrite(STDERR, $e->getMessage());
             }
         }
     }
+
+    NameGenerator::$uniqid = uniqid(mt_rand(PHP_INT_MAX, PHP_INT_MAX), true);
