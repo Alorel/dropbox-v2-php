@@ -74,7 +74,7 @@
                          ['setIncludeDeleted', O::INCLUDE_DELETED],
                          ['setIncludeHasExplicitSharedMembers', O::INCLUDE_HAS_EXPLICIT_SHARED_MEMBERS],
                          ['setIncludeMediaInfo', O::INCLUDE_MEDIA_INFO],
-                         ['setRecursive' . O::RECURSIVE]
+                         ['setRecursive', O::RECURSIVE]
                      ] as $v) {
                 $v[2] = true;
                 $return[] = $v;

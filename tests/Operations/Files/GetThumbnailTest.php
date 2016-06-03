@@ -11,8 +11,11 @@
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Options\Builder\GetThumbnailOptions;
     use Alorel\Dropbox\Parameters\ThumbnailSize;
+    use Alorel\Dropbox\Test\NameGenerator;
 
     class GetThumbnailTest extends \PHPUnit_Framework_TestCase {
+
+        use NameGenerator;
 
         /** @long */
         function testGetThumbnail() {
@@ -20,8 +23,8 @@
             $op = new GetThumbnail();
 
             $sizes = [];
-            $fname = '/' . md5(__METHOD__) . '.jpg';
-            (new Upload())->raw($fname, file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . '_get-thumb.jpg'));
+            $fname = self::genFileName('jpg');
+            (new Upload())->raw($fname, fopen(__DIR__ . DIRECTORY_SEPARATOR . '_get-thumb.jpg', 'r'));
             try {
                 foreach (['w32h32', 'w64h64', 'w128h128', 'w640h480', 'w1024h768'] as $d) {
                     $opts->setThumbnailSize(ThumbnailSize::$d());

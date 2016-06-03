@@ -28,7 +28,8 @@
             $up = new Upload(true);
 
             $pr1 = $up->raw(self::$txt, '.');
-            $pr2 = $up->raw(self::$img, file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . '_get-thumb.jpg'));
+            $pr2 =
+                $up->raw(self::$img, fopen(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . '_get-thumb.jpg'), 'r'));
 
             $pr1->wait();
             $pr2->wait();

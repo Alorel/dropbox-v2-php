@@ -9,13 +9,16 @@
     use Alorel\Dropbox\Operation\Files\Delete;
     use Alorel\Dropbox\Operation\Files\GetPreview;
     use Alorel\Dropbox\Operation\Files\Upload;
+    use Alorel\Dropbox\Test\NameGenerator;
 
     class GetPreviewTest extends \PHPUnit_Framework_TestCase {
 
+        use NameGenerator;
+
         function testGetPreview() {
-            $filename = '/' . md5(__METHOD__) . '.docx';
+            $filename = self::genFileName('docx');
             try {
-                (new Upload())->raw($filename, file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . '_forPreview.docx'));
+                (new Upload())->raw($filename, fopen(__DIR__ . DIRECTORY_SEPARATOR . '_forPreview.docx', 'r'));
                 $response = (new GetPreview())->raw($filename);
 
                 $this->assertEquals('application/octet-stream', $response->getHeaderLine('content-type'));

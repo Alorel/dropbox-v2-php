@@ -16,7 +16,7 @@
 
         function testDownload() {
             $fn = self::genFileName();
-            (new Upload())->raw($fn, file_get_contents(__FILE__));
+            (new Upload())->raw($fn, fopen(__FILE__, 'r'));
             $r = (new Download())->raw($fn);
 
             $this->assertEquals(filesize(__FILE__), $r->getHeaderLine('content-length'));
