@@ -4,26 +4,25 @@
  * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
  */
 
-    namespace Alorel\Dropbox\Operation\Files;
+    namespace Alorel\Dropbox\Operation\Files\ListFolder;
 
+    use Alorel\Dropbox\Operation\AbstractOperation;
     use Alorel\Dropbox\OperationKind\RPCOperation;
-    use Alorel\Dropbox\Options\Builder\ListFolderOptions;
 
     /**
-     * The list_folder operation
+     * The list_folder/continue operation
      *
      * @author Art <a.molcanovas@gmail.com>
-     * @see    https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder
+     * @see    https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder-continue
      */
-    class ListFolder extends RPCOperation {
+    class ListFolderContinue extends AbstractOperation {
 
         /**
          * Perform the operation, returning a promise or raw response object
          *
          * @author Art <a.molcanovas@gmail.com>
          *
-         * @param string                 $path    Path to the file
-         * @param ListFolderOptions|null $options Additional options
+         * @param string $cursor The cursor returned by {@link ListFolder}
          *
          * @return \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface The promise interface if
          *                                                                                  async is set to true and the
@@ -31,7 +30,14 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function raw(string $path = '', ListFolderOptions $options = null) {
-            return $this->send('files/list_folder', $path, $options);
+        function raw(string $cursor) {
+            return $this->sendAbstract(
+                'POST',
+                RPCOperation::HOST . '/' . self::API_VERSION . '/files/list_folder/continue',
+                [
+                    'headers' => ['Content-Type' => 'application/json'],
+                    'body'    => json_encode(['cursor' => $cursor])
+                ]
+            );
         }
     }
