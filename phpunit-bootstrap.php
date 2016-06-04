@@ -10,9 +10,11 @@
     use Alorel\Dropbox\Operation\Files\Delete;
 
     if (!getenv('APIKEY')) {
-        if (file_exists('API_KEY')) {
-            if (is_readable('API_KEY')) {
-                putenv('APIKEY=' . file_get_contents('API_KEY'));
+        $file = __DIR__ . DIRECTORY_SEPARATOR . 'API_KEY';
+
+        if (file_exists($file)) {
+            if (is_readable($file)) {
+                putenv('APIKEY=' . file_get_contents($file));
             } else {
                 trigger_error('The API_KEY file is not readable - do you have the right permissions?', E_USER_ERROR);
             }
@@ -32,14 +34,63 @@
 
         public static $key;
 
+        const DIR_ITERATOR_OPTS = \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::SKIP_DOTS;
+
         static function formatParameterArgs(array $args = []) {
             foreach ($args as $k => $v) {
                 if ($v === null) {
                     unset($args[$k]);
                 }
             }
-
             return $args;
+        }
+
+        static function allClassesInDirectory(string $dirname, bool $asProviderArgs = true) {
+            $allFiles = new \RecursiveDirectoryIterator($dirname, self::DIR_ITERATOR_OPTS);
+            /** @var \SplFileInfo $f */
+            foreach ($allFiles as $f) {
+                if ($f->isDir()) {
+                    foreach (self::allClassesInDirectory($f->getRealPath(), $asProviderArgs) as $k => $v) {
+                        yield $k => $v;
+                    }
+                } else {
+                    if ($f->getExtension() == 'php') {
+                        $tokens = token_get_all(file_get_contents($f->getRealPath()));
+                        $namespace = '';
+                        for ($index = 0; isset($tokens[$index]); $index++) {
+                            if (!isset($tokens[$index][0])) {
+                                continue;
+                            }
+                            $i0 = $tokens[$index][0];
+                            if (T_NAMESPACE === $i0) {
+                                $index += 2; // Skip namespace keyword and whitespace
+                                while (isset($tokens[$index]) && is_array($tokens[$index])) {
+                                    $namespace .= $tokens[$index++][1];
+                                }
+                            }
+                            if (T_CLASS === $i0 || T_TRAIT === $i0 || T_INTERFACE === $i0) {
+                                $index += 2; // Skip class keyword and whitespace
+                                $yield = $namespace . '\\' . $tokens[$index][1];
+                                if (stripos($yield, '=>') === false) {
+                                    yield $yield => $asProviderArgs ? [$yield] : $yield;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /**
+         * @param string $class
+         * @param bool   $asProviderArgs Each will be wrapped in an array if set to true
+         *
+         * @return \Generator
+         */
+        static function allClassesInClassDirectory(string $class, bool $asProviderArgs = true) {
+            $dirname = dirname((new \ReflectionClass($class))->getFileName());
+
+            return self::allClassesInDirectory($dirname, $asProviderArgs);
         }
 
         static function setPropertyValue($object, string $prop, $value) {

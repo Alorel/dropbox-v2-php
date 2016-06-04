@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
   ~ Copyright (c) 2016 Alorel, https://github.com/Alorel
   ~ Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
@@ -26,6 +27,9 @@
         </testsuite>
         <testsuite name="Files">
             <directory>./tests/Operations/Files</directory>
+        </testsuite>
+        <testsuite name="Misc">
+            <directory>./tests/Misc</directory>
         </testsuite>
     </testsuites>
 

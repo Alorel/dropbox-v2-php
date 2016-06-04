@@ -7,6 +7,7 @@
     namespace Alorel\Dropbox\Options\Builder;
 
     use Alorel\Dropbox\Options\Mixins\TimeoutTrait;
+    use Alorel\Dropbox\Options\Options;
 
     /**
      * Options for the Longpoll operation
@@ -14,6 +15,6 @@
      * @author Art <a.molcanovas@gmail.com>
      * @see    \Alorel\Dropbox\Operation\Files\ListFolder\Longpoll
      */
-    class LongpollOptions {
+    class LongpollOptions extends Options {
         use TimeoutTrait;
     }

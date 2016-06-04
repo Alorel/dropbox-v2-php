@@ -31,8 +31,7 @@
             $img = self::genFileName('jpg');
 
             $pr1 = $up->raw($txt, '.');
-            $pr2 =
-                $up->raw($img, fopen(__DIR__ . DIRECTORY_SEPARATOR . '_get-thumb.jpg', 'r'));
+            $pr2 = $up->raw($img, fopen(__DIR__ . DIRECTORY_SEPARATOR . '_get-thumb.jpg', 'r'));
 
             $pr1->wait();
             $pr2->wait();
