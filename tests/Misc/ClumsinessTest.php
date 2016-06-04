@@ -12,12 +12,20 @@
     use Alorel\Dropbox\Options\Mixins\AutoRenameTrait;
     use Alorel\Dropbox\Options\Options;
     use Alorel\Dropbox\Test\TestUtil;
+    use Alorel\Dropbox\Util;
     use ReflectionClass as RC;
 
     class ClumsinessTest extends \PHPUnit_Framework_TestCase {
 
+        private static $BASE_NAMESPACE;
+
+        static function setUpBeforeClass() {
+            self::$BASE_NAMESPACE = (new RC(Util::class))->getNamespaceName();
+        }
+
         private function abstractionSubclass(string $baseClass, string $testClass, ...$constructorArgs) {
             $rc = new RC($testClass);
+
             if ($rc->isInstantiable()) {
                 $this->assertInstanceOf($baseClass, $rc->newInstanceArgs($constructorArgs));
             } else {
@@ -32,6 +40,19 @@
         /** @dataProvider providerOptionBuilder */
         function testOptionBuilder(string $class) {
             $this->abstractionSubclass(Options::class, $class);
+        }
+
+        /** @dataProvider providerFilePaths */
+        function testFilePaths(string $class) {
+            $rf = new RC($class);
+            $trim = trim(str_replace(self::$BASE_NAMESPACE, '', $rf->getNamespaceName()), '\\');
+            $ns = 'src\\' . $trim . ($trim ? '\\' : '') . $rf->getShortName() . '.php';
+
+            $this->assertNotFalse(stripos($rf->getFileName(), $ns));
+        }
+
+        function providerFilePaths() {
+            return TestUtil::allClassesInClassDirectory(Util::class, true);
         }
 
         function providerOptionBuilder() {

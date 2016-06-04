@@ -25,6 +25,7 @@
         use ThumbnailSizeTrait;
         use RecursiveTrait;
         use TimeoutTrait;
+        use LimitTrait;
     }
 
     class TraitTest extends \PHPUnit_Framework_TestCase {
@@ -65,7 +66,8 @@
                 ['setThumbnailSize', O::SIZE, TS::w1024h768()],
                 ['setThumbnailFormat', O::FORMAT, TF::jpeg()],
                 ['setThumbnailFormat', O::FORMAT, TF::png()],
-                ['setTimeout', O::TIMEOUT, 5]
+                ['setTimeout', O::TIMEOUT, 5],
+                ['setLimit', O::LIMIT, 20]
             ];
 
             // Do booleans

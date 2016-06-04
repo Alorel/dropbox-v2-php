@@ -119,6 +119,13 @@
         const INCLUDE_HAS_EXPLICIT_SHARED_MEMBERS = 'include_has_explicit_shared_members';
 
         /**
+         * Result limit
+         *
+         * @var string
+         */
+        const LIMIT = 'limit';
+
+        /**
          * The main target path
          *
          * @var string
