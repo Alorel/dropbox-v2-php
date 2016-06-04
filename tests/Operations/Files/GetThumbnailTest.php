@@ -17,7 +17,7 @@
 
         use NameGenerator;
 
-        /** @long */
+        /** @large */
         function testGetThumbnail() {
             $opts = new GetThumbnailOptions();
             $op = new GetThumbnail();

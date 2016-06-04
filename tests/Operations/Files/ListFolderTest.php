@@ -9,10 +9,8 @@
     use Alorel\Dropbox\Operation\Files\ListFolder\GetLatestCursor;
     use Alorel\Dropbox\Operation\Files\ListFolder\ListFolder;
     use Alorel\Dropbox\Operation\Files\ListFolder\ListFolderContinue;
-    use Alorel\Dropbox\Operation\Files\ListFolder\Longpoll;
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Test\NameGenerator;
-    use Psr\Http\Message\ResponseInterface;
 
     class ListFolderTest extends \PHPUnit_Framework_TestCase {
 
@@ -24,7 +22,7 @@
             self::$dir = '/' . self::generatorPrefix();
         }
 
-        /** @long */
+        /** @large */
         function testListFolder() {
             //Upload our data
 
@@ -60,21 +58,5 @@
             $r = json_decode((new GetLatestCursor())->raw()->getBody()->getContents(), true);
             $this->assertEquals(['cursor'], array_keys($r));
             $this->assertTrue(is_string($r['cursor']));
-        }
-
-        /**
-         * @long
-         * @depends testListFolder
-         */
-        function testLongpoll() {
-            $cursor = json_decode((new ListFolder(false))->raw(self::$dir)->getBody()->getContents(), true)['cursor'];
-            $lp = (new Longpoll(true))->raw($cursor);
-            (new Upload(false))->raw(self::genFileName(), '.');
-            /** @var ResponseInterface $w8 */
-            $w8 = $lp->wait(true);
-
-            $rsp = json_decode($w8->getBody()->getContents(), true);
-
-            $this->assertTrue($rsp['changes']);
         }
     }
