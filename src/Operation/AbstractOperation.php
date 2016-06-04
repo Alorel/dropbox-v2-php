@@ -96,6 +96,16 @@
         }
 
         /**
+         * Returns the Guzzle callable
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         * @return callable
+         */
+        protected function getSendCallable() {
+            return $this->sendCallable;
+        }
+
+        /**
          * Return whether we're operating in async mode
          *
          * @author Art <a.molcanovas@gmail.com>

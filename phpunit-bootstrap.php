@@ -42,6 +42,7 @@
                     unset($args[$k]);
                 }
             }
+
             return $args;
         }
 
@@ -175,4 +176,4 @@
         }
     }
 
-    NameGenerator::$uniqid = uniqid(mt_rand(PHP_INT_MAX, PHP_INT_MAX), true);
+    NameGenerator::$uniqid = uniqid(mt_rand(PHP_INT_MAX, PHP_INT_MAX) . serialize($_SERVER), true);
