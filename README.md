@@ -66,7 +66,7 @@ Unless specified otherwise, any operation that is not currently supported will b
         - [x] /download
         - [x] /get_metadata
         - [x] /get_preview
-        - [ ] /get_temporary_link
+        - [x] /get_temporary_link
         - [x] /get_thumbnail
         - [x] /list_folder
         - [x] /list_folder/continue

@@ -48,6 +48,7 @@
     </logging>
 
     <php>
+        <ini name="allow_url_fopen" value="1"/>
         <ini name="xdebug.auto_trace" value="0"/>
         <ini name="xdebug.cli_color" value="1"/>
         <ini name="xdebug.collect_assignments" value="0"/>

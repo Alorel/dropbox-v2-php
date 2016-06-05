@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\OperationKind;
 
@@ -10,6 +10,7 @@
     use Alorel\Dropbox\Operation\Files\CreateFolder;
     use Alorel\Dropbox\Operation\Files\Delete;
     use Alorel\Dropbox\Operation\Files\GetPreview;
+    use Alorel\Dropbox\Operation\Files\GetTemporaryLink;
     use Alorel\Dropbox\Operation\Files\PermanentlyDelete;
 
     /**
@@ -29,7 +30,8 @@
             PermanentlyDelete::class => 'files/permanently_delete',
             Get::class               => 'files/copy_reference/get',
             CreateFolder::class      => 'files/create_folder',
-            GetPreview::class        => 'files/get_preview'
+            GetPreview::class        => 'files/get_preview',
+            GetTemporaryLink::class  => 'files/get_temporary_link'
         ];
 
         /**
