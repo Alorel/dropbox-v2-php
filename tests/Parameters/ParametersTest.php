@@ -6,6 +6,7 @@
 
     namespace Alorel\Dropbox\Parameters;
 
+    use Alorel\Dropbox\Options\Option;
     use Alorel\Dropbox\Options\Options;
     use Alorel\Dropbox\Test\TestUtil;
 
@@ -78,6 +79,25 @@
                 [WriteMode::TAG_ADD],
                 [WriteMode::TAG_OVERWRITE],
                 [WriteMode::TAG_UPDATE, __CLASS__]
+            ];
+        }
+
+        /** @dataProvider searchMode */
+        function testSearchMode(string $method, string $value) {
+
+            $this->factoryAbstraction(SearchMode::class,
+                                      $method,
+                                      [],
+                                      [
+                                          Option::DOT_TAG => $value
+                                      ]);
+        }
+
+        function searchMode() {
+            return [
+                ['filename', SearchMode::TAG_FILENAME],
+                ['filenameAndContent', SearchMode::TAG_FILENAME_AND_CONTENT],
+                ['deletedFilename', SearchMode::DELETED_FILENAME]
             ];
         }
 
