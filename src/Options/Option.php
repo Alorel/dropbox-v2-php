@@ -168,6 +168,13 @@
         const DOT_TAG = '.tag';
 
         /**
+         * File revision
+         *
+         * @var string
+         */
+        const REVISION = 'rev';
+
+        /**
          * Update revision
          *
          * @var string

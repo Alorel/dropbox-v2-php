@@ -46,6 +46,12 @@
             return $args;
         }
 
+        static function out(string ...$messages) {
+            foreach ($messages as $msg) {
+                fwrite(STDOUT, PHP_EOL . $msg . PHP_EOL);
+            }
+        }
+
         static function allClassesInDirectory(string $dirname, bool $asProviderArgs = true) {
             $allFiles = new \RecursiveDirectoryIterator($dirname, self::DIR_ITERATOR_OPTS);
             /** @var \SplFileInfo $f */
