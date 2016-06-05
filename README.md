@@ -54,12 +54,120 @@ In future releases I will be adding 'management' classes that will automatically
 #Supported API Operations
 Unless specified otherwise, any operation that is not currently supported will be added in a future release.
 
- - Files
-   - [ ] alpha/get_metadata
-   - [ ] alpha/upload
-   - [x] copy
- - Sharing
-   - [ ] add_folder_member
+ - Regular
+    - Files
+        - [ ] alpha/get_metadata
+        - [ ] alpha/upload
+        - [x] copy
+        - [x] copy_reference/get *unable to test due to API permissions*
+        - [x] copy_reference/save *unable to test due to API permissions*
+        - [x] create_folder
+        - [x] delete
+        - [x] download
+        - [x] get_metadata
+        - [x] get_preview
+        - [ ] get_temporary_link
+        - [x] get_thumbnail
+        - [x] list_folder
+        - [x] list_folder/continue
+        - [x] list_folder/get_latest_cursor
+        - [x] list_folder/longpoll
+        - [x] list_revisions
+        - [x] move
+        - [x] permanently_delete *unable to test due to API permissions*
+        - [ ] properties/add
+        - [ ] properties/overwrite
+        - [ ] properties/remove
+        - [ ] properties/template/get
+        - [ ] properties/template/list
+        - [ ] properties/update
+        - [x] restore
+        - [ ] save_url
+        - [ ] save_url/check_job_status
+        - [x] search
+        - [x] upload
+        - [ ] upload_session/append *deprecated*
+        - [x] upload_session/append_v2
+        - [x] upload_session/finish
+        - [x] upload_session/start
+    - Sharing
+        - [ ] add_folder_member
+        - [ ] check_job_status
+        - [ ] check_share_job_status
+        - [ ] create_shared_link
+        - [ ] create_shared_link_with_settings
+        - [ ] get_folder_metadata
+        - [ ] get_shared_link_file
+        - [ ] get_shared_link_metadata
+        - [ ] get_shared_links
+        - [ ] list_folder_members
+        - [ ] list_folder_members/continue
+        - [ ] list_folders
+        - [ ] list_folders/continue
+        - [ ] list_mountable_folders
+        - [ ] list_mountable_folders/continue
+        - [ ] list_shared_links
+        - [ ] modify_shared_link_settings
+        - [ ] mount_folder
+        - [ ] relinquish_folder_membership
+        - [ ] remove_folder_member
+        - [ ] revoke_shared_link
+        - [ ] share_folder
+        - [ ] transfer_folder
+        - [ ] unmount_folder
+        - [ ] unshare_folder
+        - [ ] update_folder_member
+        - [ ] update_folder_policy
+    - Users
+        - [ ] get_account
+        - [ ] get_account_batch
+        - [ ] get_current_account
+        - [ ] get_space_usage
+ - Business *unable to test due to Dropbox account level*
+    - Team
+        - [ ] devices/list_member_devices
+        - [ ] devices/list_members_devices
+        - [ ] devices/list_team_devices
+        - [ ] devices/revoke_device_session
+        - [ ] devices/revoke_device_session_batch
+        - [ ] get_info
+        - [ ] groups/create
+        - [ ] groups/delete
+        - [ ] groups/get_info
+        - [ ] groups/job_status/get
+        - [ ] groups/list
+        - [ ] groups/list/continue
+        - [ ] groups/members/add
+        - [ ] groups/members/list
+        - [ ] groups/members/list/continue
+        - [ ] groups/members/remove
+        - [ ] groups/members/set_access_type
+        - [ ] groups/update
+        - [ ] linked_apps/list_member_linked_apps
+        - [ ] linked_apps/list_members_linked_apps
+        - [ ] linked_apps/list_team_linked_apps
+        - [ ] linked_apps/revoke_linked_app
+        - [ ] linked_apps/revoke_linked_app_batch
+        - [ ] members/add
+        - [ ] members/add/job_status/get
+        - [ ] members/get_info
+        - [ ] members/list
+        - [ ] members/list/continue
+        - [ ] members/remove
+        - [ ] members/remove/job_status/get
+        - [ ] members/send_welcome_email
+        - [ ] members/set_admin_permissions
+        - [ ] members/set_profile
+        - [ ] members/suspend
+        - [ ] members/unsuspend
+        - [ ] properties/template/add
+        - [ ] properties/template/get
+        - [ ] properties/template/list
+        - [ ] properties/template/update
+        - [ ] reports/get_activity
+        - [ ] reports/get_devices
+        - [ ] reports/get_membership
+        - [ ] reports/get_storage
 
 #API Documentation
 [0.1](https://cdn.rawgit.com/Alorel/dropbox-v2-php/0.1/docs/master/index.html)
