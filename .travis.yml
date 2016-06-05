@@ -6,6 +6,8 @@ php:
 
 before_install:
  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then phpenv config-rm xdebug.ini; fi;'
+ - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "hhvm" ]; then if [ -d "~/.phpenv/versions/hhvm/etc" ]; then mkdir -p ~/.phpenv/versions/hhvm/etc; fi; fi;'
+
 
 before_script:
  - composer require --dev satooshi/php-coveralls
