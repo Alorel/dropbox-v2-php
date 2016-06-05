@@ -192,7 +192,7 @@
                 try {
                     (new Delete())->raw('/' . self::generatorPrefix());
                 } catch (\Exception $e) {
-                    TestUtil::err($e->getCode(), $e->getMessage());
+
                 }
             }
         }
