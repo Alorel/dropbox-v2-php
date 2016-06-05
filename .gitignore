@@ -5,5 +5,3 @@
 /API_KEY
 /.sami-cache
 /coverage
-/apigen.neon
-/docs/phpdoc-cache-*

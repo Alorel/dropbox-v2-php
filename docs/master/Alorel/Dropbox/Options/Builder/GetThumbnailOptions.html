@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Alorel\Dropbox\Options\Builder\GetThumbnailOptions | Dropbox v2 PHP SDK</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../../css/sami.css">
+        <script src="../../../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../../../js/bootstrap.min.js"></script>
+        <script src="../../../../js/typeahead.min.js"></script>
+        <script src="../../../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:Alorel_Dropbox_Options_Builder_GetThumbnailOptions" data-root-path="../../../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <form id="search-form" action="../../../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../../index.html">Dropbox v2 PHP SDK</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../../classes.html">Classes</a></li>
+                                            <li><a href="../../../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../../traits.html">Traits</a></li>
+                    <li><a href="../../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                                                            <li><a href="../../../../Alorel.html">Alorel</a></li>
+                                        <li><a href="../../../../Alorel/Dropbox.html">Dropbox</a></li>
+                                        <li><a href="../../../../Alorel/Dropbox/Options.html">Options</a></li>
+                                        <li><a href="../../../../Alorel/Dropbox/Options/Builder.html">Builder</a></li>
+    
+                <li>GetThumbnailOptions</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>GetThumbnailOptions</h1>
+    </div>
+
+    <p>    class
+    <strong>GetThumbnailOptions</strong>        extends <a href="../../../../Alorel/Dropbox/Options/Options.html"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a>
+</p>
+
+            <div class="description">
+            <p>Options for the get_thumbnail operation</p>                    </div>
+    
+            <h2>Traits</h2>
+
+        
+    <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../../Alorel/Dropbox/Options/Mixins/ThumbnailSizeTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\ThumbnailSizeTrait">ThumbnailSizeTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    The size for the thumbnail image. The default for this union is w64h64.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../../Alorel/Dropbox/Options/Mixins/ThumbnailFormatTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\ThumbnailFormatTrait">ThumbnailFormatTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    The format for the thumbnail image, jpeg (default) or png. For images that are photos, jpeg should be preferred,
+while png is better for screenshots and digital arts. The default for this union is jpeg.
+                </div>
+            </div>
+            </div>
+    
+            <h2>Constants</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td>DATETIME_FORMAT</td>
+                <td class="last">
+                    <p><em>A Dropbox-friendly timestamp wrapper</em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(
+    array $defaults = array())
+                                            <p>Options constructor.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Alorel/Dropbox/Options/Options.html#method___construct"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_offsetExists">offsetExists</a>(
+    string $offset)
+                                            <p>Whether a offset exists</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Alorel/Dropbox/Options/Options.html#method_offsetExists"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+    mixed
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_offsetGet">offsetGet</a>(
+    string $offset)
+                                            <p>Offset to retrieve</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Alorel/Dropbox/Options/Options.html#method_offsetGet"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_offsetSet">offsetSet</a>(
+    string $offset, 
+    mixed $value)
+                                            <p>Offset to set</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Alorel/Dropbox/Options/Options.html#method_offsetSet"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_offsetUnset">offsetUnset</a>(
+    string $offset)
+                                            <p>Offset to unset</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Alorel/Dropbox/Options/Options.html#method_offsetUnset"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    static&nbsp;
+    <a href="../../../../Alorel/Dropbox/Options/Options.html"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_merge">merge</a>(
+    array $options)
+                                            <p>Create an Options object from a combination of configuration arrays and other option objects</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Alorel/Dropbox/Options/Options.html#method_merge"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_toArray">toArray</a>()
+                                            <p>Return the generated options</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Alorel/Dropbox/Options/Options.html#method_toArray"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+    <a href="../../../../Alorel/Dropbox/Options/Mixins/ThumbnailSizeTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\ThumbnailSizeTrait">ThumbnailSizeTrait</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setThumbnailSize">setThumbnailSize</a>(
+    <a href="../../../../Alorel/Dropbox/Parameters/ThumbnailSize.html"><abbr title="Alorel\Dropbox\Parameters\ThumbnailSize">ThumbnailSize</abbr></a> $size)
+                                            <p>The size for the thumbnail image. The default for this union is w64h64.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Alorel/Dropbox/Options/Mixins/ThumbnailSizeTrait.html#method_setThumbnailSize"><abbr title="Alorel\Dropbox\Options\Mixins\ThumbnailSizeTrait">ThumbnailSizeTrait</abbr></a></small></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+    <a href="../../../../Alorel/Dropbox/Options/Mixins/ThumbnailFormatTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\ThumbnailFormatTrait">ThumbnailFormatTrait</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setThumbnailFormat">setThumbnailFormat</a>(
+    <a href="../../../../Alorel/Dropbox/Parameters/ThumbnailFormat.html"><abbr title="Alorel\Dropbox\Parameters\ThumbnailFormat">ThumbnailFormat</abbr></a> $format)
+                                            <p>The format for the thumbnail image, jpeg (default) or png. For images that are photos, jpeg should be preferred,
+while png is better for screenshots and digital arts. The default for this union is jpeg.</p>                </div>
+                <div class="col-md-2"><small>from&nbsp;<a href="../../../../Alorel/Dropbox/Options/Mixins/ThumbnailFormatTrait.html#method_setThumbnailFormat"><abbr title="Alorel\Dropbox\Options\Mixins\ThumbnailFormatTrait">ThumbnailFormatTrait</abbr></a></small></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">in <a href="../../../../Alorel/Dropbox/Options/Options.html#method___construct"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a> at line         line 40</div>
+        <code>                    
+    
+    <strong>__construct</strong>(
+    array $defaults = array())</code>
+    </h3>
+    <div class="details">
+                    <div class="method-description">
+                                    <p>Options constructor.</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+    array</td>
+                <td>$defaults</td>
+                <td>Default options</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_offsetExists">
+        <div class="location">in <a href="../../../../Alorel/Dropbox/Options/Options.html#method_offsetExists"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a> at line         line 55</div>
+        <code>                    
+    boolean
+    <strong>offsetExists</strong>(
+    string $offset)</code>
+    </h3>
+    <div class="details">
+                    <div class="method-description">
+                                    <p>Whether a offset exists</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+    string</td>
+                <td>$offset</td>
+                <td>An offset to check for.</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>
+    boolean</td>
+            <td>true on success or false on failure. The return value will be casted to boolean if
+non-boolean was returned.</td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>http://php.net/manual/en/arrayaccess.offsetexists.php</td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_offsetGet">
+        <div class="location">in <a href="../../../../Alorel/Dropbox/Options/Options.html#method_offsetGet"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a> at line         line 69</div>
+        <code>                    
+    mixed
+    <strong>offsetGet</strong>(
+    string $offset)</code>
+    </h3>
+    <div class="details">
+                    <div class="method-description">
+                                    <p>Offset to retrieve</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+    string</td>
+                <td>$offset</td>
+                <td>The offset to retrieve.</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>
+    mixed</td>
+            <td>Can return all value types.</td>
+        </tr>
+    </table>
+
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>http://php.net/manual/en/arrayaccess.offsetget.php</td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_offsetSet">
+        <div class="location">in <a href="../../../../Alorel/Dropbox/Options/Options.html#method_offsetSet"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a> at line         line 82</div>
+        <code>                    
+    
+    <strong>offsetSet</strong>(
+    string $offset, 
+    mixed $value)</code>
+    </h3>
+    <div class="details">
+                    <div class="method-description">
+                                    <p>Offset to set</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+    string</td>
+                <td>$offset</td>
+                <td>The offset to assign the value to.</td>
+            </tr>
+                    <tr>
+                <td>
+    mixed</td>
+                <td>$value</td>
+                <td>The value to set.</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>http://php.net/manual/en/arrayaccess.offsetset.php</td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_offsetUnset">
+        <div class="location">in <a href="../../../../Alorel/Dropbox/Options/Options.html#method_offsetUnset"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a> at line         line 94</div>
+        <code>                    
+    
+    <strong>offsetUnset</strong>(
+    string $offset)</code>
+    </h3>
+    <div class="details">
+                    <div class="method-description">
+                                    <p>Offset to unset</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+    string</td>
+                <td>$offset</td>
+                <td>The offset to unset.</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>http://php.net/manual/en/arrayaccess.offsetunset.php</td>
+                <td></td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_merge">
+        <div class="location">in <a href="../../../../Alorel/Dropbox/Options/Options.html#method_merge"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a> at line         line 107</div>
+        <code>        static            
+    <a href="../../../../Alorel/Dropbox/Options/Options.html"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a>
+    <strong>merge</strong>(
+    array $options)</code>
+    </h3>
+    <div class="details">
+                    <div class="method-description">
+                                    <p>Create an Options object from a combination of configuration arrays and other option objects</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+    array</td>
+                <td>$options</td>
+                <td>The items to merge</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>
+    <a href="../../../../Alorel/Dropbox/Options/Options.html"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_toArray">
+        <div class="location">in <a href="../../../../Alorel/Dropbox/Options/Options.html#method_toArray"><abbr title="Alorel\Dropbox\Options\Options">Options</abbr></a> at line         line 127</div>
+        <code>                    
+    array
+    <strong>toArray</strong>()</code>
+    </h3>
+    <div class="details">
+                    <div class="method-description">
+                                    <p>Return the generated options</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>
+    array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setThumbnailSize">
+        <div class="location">in <a href="../../../../Alorel/Dropbox/Options/Mixins/ThumbnailSizeTrait.html#method_setThumbnailSize"><abbr title="Alorel\Dropbox\Options\Mixins\ThumbnailSizeTrait">ThumbnailSizeTrait</abbr></a> at line         line 28</div>
+        <code>                    
+    <a href="../../../../Alorel/Dropbox/Options/Mixins/ThumbnailSizeTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\ThumbnailSizeTrait">ThumbnailSizeTrait</abbr></a>
+    <strong>setThumbnailSize</strong>(
+    <a href="../../../../Alorel/Dropbox/Parameters/ThumbnailSize.html"><abbr title="Alorel\Dropbox\Parameters\ThumbnailSize">ThumbnailSize</abbr></a> $size)</code>
+    </h3>
+    <div class="details">
+                    <div class="method-description">
+                                    <p>The size for the thumbnail image. The default for this union is w64h64.</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+    <a href="../../../../Alorel/Dropbox/Parameters/ThumbnailSize.html"><abbr title="Alorel\Dropbox\Parameters\ThumbnailSize">ThumbnailSize</abbr></a></td>
+                <td>$size</td>
+                <td>The size</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>
+    <a href="../../../../Alorel/Dropbox/Options/Mixins/ThumbnailSizeTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\ThumbnailSizeTrait">ThumbnailSizeTrait</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setThumbnailFormat">
+        <div class="location">in <a href="../../../../Alorel/Dropbox/Options/Mixins/ThumbnailFormatTrait.html#method_setThumbnailFormat"><abbr title="Alorel\Dropbox\Options\Mixins\ThumbnailFormatTrait">ThumbnailFormatTrait</abbr></a> at line         line 30</div>
+        <code>                    
+    <a href="../../../../Alorel/Dropbox/Options/Mixins/ThumbnailFormatTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\ThumbnailFormatTrait">ThumbnailFormatTrait</abbr></a>
+    <strong>setThumbnailFormat</strong>(
+    <a href="../../../../Alorel/Dropbox/Parameters/ThumbnailFormat.html"><abbr title="Alorel\Dropbox\Parameters\ThumbnailFormat">ThumbnailFormat</abbr></a> $format)</code>
+    </h3>
+    <div class="details">
+                    <div class="method-description">
+                                    <p>The format for the thumbnail image, jpeg (default) or png. For images that are photos, jpeg should be preferred,
+while png is better for screenshots and digital arts. The default for this union is jpeg.</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+    <a href="../../../../Alorel/Dropbox/Parameters/ThumbnailFormat.html"><abbr title="Alorel\Dropbox\Parameters\ThumbnailFormat">ThumbnailFormat</abbr></a></td>
+                <td>$format</td>
+                <td>The format</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>
+    <a href="../../../../Alorel/Dropbox/Options/Mixins/ThumbnailFormatTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\ThumbnailFormatTrait">ThumbnailFormatTrait</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

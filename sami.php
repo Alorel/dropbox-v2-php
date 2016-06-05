@@ -11,12 +11,8 @@
                                                ->exclude('tests')
                                                ->in($src);
 
-    $versions = Sami\Version\GitVersionCollection::create($src)
-                                                 ->add('master', 'Latest');
-
     $options = [
         'theme'     => 'default',
-        'versions'  => $versions,
         'title'     => 'Dropbox v2 PHP SDK',
         'build_dir' => $out,
         'cache_dir' => $cache,

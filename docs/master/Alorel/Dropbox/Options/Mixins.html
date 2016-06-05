@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Alorel\Dropbox\Options\Mixins | Dropbox v2 PHP SDK</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/sami.css">
+        <script src="../../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
+        <script src="../../../js/typeahead.min.js"></script>
+        <script src="../../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="namespace" data-name="namespace:Alorel_Dropbox_Options_Mixins" data-root-path="../../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <form id="search-form" action="../../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">Dropbox v2 PHP SDK</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                                            <li><a href="../../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                <div class="namespace-breadcrumbs">
+        <ol class="breadcrumb">
+            <li><span class="label label-default">Namespace</span></li>
+                                                        <li><a href="../../../Alorel.html">Alorel</a></li>
+                                        <li><a href="../../../Alorel/Dropbox.html">Dropbox</a></li>
+                                        <li><a href="../../../Alorel/Dropbox/Options.html">Options</a></li>
+                                        <li><a href="../../../Alorel/Dropbox/Options/Mixins.html">Mixins</a></li>
+    
+        </ol>
+    </div>
+            <div id="page-content">
+                
+    <div class="page-header">
+        <h1>Alorel\Dropbox\Options\Mixins</h1>
+    </div>
+
+    
+            <h2>Classes</h2>
+        
+    <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/AutoRenameTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\AutoRenameTrait">AutoRenameTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    If there's a conflict, as determined by mode, have the Dropbox server try to autorename the file to avoid
+conflict. The default for this field is False.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/ClientModifiedTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\ClientModifiedTrait">ClientModifiedTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    The value to store as the client_modified timestamp. Dropbox automatically records the time at which the file
+was written to the Dropbox servers. It can also record an additional timestamp, provided by Dropbox desktop
+clients, mobile clients, and API apps of when the file was actually created or modified
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/CloseTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\CloseTrait">CloseTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    If true, current session will be closed. You cannot do upload_session/append any more to current session The
+default for this field is False.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/IncludeDeletedTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\IncludeDeletedTrait">IncludeDeletedTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    If true, DeletedMetadata will be returned for deleted file or folder, otherwise LookupError.not_found will be
+returned. The default for this field is False.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/IncludeHasExplicitSharedMembersTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\IncludeHasExplicitSharedMembersTrait">IncludeHasExplicitSharedMembersTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    If true, the results will include a flag for each file indicating whether or not that file has any explicit
+members. The default for this field is False.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/IncludeMediaInfoTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\IncludeMediaInfoTrait">IncludeMediaInfoTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    If true, FileMetadata.media_info is set for photo and video. The default for this field is False.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/LimitTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\LimitTrait">LimitTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    The maximum number of entries returned. The default for this field is 10.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/MaxResultsTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\MaxResultsTrait">MaxResultsTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    The maximum number of search results to return. The default for this field is 100.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/MuteTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\MuteTrait">MuteTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    Normally, users are made aware of any file modifications in their Dropbox account via notifications in the
+client software. If true, this tells the clients that this modification shouldn't result in a user
+notification. The default for this field is False.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/RecursiveTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\RecursiveTrait">RecursiveTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    If true, the operation will apply to all subfolders, too. The default value is false.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/SearchModeTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\SearchModeTrait">SearchModeTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    The search mode (filename, filename<em>and</em>content, or deleted_filename). Note that searching file content is
+only available for Dropbox Business accounts. The default for this union is filename.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/StartTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\StartTrait">StartTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    The starting index within the search results (used for paging). The default for this field is 0.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/ThumbnailFormatTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\ThumbnailFormatTrait">ThumbnailFormatTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    The format for the thumbnail image, jpeg (default) or png. For images that are photos, jpeg should be preferred,
+while png is better for screenshots and digital arts. The default for this union is jpeg.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/ThumbnailSizeTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\ThumbnailSizeTrait">ThumbnailSizeTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    The size for the thumbnail image. The default for this union is w64h64.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/TimeoutTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\TimeoutTrait">TimeoutTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    A timeout in seconds. The request will block for at most this length of time, plus up to 90 seconds of random
+jitter added to avoid the thundering herd problem. Care should be taken when using this parameter, as some
+network infrastructure does not support long timeouts. The default for this field is 30.
+                </div>
+            </div>
+                    <div class="row">
+                <div class="col-md-6">
+                                            <a href="../../../Alorel/Dropbox/Options/Mixins/WriteModeTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\WriteModeTrait">WriteModeTrait</abbr></a>
+                                    </div>
+                <div class="col-md-6">
+                    Selects what to do if the file already exists. The default for this union is add.
+                </div>
+            </div>
+            </div>
+    
+    
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>
