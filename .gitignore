@@ -5,3 +5,4 @@
 /API_KEY
 /.sami-cache
 /coverage
+/examples/*.php
