@@ -25,6 +25,7 @@
   },
   "require": {
     "php": ">=7.0",
+    "hhvm": ">=3.11",
     "guzzlehttp/guzzle": "^6.2",
     "guzzlehttp/psr7": "^1.3"
   },
