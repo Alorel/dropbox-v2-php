@@ -82,11 +82,10 @@ Unless specified otherwise, any operation that is not currently supported will b
         - [ ] /properties/template/list *In Beta/Alpha on Dropbox - will implement once stable
         - [ ] /properties/update *In Beta/Alpha on Dropbox - will implement once stable
         - [x] /restore
-        - [ ] /save_url
-        - [ ] /save_url/check_job_status
+        - [x] /save_url
+        - [x] /save_url/check_job_status
         - [x] /search
         - [x] /upload
-        - [ ] /upload_session/append *deprecated*
         - [x] /upload_session/append_v2
         - [x] /upload_session/finish
         - [x] /upload_session/start

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="robots" content="index, follow, all"/>
+    <title>Alorel\Dropbox\Operation\Files\GetTemporaryLink | Dropbox v2 PHP SDK</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/sami.css">
+    <script src="../../../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../../../js/bootstrap.min.js"></script>
+    <script src="../../../../js/typeahead.min.js"></script>
+    <script src="../../../../sami.js"></script>
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+
+</head>
+
+<body id="class" data-name="class:Alorel_Dropbox_Operation_Files_GetTemporaryLink" data-root-path="../../../../">
+<div id="content">
+    <div id="left-column">
+        <div id="control-panel">
+            <form id="search-form" action="../../../../search.html" method="GET">
+                <span class="glyphicon glyphicon-search"></span>
+                <input name="search"
+                       class="typeahead form-control"
+                       type="search"
+                       placeholder="Search">
+            </form>
+        </div>
+
+        <div id="api-tree"></div>
+
+    </div>
+    <div id="right-column">
+        <nav id="site-nav" class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../../../../index.html">Dropbox v2 PHP SDK</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-elements">
+                    <ul class="nav navbar-nav">
+                        <li><a href="../../../../classes.html">Classes</a></li>
+                        <li><a href="../../../../namespaces.html">Namespaces</a></li>
+                        <li><a href="../../../../interfaces.html">Interfaces</a></li>
+                        <li><a href="../../../../traits.html">Traits</a></li>
+                        <li><a href="../../../../doc-index.html">Index</a></li>
+                        <li><a href="../../../../search.html">Search</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                <li><a href="../../../../Alorel.html">Alorel</a></li>
+                <li><a href="../../../../Alorel/Dropbox.html">Dropbox</a></li>
+                <li><a href="../../../../Alorel/Dropbox/Operation.html">Operation</a></li>
+                <li><a href="../../../../Alorel/Dropbox/Operation/Files.html">Files</a></li>
+
+                <li>GetTemporaryLink</li>
+            </ol>
+        </div>
+        <div id="page-content">
+
+            <div class="page-header">
+                <h1>GetTemporaryLink</h1>
+            </div>
+
+            <p> class
+                <strong>GetTemporaryLink</strong> extends <a
+                        href="../../../../Alorel/Dropbox/OperationKind/SingleArgumentRPCOperation.html"><abbr
+                        title="Alorel\Dropbox\OperationKind\SingleArgumentRPCOperation">SingleArgumentRPCOperation</abbr></a>
+            </p>
+
+            <div class="description">
+                <p>Get a temporary link to stream content of a file. This link will expire in four hours and afterwards
+                    you will
+                    get 410 Gone. Content-Type of the link is determined automatically by the file's mime type.</p>
+            </div>
+
+
+            <h2>Constants</h2>
+
+            <table class="table table-condensed">
+                <tr>
+                    <td>API_VERSION</td>
+                    <td class="last">
+                        <p><em>Dropbox API version</em></p>
+                        <p></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>HOST</td>
+                    <td class="last">
+                        <p><em>The hostname for these requests</em></p>
+                        <p></p>
+                    </td>
+                </tr>
+            </table>
+
+
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                <div class="row">
+                    <div class="col-md-2 type">
+
+
+                    </div>
+                    <div class="col-md-8 type">
+                        <a href="#method___construct">__construct</a>(
+                        bool $async = null,
+                        <abbr title="Alorel\Dropbox\Operation\string">string</abbr> $accessToken = null)
+                        <p>Operation constructor.</p></div>
+                    <div class="col-md-2">
+                        <small>from&nbsp;<a
+                                href="../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method___construct"><abbr
+                                title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a></small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 type">
+                        static&nbsp;
+
+                    </div>
+                    <div class="col-md-8 type">
+                        <a href="#method_setDefaultToken">setDefaultToken</a>(
+                        <abbr title="Alorel\Dropbox\Operation\string">string</abbr> $token)
+                        <p>Sets the default token to use with the constructor</p></div>
+                    <div class="col-md-2">
+                        <small>from&nbsp;<a
+                                href="../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method_setDefaultToken"><abbr
+                                title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a></small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 type">
+
+                        boolean
+                    </div>
+                    <div class="col-md-8 type">
+                        <a href="#method_isAsync">isAsync</a>()
+                        <p>Return whether we're operating in async mode</p></div>
+                    <div class="col-md-2">
+                        <small>from&nbsp;<a
+                                href="../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method_isAsync"><abbr
+                                title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a></small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 type">
+
+                        <a href="../../../../Alorel/Dropbox/Operation/AbstractOperation.html"><abbr
+                                title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a>
+                    </div>
+                    <div class="col-md-8 type">
+                        <a href="#method_setAsync">setAsync</a>(
+                        <abbr title="Alorel\Dropbox\Operation\bool">bool</abbr> $async)
+                        <p>Sets the sync/async operation mode</p></div>
+                    <div class="col-md-2">
+                        <small>from&nbsp;<a
+                                href="../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method_setAsync"><abbr
+                                title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a></small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 type">
+                        static&nbsp;
+
+                    </div>
+                    <div class="col-md-8 type">
+                        <a href="#method_setDefaultAsync">setDefaultAsync</a>(
+                        <abbr title="Alorel\Dropbox\Operation\bool">bool</abbr> $async)
+                        <p>Sets the default $async value for the constructor</p></div>
+                    <div class="col-md-2">
+                        <small>from&nbsp;<a
+                                href="../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method_setDefaultAsync"><abbr
+                                title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a></small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 type">
+
+                        <abbr title="GuzzleHttp\Promise\PromiseInterface">PromiseInterface</abbr>|<abbr
+                            title="Psr\Http\Message\ResponseInterface">ResponseInterface</abbr>
+                    </div>
+                    <div class="col-md-8 type">
+                        <a href="#method_raw">raw</a>(
+                        <abbr title="Alorel\Dropbox\OperationKind\string">string</abbr> $path)
+                        <p>Perform the operation, returning a promise or raw response object</p></div>
+                    <div class="col-md-2">
+                        <small>from&nbsp;<a
+                                href="../../../../Alorel/Dropbox/OperationKind/SingleArgumentRPCOperation.html#method_raw"><abbr
+                                title="Alorel\Dropbox\OperationKind\SingleArgumentRPCOperation">SingleArgumentRPCOperation</abbr></a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+
+            <h2>Details</h2>
+
+            <div id="method-details">
+                <div class="method-item">
+                    <h3 id="method___construct">
+                        <div class="location">in <a
+                                href="../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method___construct"><abbr
+                                title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a> at line
+                            line 81
+                        </div>
+                        <code>
+
+                            <strong>__construct</strong>(
+                            bool $async = null,
+                            <abbr title="Alorel\Dropbox\Operation\string">string</abbr> $accessToken = null)</code>
+                    </h3>
+                    <div class="details">
+                        <div class="method-description">
+                            <p>Operation constructor.</p></div>
+                        <div class="tags">
+                            <h4>Parameters</h4>
+
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td>
+                                        bool
+                                    </td>
+                                    <td>$async</td>
+                                    <td>Whether requests should be asynchronous</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <abbr title="Alorel\Dropbox\Operation\string">string</abbr></td>
+                                    <td>$accessToken</td>
+                                    <td>Our access token</td>
+                                </tr>
+                            </table>
+
+
+                            <h4>Exceptions</h4>
+
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td><a href="../../../../Alorel/Dropbox/Exception/NoTokenException.html"><abbr
+                                            title="Alorel\Dropbox\Exception\NoTokenException">NoTokenException</abbr></a>
+                                    </td>
+                                    <td>If $accessToken is not provided and the {@link AbstractOperation::$defaultToken
+                                        default token} hasn't been set via {@link AbstractOperation::setDefaultToken()
+                                        setDefaultToken()}
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="method-item">
+                    <h3 id="method_setDefaultToken">
+                        <div class="location">in <a
+                                href="../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method_setDefaultToken"><abbr
+                                title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a> at line
+                            line 101
+                        </div>
+                        <code>final static
+
+                            <strong>setDefaultToken</strong>(
+                            <abbr title="Alorel\Dropbox\Operation\string">string</abbr> $token)</code>
+                    </h3>
+                    <div class="details">
+                        <div class="method-description">
+                            <p>Sets the default token to use with the constructor</p></div>
+                        <div class="tags">
+                            <h4>Parameters</h4>
+
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td>
+                                        <abbr title="Alorel\Dropbox\Operation\string">string</abbr></td>
+                                    <td>$token</td>
+                                    <td>The token</td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="method-item">
+                    <h3 id="method_isAsync">
+                        <div class="location">in <a
+                                href="../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method_isAsync"><abbr
+                                title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a> at line
+                            line 121
+                        </div>
+                        <code>
+                            boolean
+                            <strong>isAsync</strong>()</code>
+                    </h3>
+                    <div class="details">
+                        <div class="method-description">
+                            <p>Return whether we're operating in async mode</p></div>
+                        <div class="tags">
+
+                            <h4>Return Value</h4>
+
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td>
+                                        boolean
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="method-item">
+                    <h3 id="method_setAsync">
+                        <div class="location">in <a
+                                href="../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method_setAsync"><abbr
+                                title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a> at line
+                            line 134
+                        </div>
+                        <code>final
+                            <a href="../../../../Alorel/Dropbox/Operation/AbstractOperation.html"><abbr
+                                    title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a>
+                            <strong>setAsync</strong>(
+                            <abbr title="Alorel\Dropbox\Operation\bool">bool</abbr> $async)</code>
+                    </h3>
+                    <div class="details">
+                        <div class="method-description">
+                            <p>Sets the sync/async operation mode</p></div>
+                        <div class="tags">
+                            <h4>Parameters</h4>
+
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td>
+                                        <abbr title="Alorel\Dropbox\Operation\bool">bool</abbr></td>
+                                    <td>$async</td>
+                                    <td>true to perform operations in async mode, false to perform them in sync</td>
+                                </tr>
+                            </table>
+
+
+                            <h4>Return Value</h4>
+
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td>
+                                        <a href="../../../../Alorel/Dropbox/Operation/AbstractOperation.html"><abbr
+                                                title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="method-item">
+                    <h3 id="method_setDefaultAsync">
+                        <div class="location">in <a
+                                href="../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method_setDefaultAsync"><abbr
+                                title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a> at line
+                            line 148
+                        </div>
+                        <code>final static
+
+                            <strong>setDefaultAsync</strong>(
+                            <abbr title="Alorel\Dropbox\Operation\bool">bool</abbr> $async)</code>
+                    </h3>
+                    <div class="details">
+                        <div class="method-description">
+                            <p>Sets the default $async value for the constructor</p></div>
+                        <div class="tags">
+                            <h4>Parameters</h4>
+
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td>
+                                        <abbr title="Alorel\Dropbox\Operation\bool">bool</abbr></td>
+                                    <td>$async</td>
+                                    <td>The default async value</td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="method-item">
+                    <h3 id="method_raw">
+                        <div class="location">in <a
+                                href="../../../../Alorel/Dropbox/OperationKind/SingleArgumentRPCOperation.html#method_raw"><abbr
+                                title="Alorel\Dropbox\OperationKind\SingleArgumentRPCOperation">SingleArgumentRPCOperation</abbr></a>
+                            at line line 50
+                        </div>
+                        <code>
+                            <abbr title="GuzzleHttp\Promise\PromiseInterface">PromiseInterface</abbr>|<abbr
+                                title="Psr\Http\Message\ResponseInterface">ResponseInterface</abbr>
+                            <strong>raw</strong>(
+                            <abbr title="Alorel\Dropbox\OperationKind\string">string</abbr> $path)</code>
+                    </h3>
+                    <div class="details">
+                        <div class="method-description">
+                            <p>Perform the operation, returning a promise or raw response object</p></div>
+                        <div class="tags">
+                            <h4>Parameters</h4>
+
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td>
+                                        <abbr title="Alorel\Dropbox\OperationKind\string">string</abbr></td>
+                                    <td>$path</td>
+                                    <td>The path operate on</td>
+                                </tr>
+                            </table>
+
+
+                            <h4>Return Value</h4>
+
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td>
+                                        <abbr title="GuzzleHttp\Promise\PromiseInterface">PromiseInterface</abbr>|<abbr
+                                            title="Psr\Http\Message\ResponseInterface">ResponseInterface</abbr></td>
+                                    <td>The promise interface if
+                                        async is set to true and the
+                                        request interface if it is
+                                        set to false
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                            <h4>Exceptions</h4>
+
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td><abbr title="GuzzleHttp\Exception\ClientException">ClientException</abbr></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div id="footer">
+            Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+        </div>
+
+    </div>
+</div>
+</body>
+
+</html>
