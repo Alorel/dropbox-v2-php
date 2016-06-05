@@ -4,8 +4,10 @@ php:
   - 7.0
   - hhvm
 
-before_script:
+before_install:
  - phpenv config-rm xdebug.ini
+
+before_script:
  - echo 'date.timezone = Europe/London' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
  - composer require --dev satooshi/php-coveralls
  - echo 'zend_extension = xdebug.so' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
