@@ -39,10 +39,8 @@
         }
 
         function thumbnailFormat() {
-            return [
-                ['jpeg'],
-                ['png']
-            ];
+            yield 'jpeg' => ['jpeg'];
+            yield 'png' => ['png'];
         }
 
         /** @dataProvider thumbnailSize */
@@ -53,13 +51,11 @@
         }
 
         function thumbnailSize() {
-            return [
-                [32, 32],
-                [64, 64],
-                [128, 128],
-                [640, 480],
-                [1024, 768]
-            ];
+            yield '32x32' => [32, 32];
+            yield  '64x64' => [64, 64];
+            yield  '128x128' => [128, 128];
+            yield  '640x480' => [640, 480];
+            yield  '1024x768' => [1024, 768];
         }
 
         /** @dataProvider writeMode */
@@ -75,11 +71,9 @@
         }
 
         function writeMode() {
-            return [
-                [WriteMode::TAG_ADD],
-                [WriteMode::TAG_OVERWRITE],
-                [WriteMode::TAG_UPDATE, __CLASS__]
-            ];
+            yield WriteMode::TAG_ADD => [WriteMode::TAG_ADD];
+            yield WriteMode::TAG_OVERWRITE => [WriteMode::TAG_OVERWRITE];
+            yield WriteMode::TAG_UPDATE => [WriteMode::TAG_UPDATE, __CLASS__];
         }
 
         /** @dataProvider searchMode */
@@ -94,11 +88,9 @@
         }
 
         function searchMode() {
-            return [
-                ['filename', SearchMode::TAG_FILENAME],
-                ['filenameAndContent', SearchMode::TAG_FILENAME_AND_CONTENT],
-                ['deletedFilename', SearchMode::DELETED_FILENAME]
-            ];
+            yield 'filename' => ['filename', SearchMode::TAG_FILENAME];
+            yield 'filenameAndContent' => ['filenameAndContent', SearchMode::TAG_FILENAME_AND_CONTENT];
+            yield 'deletedFilename' => ['deletedFilename', SearchMode::DELETED_FILENAME];
         }
 
         /** @dataProvider uploadSessionCursor */
@@ -111,10 +103,8 @@
         }
 
         function uploadSessionCursor() {
-            return [
-                'Both set'  => [PHP_INT_MAX],
-                'No offset' => []
-            ];
+            yield   'Both set' => [PHP_INT_MAX];
+            yield   'No offset' => [];
         }
 
         /** @dataProvider commitInfo */
@@ -137,31 +127,29 @@
         function commitInfo() {
             $dt = new \DateTime();
 
-            return [
-                'AllParamsSet'  => [
-                    [
-                        'path'            => __CLASS__,
-                        'mode'            => WriteMode::add(),
-                        'autorename'      => true,
-                        'client_modified' => $dt->format(Options::DATETIME_FORMAT),
-                        'mute'            => true
-                    ],
-                    WriteMode::add(),
-                    true,
-                    true,
-                    $dt
+            yield 'AllParamsSet' => [
+                [
+                    'path'            => __CLASS__,
+                    'mode'            => WriteMode::add(),
+                    'autorename'      => true,
+                    'client_modified' => $dt->format(Options::DATETIME_FORMAT),
+                    'mute'            => true
                 ],
-                'SomeParamsSet' => [
-                    [
-                        'path'       => __CLASS__,
-                        'mode'       => WriteMode::overwrite(),
-                        'autorename' => false,
-                        'mute'       => true
-                    ],
-                    WriteMode::overwrite(),
-                    false,
-                    true
-                ]
+                WriteMode::add(),
+                true,
+                true,
+                $dt
+            ];
+            yield 'SomeParamsSet' => [
+                [
+                    'path'       => __CLASS__,
+                    'mode'       => WriteMode::overwrite(),
+                    'autorename' => false,
+                    'mute'       => true
+                ],
+                WriteMode::overwrite(),
+                false,
+                true
             ];
         }
     }

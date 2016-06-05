@@ -44,9 +44,8 @@
         }
 
         function providerRevisionIncrement() {
-            return [
-                [0], [1]
-            ];
+            yield [0];
+            yield [1];
         }
 
         /** @depends testRevisionIncrement */
@@ -83,11 +82,8 @@
         }
 
         function providerDeleted() {
-
-            return [
-                '1'    => [1],
-                '2'    => [2],
-                'null' => [null]
-            ];
+            yield '1' => [1];
+            yield '2' => [2];
+            yield 'null' => [null];
         }
     }

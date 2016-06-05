@@ -110,8 +110,7 @@
             foreach ($options as $opt) {
                 if (is_array($opt)) {
                     $o = array_merge($o, $opt);
-                }
-                if ($opt instanceof Options) {
+                } elseif ($opt instanceof Options) {
                     $o = array_merge($o, $opt->toArray());
                 }
             }

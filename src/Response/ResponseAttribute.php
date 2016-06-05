@@ -11,7 +11,7 @@
      *
      * @author Art <a.molcanovas@gmail.com>
      */
-    class ResponseAttribute {
+    abstract class ResponseAttribute {
 
         /**
          * A copy reference

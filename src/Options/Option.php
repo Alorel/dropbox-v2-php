@@ -21,6 +21,27 @@
         const COPY_REFERENCE = 'copy_reference';
 
         /**
+         * Start index
+         *
+         * @var string
+         */
+        const START = 'start';
+
+        /**
+         * What we're searching for
+         *
+         * @var string
+         */
+        const QUERY = 'query';
+
+        /**
+         * Max # of results
+         *
+         * @var string
+         */
+        const MAX_RESULTS = 'max_results';
+
+        /**
          * Image size
          *
          * @var string

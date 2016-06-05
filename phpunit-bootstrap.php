@@ -173,11 +173,13 @@
         }
 
         static function tearDownAfterClass() {
-            TestUtil::releaseName(...self::$generatedNames);
-            try {
-                (new Delete())->raw('/' . self::generatorPrefix());
-            } catch (\Exception $e) {
-                fwrite(STDERR, $e->getMessage());
+            if (!empty(self::$generatedNames)) {
+                TestUtil::releaseName(...self::$generatedNames);
+                try {
+                    (new Delete())->raw('/' . self::generatorPrefix());
+                } catch (\Exception $e) {
+                    fwrite(STDERR, $e->getMessage());
+                }
             }
         }
     }

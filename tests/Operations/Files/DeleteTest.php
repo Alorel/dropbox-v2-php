@@ -59,9 +59,7 @@
         }
 
         function providerDelete() {
-            return [
-                Delete::class            => [Delete::class],
-                PermanentlyDelete::class => [PermanentlyDelete::class]
-            ];
+            yield Delete::class => [Delete::class];
+            yield PermanentlyDelete::class => [PermanentlyDelete::class];
         }
     }

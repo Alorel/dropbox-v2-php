@@ -8,6 +8,7 @@
 
     use Alorel\Dropbox\Options\Option as O;
     use Alorel\Dropbox\Options\Options;
+    use Alorel\Dropbox\Parameters\SearchMode as SM;
     use Alorel\Dropbox\Parameters\ThumbnailFormat as TF;
     use Alorel\Dropbox\Parameters\ThumbnailSize as TS;
     use Alorel\Dropbox\Parameters\WriteMode as WM;
@@ -26,6 +27,9 @@
         use RecursiveTrait;
         use TimeoutTrait;
         use LimitTrait;
+        use MaxResultsTrait;
+        use SearchModeTrait;
+        use StartTrait;
     }
 
     class TraitTest extends \PHPUnit_Framework_TestCase {
@@ -54,21 +58,24 @@
 
         function allTraits() {
             $dt = new \DateTime();
-            $return = [
-                ['setClientModified', O::CLIENT_MODIFIED, $dt, $dt->format(Options::DATETIME_FORMAT)],
-                ['setWriteMode', O::MODE, WM::add()],
-                ['setWriteMode', O::MODE, WM::overwrite()],
-                ['setWriteMode', O::MODE, WM::update(__CLASS__)],
-                ['setThumbnailSize', O::SIZE, TS::w32h32()],
-                ['setThumbnailSize', O::SIZE, TS::w64h64()],
-                ['setThumbnailSize', O::SIZE, TS::w128h128()],
-                ['setThumbnailSize', O::SIZE, TS::w640h480()],
-                ['setThumbnailSize', O::SIZE, TS::w1024h768()],
-                ['setThumbnailFormat', O::FORMAT, TF::jpeg()],
-                ['setThumbnailFormat', O::FORMAT, TF::png()],
-                ['setTimeout', O::TIMEOUT, 5],
-                ['setLimit', O::LIMIT, 20]
-            ];
+            yield ['setClientModified', O::CLIENT_MODIFIED, $dt, $dt->format(Options::DATETIME_FORMAT)];
+            yield ['setWriteMode', O::MODE, WM::add()];
+            yield ['setWriteMode', O::MODE, WM::overwrite()];
+            yield ['setWriteMode', O::MODE, WM::update(__CLASS__)];
+            yield ['setThumbnailSize', O::SIZE, TS::w32h32()];
+            yield ['setThumbnailSize', O::SIZE, TS::w64h64()];
+            yield ['setThumbnailSize', O::SIZE, TS::w128h128()];
+            yield ['setThumbnailSize', O::SIZE, TS::w640h480()];
+            yield ['setThumbnailSize', O::SIZE, TS::w1024h768()];
+            yield ['setThumbnailFormat', O::FORMAT, TF::jpeg()];
+            yield ['setThumbnailFormat', O::FORMAT, TF::png()];
+            yield ['setTimeout', O::TIMEOUT, 5];
+            yield ['setLimit', O::LIMIT, 20];
+            yield ['setSearchMode', O::MODE, SM::deletedFilename()];
+            yield ['setSearchMode', O::MODE, SM::filename()];
+            yield ['setSearchMode', O::MODE, SM::filenameAndContent()];
+            yield ['setMaxResults', O::MAX_RESULTS, 10];
+            yield ['setStart', O::START, 5];
 
             // Do booleans
             foreach ([
@@ -81,12 +88,10 @@
                          ['setRecursive', O::RECURSIVE]
                      ] as $v) {
                 $v[2] = true;
-                $return[] = $v;
+                yield $v;
                 $v[2] = false;
-                $return[] = $v;
+                yield $v;
             }
-
-            return $return;
         }
 
         function testOffsets() {
@@ -121,27 +126,25 @@
         }
 
         function merge() {
-            return [
-                'Nulls'         => [
-                    ['foo' => 'bar'],
-                    ['foo' => 'bar'],
-                    ['baz' => null]
-                ],
-                '2 arrays'      => [
-                    ['foo' => 'bar', 'qux' => 'baz'],
-                    ['foo' => 'bar'],
-                    ['qux' => 'baz']
-                ],
-                '1 array 1 obj' => [
-                    ['foo' => 'bar', 'qux' => 'baz'],
-                    ['foo' => 'bar'],
-                    new AllTheTraits(['qux' => 'baz'])
-                ],
-                '2 obj'         => [
-                    ['foo' => 'bar', 'qux' => 'baz'],
-                    new AllTheTraits(['foo' => 'bar']),
-                    new AllTheTraits(['qux' => 'baz'])
-                ]
+            yield 'Nulls' => [
+                ['foo' => 'bar'],
+                ['foo' => 'bar'],
+                ['baz' => null]
+            ];
+            yield    '2 arrays' => [
+                ['foo' => 'bar', 'qux' => 'baz'],
+                ['foo' => 'bar'],
+                ['qux' => 'baz']
+            ];
+            yield   '1 array 1 obj' => [
+                ['foo' => 'bar', 'qux' => 'baz'],
+                ['foo' => 'bar'],
+                new AllTheTraits(['qux' => 'baz'])
+            ];
+            yield    '2 obj' => [
+                ['foo' => 'bar', 'qux' => 'baz'],
+                new AllTheTraits(['foo' => 'bar']),
+                new AllTheTraits(['qux' => 'baz'])
             ];
         }
     }
