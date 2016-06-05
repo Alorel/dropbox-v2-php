@@ -2,7 +2,6 @@ language: php
 
 php:
   - 7.0
-  - hhvm
 
 before_install:
  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then phpenv config-rm xdebug.ini; fi;'
@@ -25,5 +24,3 @@ notifications:
 
 matrix:
   fast_finish: true
-  allow_failures:
-   - php: hhvm
