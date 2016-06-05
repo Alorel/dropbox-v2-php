@@ -4,7 +4,7 @@
  - Fork the project
  - Make your changes. The **master** branch always contains the latest copy of stable code.
  - **Write tests for your code**. Pull requests will be rejected if they do not have tests. 100% coverage is normally required - if you are unable to achieve this (e.g. API permission errors as seen with https://api.dropboxapi.com/2/files/copy_reference/get) you must state the reasons. Be sure to read the [testing guide](https://github.com/Alorel/dropbox-v2-php/tree/master/tests#readme) - you'll need your own API key.
- - Make a pull request
+ - Make a pull request into the **pull-staging** branch
 
 ##Code guidelines
  - All code must comply with [PSR standards](http://www.php-fig.org/).
