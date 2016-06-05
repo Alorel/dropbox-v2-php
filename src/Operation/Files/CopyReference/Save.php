@@ -1,13 +1,14 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Operation\Files\CopyReference;
 
     use Alorel\Dropbox\OperationKind\RPCOperation;
     use Alorel\Dropbox\Options\Option as O;
+    use Alorel\Dropbox\Options\Options;
 
     /**
      * Save a copy reference returned by copy_reference/get to the user's Dropbox.
@@ -32,10 +33,8 @@
          * @throws \GuzzleHttp\Exception\ClientException
          */
         function raw(string $destPath, string $copyReference) {
-            return $this->send('files/copy_reference/get',
-                               [
-                                   O::PATH           => $destPath,
-                                   O::COPY_REFERENCE => $copyReference
-                               ]);
+            return $this->send('files/copy_reference/save',
+                               $destPath,
+                               new Options([O::COPY_REFERENCE => $copyReference]));
         }
     }
