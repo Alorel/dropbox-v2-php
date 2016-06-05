@@ -10,6 +10,7 @@
     use Alorel\Dropbox\Operation\Files\GetPreview;
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Test\NameGenerator;
+    use Alorel\Dropbox\Test\TestUtil;
 
     class GetPreviewTest extends \PHPUnit_Framework_TestCase {
 
@@ -21,7 +22,9 @@
                 (new Upload())->raw($filename, fopen(__DIR__ . DIRECTORY_SEPARATOR . '_forPreview.docx', 'r'));
                 $response = (new GetPreview())->raw($filename);
 
-                $this->assertEquals('application/octet-stream', $response->getHeaderLine('content-type'));
+                $this->assertNotFalse(array_search($response->getHeaderLine('content-type'),
+                                                   TestUtil::PREVIEW_CONTENT_TYPES,
+                                                   true));
             } finally {
                 try {
                     (new Delete())->raw($filename);

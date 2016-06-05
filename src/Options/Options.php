@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Options;
 
@@ -108,10 +108,10 @@
             $o = [];
 
             foreach ($options as $opt) {
-                if (is_array($opt)) {
-                    $o = array_merge($o, $opt);
-                } elseif ($opt instanceof Options) {
+                if ($opt instanceof Options) {
                     $o = array_merge($o, $opt->toArray());
+                } elseif (is_array($opt)) {
+                    $o = array_merge($o, $opt);
                 }
             }
 

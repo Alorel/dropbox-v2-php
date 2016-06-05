@@ -36,6 +36,14 @@
 
         const DIR_ITERATOR_OPTS = \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::SKIP_DOTS;
 
+        const PREVIEW_CONTENT_TYPES = [
+            'application/octet-stream',
+            'application/pdf',
+            'image/jpeg',
+            'image/jpg',
+            'image/png'
+        ];
+
         static function formatParameterArgs(array $args = []) {
             foreach ($args as $k => $v) {
                 if ($v === null) {

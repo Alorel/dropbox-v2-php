@@ -56,8 +56,8 @@ Unless specified otherwise, any operation that is not currently supported will b
 
  - Regular
     - Files
-        - [ ] /alpha/get_metadata
-        - [ ] /alpha/upload
+        - [ ] /alpha/get_metadata *In Beta/Alpha on Dropbox - will implement once stable*
+        - [ ] /alpha/upload *In Beta/Alpha on Dropbox - will implement once stable
         - [x] /copy
         - [x] /copy_reference/get
         - [x] /copy_reference/save
@@ -75,12 +75,12 @@ Unless specified otherwise, any operation that is not currently supported will b
         - [x] /list_revisions
         - [x] /move
         - [x] /permanently_delete *unable to test due to API permissions*
-        - [ ] /properties/add
-        - [ ] /properties/overwrite
-        - [ ] /properties/remove
-        - [ ] /properties/template/get
-        - [ ] /properties/template/list
-        - [ ] /properties/update
+        - [ ] /properties/add *In Beta/Alpha on Dropbox - will implement once stable
+        - [ ] /properties/overwrite *In Beta/Alpha on Dropbox - will implement once stable
+        - [ ] /properties/remove *In Beta/Alpha on Dropbox - will implement once stable
+        - [ ] /properties/template/get *In Beta/Alpha on Dropbox - will implement once stable
+        - [ ] /properties/template/list *In Beta/Alpha on Dropbox - will implement once stable
+        - [ ] /properties/update *In Beta/Alpha on Dropbox - will implement once stable
         - [x] /restore
         - [ ] /save_url
         - [ ] /save_url/check_job_status
