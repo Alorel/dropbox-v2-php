@@ -23,6 +23,9 @@
         }
 
         function assertResponse(array $r) {
+            if (isset($r['complete'])) {
+                $r = $r['complete'];
+            }
             $this->assertEquals(self::$fn, $r['path_display']);
             $this->assertEquals(strtolower(self::$fn), $r['path_lower']);
             $this->assertEquals(filesize(__DIR__ . DIRECTORY_SEPARATOR . '_lorem-ipsum.txt'), $r['size']);
