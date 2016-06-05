@@ -54,13 +54,13 @@
             return $args;
         }
 
-        static function out(string ...$messages) {
+        static function out(...$messages) {
             foreach ($messages as $msg) {
                 fwrite(STDOUT, PHP_EOL . $msg . PHP_EOL);
             }
         }
 
-        static function err(string...$messages) {
+        static function err(...$messages) {
             foreach ($messages as $msg) {
                 fwrite(STDERR, PHP_EOL . $msg . PHP_EOL);
             }
@@ -165,7 +165,7 @@
             return $name;
         }
 
-        static function releaseName(string ...$names) {
+        static function releaseName(...$names) {
             foreach ($names as $name) {
                 unset(self::$generatedNames[$name]);
             }
