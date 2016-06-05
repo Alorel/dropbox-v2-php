@@ -91,6 +91,13 @@
             $this->setAsync((bool)($async ?? self::$defaultAsync));
         }
 
+        /**
+         * Sets the default token to use with the constructor
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param string $token The token
+         */
         static final function setDefaultToken(string $token) {
             self::$defaultToken = $token;
         }

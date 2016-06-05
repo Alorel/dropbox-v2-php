@@ -13,6 +13,6 @@ A PHP SDK for Dropbox's v2 SDK. If you haven't tried Dropbox out yet, [do](https
 
 #Table of Contents
 
- 1. Foo
- 1. Bar
- 1. Bar
+ 1. [Requirements](#Requirements)
+ 2. [Installation](#Installation)
+ 3. [

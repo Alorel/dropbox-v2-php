@@ -31,6 +31,15 @@
                                 ]);
         }
 
+        /**
+         * Sets the cursor offset
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param int $offset The offset
+         *
+         * @return self
+         */
         function setOffset(int $offset) {
             return $this->setArg(O::OFFSET, $offset);
         }

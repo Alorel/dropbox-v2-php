@@ -10,6 +10,11 @@
     use Alorel\Dropbox\Options\Option;
     use Alorel\Dropbox\Options\Options;
 
+    /**
+     * Abstraction for content downloads
+     *
+     * @author Art <a.molcanovas@gmail.com>
+     */
     class ContentDownloadOperation extends AbstractOperation {
 
         /**

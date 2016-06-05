@@ -15,6 +15,14 @@
      */
     class ThumbnailSize extends AbstractParameter {
 
+        /**
+         * ThumbnailSize constructor.
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         *
+         * @param int $width  Thumbnail width
+         * @param int $height Thumbnail height
+         */
         function __construct(int $width, int $height) {
             parent::__construct([Option::DOT_TAG => 'w' . $width . 'h' . $height]);
         }

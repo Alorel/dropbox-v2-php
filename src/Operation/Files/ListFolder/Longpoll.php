@@ -11,6 +11,14 @@
     use Alorel\Dropbox\Options\Option as O;
     use GuzzleHttp\Psr7\Request;
 
+    /**
+     * A longpoll endpoint to wait for changes on an account. In conjunction with list_folder/continue, this call
+     * gives you a low-latency way to monitor an account for file changes. The connection will block until there are
+     * changes available or a timeout occurs. This endpoint is useful mostly for client-side apps.
+     *
+     * @author Art <a.molcanovas@gmail.com>
+     * @see    https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder-longpoll
+     */
     class Longpoll extends AbstractOperation {
 
         /**
