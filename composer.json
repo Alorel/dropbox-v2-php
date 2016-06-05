@@ -24,8 +24,7 @@
     "issues": "https://github.com/Alorel/dropbox-v2-php/issues"
   },
   "require": {
-    "php": ">=7.0",
-    "hhvm": ">=3.11",
+    "php": ">=7.0 || HHVM",
     "guzzlehttp/guzzle": "^6.2",
     "guzzlehttp/psr7": "^1.3"
   },
