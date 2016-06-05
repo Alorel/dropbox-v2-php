@@ -36,7 +36,7 @@
 
         const DIR_ITERATOR_OPTS = \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::SKIP_DOTS;
 
-        const PREVIEW_CONTENT_TYPES = [
+        public static $PREVIEW_CONTENT_TYPES = [
             'application/octet-stream',
             'application/pdf',
             'image/jpeg',

@@ -23,7 +23,7 @@
                 $response = (new GetPreview())->raw($filename);
 
                 $this->assertNotFalse(array_search($response->getHeaderLine('content-type'),
-                                                   TestUtil::PREVIEW_CONTENT_TYPES,
+                                                   TestUtil::$PREVIEW_CONTENT_TYPES,
                                                    true));
             } finally {
                 try {
