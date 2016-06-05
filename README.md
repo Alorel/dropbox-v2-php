@@ -1,6 +1,6 @@
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Alorel/dropbox-v2-php.svg)](http://isitmaintained.com/project/Alorel/dropbox-v2-php "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/Alorel/dropbox-v2-php.svg)](http://isitmaintained.com/project/Alorel/dropbox-v2-php "Percentage of issues still open")
-[![Build Status](https://travis-ci.org/Alorel/dropbox-v2-php?branch=master)](https://travis-ci.org/Alorel/dropbox-v2-php)
+[![Build Status](https://travis-ci.org/Alorel/dropbox-v2-php.svg?branch=master)](https://travis-ci.org/Alorel/dropbox-v2-php)
 [![Build Status](https://coveralls.io/repos/github/Alorel/dropbox-v2-php/badge.svg?branch=master)](https://coveralls.io/github/Alorel/dropbox-v2-php?branch=master)
 
 [![Latest Stable Version](https://poser.pugx.org/alorel/dropbox-v2-php/v/stable)](https://packagist.org/packages/alorel/dropbox-v2-php)
