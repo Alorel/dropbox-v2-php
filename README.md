@@ -9,7 +9,7 @@
 
 ----------
 
-A PHP SDK for Dropbox's v2 SDK. If you haven't tried Dropbox out yet, [do](https://db.tt/u56WHf8q "referral link") - it's great!
+A PHP SDK for Dropbox's v2 API. If you haven't tried Dropbox out yet, [do](https://db.tt/u56WHf8q "referral link") - it's great!
 
 #Table of Contents
 
