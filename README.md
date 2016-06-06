@@ -169,7 +169,7 @@ Unless specified otherwise, any operation that is not currently supported will b
         - [ ] /reports/get_storage
 
 #API Documentation
-[0.1.1](https://cdn.rawgit.com/Alorel/dropbox-v2-php/0.1.1/docs/master/index.html)
+[0.1.1](https://cdn.rawgit.com/Alorel/dropbox-v2-php/0.1.1/docs/master/index.html) |
 [0.1](https://cdn.rawgit.com/Alorel/dropbox-v2-php/0.1/docs/master/index.html)
 
 ----------
