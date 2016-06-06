@@ -25,6 +25,7 @@
 
         function testTempLink() {
             $r = json_decode((new GetTemporaryLink())->raw(self::$n)->getBody()->getContents(), true);
+            sleep(1);
 
             $this->assertTrue(is_string($r['link']));
             $this->assertEquals(self::CONTENTS, file_get_contents($r['link']));

@@ -15,7 +15,7 @@
     use Alorel\Dropbox\Util;
     use ReflectionClass as RC;
 
-//    if (1 != getenv('TRAVISCI')) {
+    if (1 != getenv('TRAVISCI')) {
         class ClumsinessTest extends \PHPUnit_Framework_TestCase {
 
             private static $BASE_NAMESPACE;
@@ -82,4 +82,4 @@
                 }
             }
         }
-    //    }
+    }
