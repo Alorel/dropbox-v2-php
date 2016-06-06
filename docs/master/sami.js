@@ -15,83 +15,8 @@
     };
 
     var searchIndex = [
-
-        {"type": "Namespace", "link": "Alorel.html", "name": "Alorel", "doc": "Namespace Alorel"}, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox.html",
-            "name": "Alorel\\Dropbox",
-            "doc": "Namespace Alorel\\Dropbox"
-        }, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox/Exception.html",
-            "name": "Alorel\\Dropbox\\Exception",
-            "doc": "Namespace Alorel\\Dropbox\\Exception"
-        }, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox/Operation.html",
-            "name": "Alorel\\Dropbox\\Operation",
-            "doc": "Namespace Alorel\\Dropbox\\Operation"
-        }, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox/OperationKind.html",
-            "name": "Alorel\\Dropbox\\OperationKind",
-            "doc": "Namespace Alorel\\Dropbox\\OperationKind"
-        }, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox/Operation/Files.html",
-            "name": "Alorel\\Dropbox\\Operation\\Files",
-            "doc": "Namespace Alorel\\Dropbox\\Operation\\Files"
-        }, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox/Operation/Files/CopyReference.html",
-            "name": "Alorel\\Dropbox\\Operation\\Files\\CopyReference",
-            "doc": "Namespace Alorel\\Dropbox\\Operation\\Files\\CopyReference"
-        }, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox/Operation/Files/ListFolder.html",
-            "name": "Alorel\\Dropbox\\Operation\\Files\\ListFolder",
-            "doc": "Namespace Alorel\\Dropbox\\Operation\\Files\\ListFolder"
-        }, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox/Operation/Files/SaveUrl.html",
-            "name": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl",
-            "doc": "Namespace Alorel\\Dropbox\\Operation\\Files\\SaveUrl"
-        }, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox/Operation/Files/UploadSession.html",
-            "name": "Alorel\\Dropbox\\Operation\\Files\\UploadSession",
-            "doc": "Namespace Alorel\\Dropbox\\Operation\\Files\\UploadSession"
-        }, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox/Options.html",
-            "name": "Alorel\\Dropbox\\Options",
-            "doc": "Namespace Alorel\\Dropbox\\Options"
-        }, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox/Options/Builder.html",
-            "name": "Alorel\\Dropbox\\Options\\Builder",
-            "doc": "Namespace Alorel\\Dropbox\\Options\\Builder"
-        }, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox/Options/Builder/UploadSession.html",
-            "name": "Alorel\\Dropbox\\Options\\Builder\\UploadSession",
-            "doc": "Namespace Alorel\\Dropbox\\Options\\Builder\\UploadSession"
-        }, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox/Options/Mixins.html",
-            "name": "Alorel\\Dropbox\\Options\\Mixins",
-            "doc": "Namespace Alorel\\Dropbox\\Options\\Mixins"
-        }, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox/Parameters.html",
-            "name": "Alorel\\Dropbox\\Parameters",
-            "doc": "Namespace Alorel\\Dropbox\\Parameters"
-        }, {
-            "type": "Namespace",
-            "link": "Alorel/Dropbox/Response.html",
-            "name": "Alorel\\Dropbox\\Response",
-            "doc": "Namespace Alorel\\Dropbox\\Response"
-        },
+                    
+            {"type": "Namespace", "link": "Alorel.html", "name": "Alorel", "doc": "Namespace Alorel"},{"type": "Namespace", "link": "Alorel/Dropbox.html", "name": "Alorel\\Dropbox", "doc": "Namespace Alorel\\Dropbox"},{"type": "Namespace", "link": "Alorel/Dropbox/Exception.html", "name": "Alorel\\Dropbox\\Exception", "doc": "Namespace Alorel\\Dropbox\\Exception"},{"type": "Namespace", "link": "Alorel/Dropbox/Operation.html", "name": "Alorel\\Dropbox\\Operation", "doc": "Namespace Alorel\\Dropbox\\Operation"},{"type": "Namespace", "link": "Alorel/Dropbox/OperationKind.html", "name": "Alorel\\Dropbox\\OperationKind", "doc": "Namespace Alorel\\Dropbox\\OperationKind"},{"type": "Namespace", "link": "Alorel/Dropbox/Operation/Files.html", "name": "Alorel\\Dropbox\\Operation\\Files", "doc": "Namespace Alorel\\Dropbox\\Operation\\Files"},{"type": "Namespace", "link": "Alorel/Dropbox/Operation/Files/CopyReference.html", "name": "Alorel\\Dropbox\\Operation\\Files\\CopyReference", "doc": "Namespace Alorel\\Dropbox\\Operation\\Files\\CopyReference"},{"type": "Namespace", "link": "Alorel/Dropbox/Operation/Files/ListFolder.html", "name": "Alorel\\Dropbox\\Operation\\Files\\ListFolder", "doc": "Namespace Alorel\\Dropbox\\Operation\\Files\\ListFolder"},{"type": "Namespace", "link": "Alorel/Dropbox/Operation/Files/SaveUrl.html", "name": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl", "doc": "Namespace Alorel\\Dropbox\\Operation\\Files\\SaveUrl"},{"type": "Namespace", "link": "Alorel/Dropbox/Operation/Files/UploadSession.html", "name": "Alorel\\Dropbox\\Operation\\Files\\UploadSession", "doc": "Namespace Alorel\\Dropbox\\Operation\\Files\\UploadSession"},{"type": "Namespace", "link": "Alorel/Dropbox/Options.html", "name": "Alorel\\Dropbox\\Options", "doc": "Namespace Alorel\\Dropbox\\Options"},{"type": "Namespace", "link": "Alorel/Dropbox/Options/Builder.html", "name": "Alorel\\Dropbox\\Options\\Builder", "doc": "Namespace Alorel\\Dropbox\\Options\\Builder"},{"type": "Namespace", "link": "Alorel/Dropbox/Options/Builder/UploadSession.html", "name": "Alorel\\Dropbox\\Options\\Builder\\UploadSession", "doc": "Namespace Alorel\\Dropbox\\Options\\Builder\\UploadSession"},{"type": "Namespace", "link": "Alorel/Dropbox/Options/Mixins.html", "name": "Alorel\\Dropbox\\Options\\Mixins", "doc": "Namespace Alorel\\Dropbox\\Options\\Mixins"},{"type": "Namespace", "link": "Alorel/Dropbox/Parameters.html", "name": "Alorel\\Dropbox\\Parameters", "doc": "Namespace Alorel\\Dropbox\\Parameters"},{"type": "Namespace", "link": "Alorel/Dropbox/Response.html", "name": "Alorel\\Dropbox\\Response", "doc": "Namespace Alorel\\Dropbox\\Response"},
             
             {"type": "Class", "fromName": "Alorel\\Dropbox\\Exception", "fromLink": "Alorel/Dropbox/Exception.html", "link": "Alorel/Dropbox/Exception/DropboxException.html", "name": "Alorel\\Dropbox\\Exception\\DropboxException", "doc": "&quot;Exception wrapper&quot;"},
                     
@@ -137,15 +62,8 @@
             
             {"type": "Class", "fromName": "Alorel\\Dropbox\\Operation\\Files", "fromLink": "Alorel/Dropbox/Operation/Files.html", "link": "Alorel/Dropbox/Operation/Files/GetPreview.html", "name": "Alorel\\Dropbox\\Operation\\Files\\GetPreview", "doc": "&quot;Get a preview for a file. Currently previews are only generated for the files with the following extensions:&quot;"},
                                                         {"type": "Method", "fromName": "Alorel\\Dropbox\\Operation\\Files\\GetPreview", "fromLink": "Alorel/Dropbox/Operation/Files/GetPreview.html", "link": "Alorel/Dropbox/Operation/Files/GetPreview.html#method_raw", "name": "Alorel\\Dropbox\\Operation\\Files\\GetPreview::raw", "doc": "&quot;Perform the operation, returning a promise or raw response object&quot;"},
-
-        {
-            "type": "Class",
-            "fromName": "Alorel\\Dropbox\\Operation\\Files",
-            "fromLink": "Alorel/Dropbox/Operation/Files.html",
-            "link": "Alorel/Dropbox/Operation/Files/GetTemporaryLink.html",
-            "name": "Alorel\\Dropbox\\Operation\\Files\\GetTemporaryLink",
-            "doc": "&quot;Get a temporary link to stream content of a file. This link will expire in four hours and afterwards you will\nget 410 Gone. Content-Type of the link is determined automatically by the file&#039;s mime type.&quot;"
-        },
+            
+            {"type": "Class", "fromName": "Alorel\\Dropbox\\Operation\\Files", "fromLink": "Alorel/Dropbox/Operation/Files.html", "link": "Alorel/Dropbox/Operation/Files/GetTemporaryLink.html", "name": "Alorel\\Dropbox\\Operation\\Files\\GetTemporaryLink", "doc": "&quot;Get a temporary link to stream content of a file. This link will expire in four hours and afterwards you will\nget 410 Gone. Content-Type of the link is determined automatically by the file&#039;s mime type.&quot;"},
                     
             {"type": "Class", "fromName": "Alorel\\Dropbox\\Operation\\Files", "fromLink": "Alorel/Dropbox/Operation/Files.html", "link": "Alorel/Dropbox/Operation/Files/GetThumbnail.html", "name": "Alorel\\Dropbox\\Operation\\Files\\GetThumbnail", "doc": "&quot;Get the file&#039;s thumbnail&quot;"},
                                                         {"type": "Method", "fromName": "Alorel\\Dropbox\\Operation\\Files\\GetThumbnail", "fromLink": "Alorel/Dropbox/Operation/Files/GetThumbnail.html", "link": "Alorel/Dropbox/Operation/Files/GetThumbnail.html#method_raw", "name": "Alorel\\Dropbox\\Operation\\Files\\GetThumbnail::raw", "doc": "&quot;Perform the operation, returning a promise or raw response object&quot;"},
@@ -171,40 +89,12 @@
                     
             {"type": "Class", "fromName": "Alorel\\Dropbox\\Operation\\Files", "fromLink": "Alorel/Dropbox/Operation/Files.html", "link": "Alorel/Dropbox/Operation/Files/Restore.html", "name": "Alorel\\Dropbox\\Operation\\Files\\Restore", "doc": "&quot;Restore a file to a specific revision&quot;"},
                                                         {"type": "Method", "fromName": "Alorel\\Dropbox\\Operation\\Files\\Restore", "fromLink": "Alorel/Dropbox/Operation/Files/Restore.html", "link": "Alorel/Dropbox/Operation/Files/Restore.html#method_raw", "name": "Alorel\\Dropbox\\Operation\\Files\\Restore::raw", "doc": "&quot;Perform the operation, returning a promise or raw response object&quot;"},
-
-        {
-            "type": "Class",
-            "fromName": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl",
-            "fromLink": "Alorel/Dropbox/Operation/Files/SaveUrl.html",
-            "link": "Alorel/Dropbox/Operation/Files/SaveUrl/CheckJobStatus.html",
-            "name": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl\\CheckJobStatus",
-            "doc": "&quot;Check the status of a save_url job.&quot;"
-        },
-        {
-            "type": "Method",
-            "fromName": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl\\CheckJobStatus",
-            "fromLink": "Alorel/Dropbox/Operation/Files/SaveUrl/CheckJobStatus.html",
-            "link": "Alorel/Dropbox/Operation/Files/SaveUrl/CheckJobStatus.html#method_raw",
-            "name": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl\\CheckJobStatus::raw",
-            "doc": "&quot;Perform the operation, returning a promise or raw response object&quot;"
-        },
-
-        {
-            "type": "Class",
-            "fromName": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl",
-            "fromLink": "Alorel/Dropbox/Operation/Files/SaveUrl.html",
-            "link": "Alorel/Dropbox/Operation/Files/SaveUrl/SaveURL.html",
-            "name": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl\\SaveURL",
-            "doc": "&quot;Save a specified URL into a file in user&#039;s Dropbox. If the given path already exists, the file will be renamed\nto avoid the conflict (e.g. myfile (1).txt).&quot;"
-        },
-        {
-            "type": "Method",
-            "fromName": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl\\SaveURL",
-            "fromLink": "Alorel/Dropbox/Operation/Files/SaveUrl/SaveURL.html",
-            "link": "Alorel/Dropbox/Operation/Files/SaveUrl/SaveURL.html#method_raw",
-            "name": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl\\SaveURL::raw",
-            "doc": "&quot;Perform the operation, returning a promise or raw response object&quot;"
-        },
+            
+            {"type": "Class", "fromName": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl", "fromLink": "Alorel/Dropbox/Operation/Files/SaveUrl.html", "link": "Alorel/Dropbox/Operation/Files/SaveUrl/CheckJobStatus.html", "name": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl\\CheckJobStatus", "doc": "&quot;Check the status of a save_url job.&quot;"},
+                                                        {"type": "Method", "fromName": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl\\CheckJobStatus", "fromLink": "Alorel/Dropbox/Operation/Files/SaveUrl/CheckJobStatus.html", "link": "Alorel/Dropbox/Operation/Files/SaveUrl/CheckJobStatus.html#method_raw", "name": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl\\CheckJobStatus::raw", "doc": "&quot;Perform the operation, returning a promise or raw response object&quot;"},
+            
+            {"type": "Class", "fromName": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl", "fromLink": "Alorel/Dropbox/Operation/Files/SaveUrl.html", "link": "Alorel/Dropbox/Operation/Files/SaveUrl/SaveURL.html", "name": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl\\SaveURL", "doc": "&quot;Save a specified URL into a file in user&#039;s Dropbox. If the given path already exists, the file will be renamed\nto avoid the conflict (e.g. myfile (1).txt).&quot;"},
+                                                        {"type": "Method", "fromName": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl\\SaveURL", "fromLink": "Alorel/Dropbox/Operation/Files/SaveUrl/SaveURL.html", "link": "Alorel/Dropbox/Operation/Files/SaveUrl/SaveURL.html#method_raw", "name": "Alorel\\Dropbox\\Operation\\Files\\SaveUrl\\SaveURL::raw", "doc": "&quot;Perform the operation, returning a promise or raw response object&quot;"},
             
             {"type": "Class", "fromName": "Alorel\\Dropbox\\Operation\\Files", "fromLink": "Alorel/Dropbox/Operation/Files.html", "link": "Alorel/Dropbox/Operation/Files/Search.html", "name": "Alorel\\Dropbox\\Operation\\Files\\Search", "doc": "&quot;Searches for files and folders. Note: Recent changes may not immediately be reflected in search results due to\na short delay in indexing.&quot;"},
                                                         {"type": "Method", "fromName": "Alorel\\Dropbox\\Operation\\Files\\Search", "fromLink": "Alorel/Dropbox/Operation/Files/Search.html", "link": "Alorel/Dropbox/Operation/Files/Search.html#method_raw", "name": "Alorel\\Dropbox\\Operation\\Files\\Search::raw", "doc": "&quot;Perform the operation, returning a promise or raw response object&quot;"},
@@ -311,6 +201,7 @@
             {"type": "Class", "fromName": "Alorel\\Dropbox\\Parameters", "fromLink": "Alorel/Dropbox/Parameters.html", "link": "Alorel/Dropbox/Parameters/ThumbnailFormat.html", "name": "Alorel\\Dropbox\\Parameters\\ThumbnailFormat", "doc": "&quot;The format for the thumbnail image, jpeg (default) or png. For images that are photos, jpeg should be\npreferred, while png is better for screenshots and digital arts. The default for this union is jpeg.&quot;"},
                                                         {"type": "Method", "fromName": "Alorel\\Dropbox\\Parameters\\ThumbnailFormat", "fromLink": "Alorel/Dropbox/Parameters/ThumbnailFormat.html", "link": "Alorel/Dropbox/Parameters/ThumbnailFormat.html#method_jpeg", "name": "Alorel\\Dropbox\\Parameters\\ThumbnailFormat::jpeg", "doc": "&quot;Set the image format to JPEG&quot;"},
                     {"type": "Method", "fromName": "Alorel\\Dropbox\\Parameters\\ThumbnailFormat", "fromLink": "Alorel/Dropbox/Parameters/ThumbnailFormat.html", "link": "Alorel/Dropbox/Parameters/ThumbnailFormat.html#method_png", "name": "Alorel\\Dropbox\\Parameters\\ThumbnailFormat::png", "doc": "&quot;Set the image format to PNG&quot;"},
+                    {"type": "Method", "fromName": "Alorel\\Dropbox\\Parameters\\ThumbnailFormat", "fromLink": "Alorel/Dropbox/Parameters/ThumbnailFormat.html", "link": "Alorel/Dropbox/Parameters/ThumbnailFormat.html#method_availableFormats", "name": "Alorel\\Dropbox\\Parameters\\ThumbnailFormat::availableFormats", "doc": "&quot;Return the available formats&quot;"},
             
             {"type": "Class", "fromName": "Alorel\\Dropbox\\Parameters", "fromLink": "Alorel/Dropbox/Parameters.html", "link": "Alorel/Dropbox/Parameters/ThumbnailSize.html", "name": "Alorel\\Dropbox\\Parameters\\ThumbnailSize", "doc": "&quot;The size for the thumbnail image. The default for this union is 64x64.&quot;"},
                                                         {"type": "Method", "fromName": "Alorel\\Dropbox\\Parameters\\ThumbnailSize", "fromLink": "Alorel/Dropbox/Parameters/ThumbnailSize.html", "link": "Alorel/Dropbox/Parameters/ThumbnailSize.html#method___construct", "name": "Alorel\\Dropbox\\Parameters\\ThumbnailSize::__construct", "doc": "&quot;ThumbnailSize constructor.&quot;"},
@@ -319,6 +210,7 @@
                     {"type": "Method", "fromName": "Alorel\\Dropbox\\Parameters\\ThumbnailSize", "fromLink": "Alorel/Dropbox/Parameters/ThumbnailSize.html", "link": "Alorel/Dropbox/Parameters/ThumbnailSize.html#method_w128h128", "name": "Alorel\\Dropbox\\Parameters\\ThumbnailSize::w128h128", "doc": "&quot;Make the size 128 pixels wide, 128 pixels high&quot;"},
                     {"type": "Method", "fromName": "Alorel\\Dropbox\\Parameters\\ThumbnailSize", "fromLink": "Alorel/Dropbox/Parameters/ThumbnailSize.html", "link": "Alorel/Dropbox/Parameters/ThumbnailSize.html#method_w640h480", "name": "Alorel\\Dropbox\\Parameters\\ThumbnailSize::w640h480", "doc": "&quot;Make the size 640 pixels wide, 480 pixels high&quot;"},
                     {"type": "Method", "fromName": "Alorel\\Dropbox\\Parameters\\ThumbnailSize", "fromLink": "Alorel/Dropbox/Parameters/ThumbnailSize.html", "link": "Alorel/Dropbox/Parameters/ThumbnailSize.html#method_w1024h768", "name": "Alorel\\Dropbox\\Parameters\\ThumbnailSize::w1024h768", "doc": "&quot;Make the size 1024 pixels wide, 768 pixels high&quot;"},
+                    {"type": "Method", "fromName": "Alorel\\Dropbox\\Parameters\\ThumbnailSize", "fromLink": "Alorel/Dropbox/Parameters/ThumbnailSize.html", "link": "Alorel/Dropbox/Parameters/ThumbnailSize.html#method_availableSizes", "name": "Alorel\\Dropbox\\Parameters\\ThumbnailSize::availableSizes", "doc": "&quot;Return a list ov available thumbnail sizes&quot;"},
             
             {"type": "Class", "fromName": "Alorel\\Dropbox\\Parameters", "fromLink": "Alorel/Dropbox/Parameters.html", "link": "Alorel/Dropbox/Parameters/UploadSessionCursor.html", "name": "Alorel\\Dropbox\\Parameters\\UploadSessionCursor", "doc": "&quot;Contains the upload session ID and the offset.&quot;"},
                                                         {"type": "Method", "fromName": "Alorel\\Dropbox\\Parameters\\UploadSessionCursor", "fromLink": "Alorel/Dropbox/Parameters/UploadSessionCursor.html", "link": "Alorel/Dropbox/Parameters/UploadSessionCursor.html#method___construct", "name": "Alorel\\Dropbox\\Parameters\\UploadSessionCursor::__construct", "doc": "&quot;UploadSessionCursor constructor.&quot;"},
@@ -365,7 +257,8 @@
         tokens = tokens.concat(term.match(/(([A-Z]?[^A-Z]*)|([a-z]?[^a-z]*))/g).slice(0,-1));
 
         return tokens;
-    }
+    };
+
     root.Sami = {
         /**
          * Cleans the provided term. If no term is provided, then one is

@@ -102,23 +102,17 @@
 single request should not upload more than 150 MB of file contents.</dd><dt><a href="Alorel/Dropbox/Options/Mixins/AutoRenameTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\AutoRenameTrait">AutoRenameTrait</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Options/Mixins.html">Alorel\Dropbox\Options\Mixins</a></em></dt>
                     <dd>If there's a conflict, as determined by mode, have the Dropbox server try to autorename the file to avoid
 conflict. The default for this field is False.</dd><dt><a href="Alorel/Dropbox/Parameters/AbstractParameter.html"><abbr title="Alorel\Dropbox\Parameters\AbstractParameter">AbstractParameter</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Parameters.html">Alorel\Dropbox\Parameters</a></em></dt>
-                    <dd>Topmost abstract parameter class</dd><dt><a href="Alorel/Dropbox/Parameters/WriteMode.html#method_add"><abbr title="Alorel\Dropbox\Parameters\WriteMode">WriteMode</abbr>::add</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Parameters/WriteMode.html"><abbr title="Alorel\Dropbox\Parameters\WriteMode">WriteMode</abbr></a></em></dt>
+                    <dd>Topmost abstract parameter class</dd><dt><a href="Alorel/Dropbox/Parameters/ThumbnailFormat.html#method_availableFormats"><abbr title="Alorel\Dropbox\Parameters\ThumbnailFormat">ThumbnailFormat</abbr>::availableFormats</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Parameters/ThumbnailFormat.html"><abbr title="Alorel\Dropbox\Parameters\ThumbnailFormat">ThumbnailFormat</abbr></a></em></dt>
+                    <dd>Return the available formats</dd><dt><a href="Alorel/Dropbox/Parameters/ThumbnailSize.html#method_availableSizes"><abbr title="Alorel\Dropbox\Parameters\ThumbnailSize">ThumbnailSize</abbr>::availableSizes</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Parameters/ThumbnailSize.html"><abbr title="Alorel\Dropbox\Parameters\ThumbnailSize">ThumbnailSize</abbr></a></em></dt>
+                    <dd>Return a list ov available thumbnail sizes</dd><dt><a href="Alorel/Dropbox/Parameters/WriteMode.html#method_add"><abbr title="Alorel\Dropbox\Parameters\WriteMode">WriteMode</abbr>::add</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Parameters/WriteMode.html"><abbr title="Alorel\Dropbox\Parameters\WriteMode">WriteMode</abbr></a></em></dt>
                     <dd>Never overwrite the existing file. The autorename strategy is to append a number to the file name. For
 example, "document.txt" might become "document (2).txt".</dd>        </dl><h2 id="letterC">C</h2>
         <dl id="index"><dt><a href="Alorel/Dropbox/OperationKind/ContentDownloadOperation.html"><abbr title="Alorel\Dropbox\OperationKind\ContentDownloadOperation">ContentDownloadOperation</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/OperationKind.html">Alorel\Dropbox\OperationKind</a></em></dt>
                     <dd>Abstraction for content downloads</dd><dt><a href="Alorel/Dropbox/OperationKind/ContentUploadAbstractOperation.html"><abbr title="Alorel\Dropbox\OperationKind\ContentUploadAbstractOperation">ContentUploadAbstractOperation</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/OperationKind.html">Alorel\Dropbox\OperationKind</a></em></dt>
                     <dd>A wrapper for the ContentUpload group of operations</dd><dt><a href="Alorel/Dropbox/Operation/Files/Copy.html"><abbr title="Alorel\Dropbox\Operation\Files\Copy">Copy</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Operation/Files.html">Alorel\Dropbox\Operation\Files</a></em></dt>
                     <dd>The Copy operation</dd><dt><a href="Alorel/Dropbox/Operation/Files/CreateFolder.html"><abbr title="Alorel\Dropbox\Operation\Files\CreateFolder">CreateFolder</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Operation/Files.html">Alorel\Dropbox\Operation\Files</a></em></dt>
-            <dd>Create a folder at a given path.</dd>
-            <dt><a href="Alorel/Dropbox/Operation/Files/SaveUrl/CheckJobStatus.html"><abbr
-                    title="Alorel\Dropbox\Operation\Files\SaveUrl\CheckJobStatus">CheckJobStatus</abbr></a> &mdash; <em>Class
-                in namespace <a href="Alorel/Dropbox/Operation/Files/SaveUrl.html">Alorel\Dropbox\Operation\Files\SaveUrl</a></em>
-            </dt>
-            <dd>Check the status of a save_url job.</dd>
-            <dt><a href="Alorel/Dropbox/Options/Mixins/ClientModifiedTrait.html"><abbr
-                    title="Alorel\Dropbox\Options\Mixins\ClientModifiedTrait">ClientModifiedTrait</abbr></a> &mdash;
-                <em>Class in namespace <a
-                        href="Alorel/Dropbox/Options/Mixins.html">Alorel\Dropbox\Options\Mixins</a></em></dt>
+                    <dd>Create a folder at a given path.</dd><dt><a href="Alorel/Dropbox/Operation/Files/SaveUrl/CheckJobStatus.html"><abbr title="Alorel\Dropbox\Operation\Files\SaveUrl\CheckJobStatus">CheckJobStatus</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Operation/Files/SaveUrl.html">Alorel\Dropbox\Operation\Files\SaveUrl</a></em></dt>
+                    <dd>Check the status of a save_url job.</dd><dt><a href="Alorel/Dropbox/Options/Mixins/ClientModifiedTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\ClientModifiedTrait">ClientModifiedTrait</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Options/Mixins.html">Alorel\Dropbox\Options\Mixins</a></em></dt>
                     <dd>The value to store as the client_modified timestamp. Dropbox automatically records the time at which the file
 was written to the Dropbox servers. It can also record an additional timestamp, provided by Dropbox desktop
 clients, mobile clients, and API apps of when the file was actually created or modified</dd><dt><a href="Alorel/Dropbox/Options/Mixins/CloseTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\CloseTrait">CloseTrait</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Options/Mixins.html">Alorel\Dropbox\Options\Mixins</a></em></dt>
@@ -139,19 +133,9 @@ more than 150 MB of file contents.</dd><dt><a href="Alorel/Dropbox/Parameters/Se
                     <dd>Get a copy reference to a file or folder. This reference string can be used to save that file or folder to
 another user's Dropbox by passing it to copy_reference/save.</dd><dt><a href="Alorel/Dropbox/Operation/Files/GetMetadata.html"><abbr title="Alorel\Dropbox\Operation\Files\GetMetadata">GetMetadata</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Operation/Files.html">Alorel\Dropbox\Operation\Files</a></em></dt>
                     <dd>The get_metadata operation</dd><dt><a href="Alorel/Dropbox/Operation/Files/GetPreview.html"><abbr title="Alorel\Dropbox\Operation\Files\GetPreview">GetPreview</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Operation/Files.html">Alorel\Dropbox\Operation\Files</a></em></dt>
-            <dd>Get a preview for a file. Currently previews are only generated for the files with the following
-                extensions:
-            </dd>
-            <dt><a href="Alorel/Dropbox/Operation/Files/GetTemporaryLink.html"><abbr
-                    title="Alorel\Dropbox\Operation\Files\GetTemporaryLink">GetTemporaryLink</abbr></a> &mdash; <em>Class
-                in namespace <a href="Alorel/Dropbox/Operation/Files.html">Alorel\Dropbox\Operation\Files</a></em></dt>
-            <dd>Get a temporary link to stream content of a file. This link will expire in four hours and afterwards you
-                will
-                get 410 Gone. Content-Type of the link is determined automatically by the file's mime type.
-            </dd>
-            <dt><a href="Alorel/Dropbox/Operation/Files/GetThumbnail.html"><abbr
-                    title="Alorel\Dropbox\Operation\Files\GetThumbnail">GetThumbnail</abbr></a> &mdash; <em>Class in
-                namespace <a href="Alorel/Dropbox/Operation/Files.html">Alorel\Dropbox\Operation\Files</a></em></dt>
+                    <dd>Get a preview for a file. Currently previews are only generated for the files with the following extensions:</dd><dt><a href="Alorel/Dropbox/Operation/Files/GetTemporaryLink.html"><abbr title="Alorel\Dropbox\Operation\Files\GetTemporaryLink">GetTemporaryLink</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Operation/Files.html">Alorel\Dropbox\Operation\Files</a></em></dt>
+                    <dd>Get a temporary link to stream content of a file. This link will expire in four hours and afterwards you will
+get 410 Gone. Content-Type of the link is determined automatically by the file's mime type.</dd><dt><a href="Alorel/Dropbox/Operation/Files/GetThumbnail.html"><abbr title="Alorel\Dropbox\Operation\Files\GetThumbnail">GetThumbnail</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Operation/Files.html">Alorel\Dropbox\Operation\Files</a></em></dt>
                     <dd>Get the file's thumbnail</dd><dt><a href="Alorel/Dropbox/Operation/Files/ListFolder/GetLatestCursor.html"><abbr title="Alorel\Dropbox\Operation\Files\ListFolder\GetLatestCursor">GetLatestCursor</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Operation/Files/ListFolder.html">Alorel\Dropbox\Operation\Files\ListFolder</a></em></dt>
                     <dd>A way to quickly get a cursor for the folder's state. Unlike list<em>folder, list</em>folder/get<em>latest</em>cursor
 doesn't return any entries. This endpoint is for app which only needs to know about new files and
@@ -215,17 +199,8 @@ notification. The default for this field is False.</dd><dt><a href="Alorel/Dropb
                     <dd>Perform the operation, returning a promise or raw response object</dd><dt><a href="Alorel/Dropbox/Operation/Files/ListRevisions.html#method_raw"><abbr title="Alorel\Dropbox\Operation\Files\ListRevisions">ListRevisions</abbr>::raw</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Operation/Files/ListRevisions.html"><abbr title="Alorel\Dropbox\Operation\Files\ListRevisions">ListRevisions</abbr></a></em></dt>
                     <dd>Perform the operation, returning a promise or raw response object</dd><dt><a href="Alorel/Dropbox/Operation/Files/Restore.html"><abbr title="Alorel\Dropbox\Operation\Files\Restore">Restore</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Operation/Files.html">Alorel\Dropbox\Operation\Files</a></em></dt>
                     <dd>Restore a file to a specific revision</dd><dt><a href="Alorel/Dropbox/Operation/Files/Restore.html#method_raw"><abbr title="Alorel\Dropbox\Operation\Files\Restore">Restore</abbr>::raw</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Operation/Files/Restore.html"><abbr title="Alorel\Dropbox\Operation\Files\Restore">Restore</abbr></a></em></dt>
-            <dd>Perform the operation, returning a promise or raw response object</dd>
-            <dt><a href="Alorel/Dropbox/Operation/Files/SaveUrl/CheckJobStatus.html#method_raw"><abbr
-                    title="Alorel\Dropbox\Operation\Files\SaveUrl\CheckJobStatus">CheckJobStatus</abbr>::raw</a>() &mdash;
-                <em>Method in class <a href="Alorel/Dropbox/Operation/Files/SaveUrl/CheckJobStatus.html"><abbr
-                        title="Alorel\Dropbox\Operation\Files\SaveUrl\CheckJobStatus">CheckJobStatus</abbr></a></em>
-            </dt>
-            <dd>Perform the operation, returning a promise or raw response object</dd>
-            <dt><a href="Alorel/Dropbox/Operation/Files/SaveUrl/SaveURL.html#method_raw"><abbr
-                    title="Alorel\Dropbox\Operation\Files\SaveUrl\SaveURL">SaveURL</abbr>::raw</a>() &mdash; <em>Method
-                in class <a href="Alorel/Dropbox/Operation/Files/SaveUrl/SaveURL.html"><abbr
-                        title="Alorel\Dropbox\Operation\Files\SaveUrl\SaveURL">SaveURL</abbr></a></em></dt>
+                    <dd>Perform the operation, returning a promise or raw response object</dd><dt><a href="Alorel/Dropbox/Operation/Files/SaveUrl/CheckJobStatus.html#method_raw"><abbr title="Alorel\Dropbox\Operation\Files\SaveUrl\CheckJobStatus">CheckJobStatus</abbr>::raw</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Operation/Files/SaveUrl/CheckJobStatus.html"><abbr title="Alorel\Dropbox\Operation\Files\SaveUrl\CheckJobStatus">CheckJobStatus</abbr></a></em></dt>
+                    <dd>Perform the operation, returning a promise or raw response object</dd><dt><a href="Alorel/Dropbox/Operation/Files/SaveUrl/SaveURL.html#method_raw"><abbr title="Alorel\Dropbox\Operation\Files\SaveUrl\SaveURL">SaveURL</abbr>::raw</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Operation/Files/SaveUrl/SaveURL.html"><abbr title="Alorel\Dropbox\Operation\Files\SaveUrl\SaveURL">SaveURL</abbr></a></em></dt>
                     <dd>Perform the operation, returning a promise or raw response object</dd><dt><a href="Alorel/Dropbox/Operation/Files/Search.html#method_raw"><abbr title="Alorel\Dropbox\Operation\Files\Search">Search</abbr>::raw</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Operation/Files/Search.html"><abbr title="Alorel\Dropbox\Operation\Files\Search">Search</abbr></a></em></dt>
                     <dd>Perform the operation, returning a promise or raw response object</dd><dt><a href="Alorel/Dropbox/Operation/Files/Upload.html#method_raw"><abbr title="Alorel\Dropbox\Operation\Files\Upload">Upload</abbr>::raw</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Operation/Files/Upload.html"><abbr title="Alorel\Dropbox\Operation\Files\Upload">Upload</abbr></a></em></dt>
                     <dd>Perform the operation, returning a promise or raw response object</dd><dt><a href="Alorel/Dropbox/Operation/Files/UploadSession/Append.html#method_raw"><abbr title="Alorel\Dropbox\Operation\Files\UploadSession\Append">Append</abbr>::raw</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Operation/Files/UploadSession/Append.html"><abbr title="Alorel\Dropbox\Operation\Files\UploadSession\Append">Append</abbr></a></em></dt>
@@ -241,19 +216,9 @@ notification. The default for this field is False.</dd><dt><a href="Alorel/Dropb
                     <dd>Sets the default token to use with the constructor</dd><dt><a href="Alorel/Dropbox/Operation/AbstractOperation.html#method_setAsync"><abbr title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr>::setAsync</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Operation/AbstractOperation.html"><abbr title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a></em></dt>
                     <dd>Sets the sync/async operation mode</dd><dt><a href="Alorel/Dropbox/Operation/AbstractOperation.html#method_setDefaultAsync"><abbr title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr>::setDefaultAsync</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Operation/AbstractOperation.html"><abbr title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a></em></dt>
                     <dd>Sets the default $async value for the constructor</dd><dt><a href="Alorel/Dropbox/Operation/Files/CopyReference/Save.html"><abbr title="Alorel\Dropbox\Operation\Files\CopyReference\Save">Save</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Operation/Files/CopyReference.html">Alorel\Dropbox\Operation\Files\CopyReference</a></em></dt>
-            <dd>Save a copy reference returned by copy_reference/get to the user's Dropbox.</dd>
-            <dt><a href="Alorel/Dropbox/Operation/Files/SaveUrl/SaveURL.html"><abbr
-                    title="Alorel\Dropbox\Operation\Files\SaveUrl\SaveURL">SaveURL</abbr></a> &mdash; <em>Class in
-                namespace <a
-                        href="Alorel/Dropbox/Operation/Files/SaveUrl.html">Alorel\Dropbox\Operation\Files\SaveUrl</a></em>
-            </dt>
-            <dd>Save a specified URL into a file in user's Dropbox. If the given path already exists, the file will be
-                renamed
-                to avoid the conflict (e.g. myfile (1).txt).
-            </dd>
-            <dt><a href="Alorel/Dropbox/Operation/Files/Search.html"><abbr
-                    title="Alorel\Dropbox\Operation\Files\Search">Search</abbr></a> &mdash; <em>Class in namespace <a
-                    href="Alorel/Dropbox/Operation/Files.html">Alorel\Dropbox\Operation\Files</a></em></dt>
+                    <dd>Save a copy reference returned by copy_reference/get to the user's Dropbox.</dd><dt><a href="Alorel/Dropbox/Operation/Files/SaveUrl/SaveURL.html"><abbr title="Alorel\Dropbox\Operation\Files\SaveUrl\SaveURL">SaveURL</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Operation/Files/SaveUrl.html">Alorel\Dropbox\Operation\Files\SaveUrl</a></em></dt>
+                    <dd>Save a specified URL into a file in user's Dropbox. If the given path already exists, the file will be renamed
+to avoid the conflict (e.g. myfile (1).txt).</dd><dt><a href="Alorel/Dropbox/Operation/Files/Search.html"><abbr title="Alorel\Dropbox\Operation\Files\Search">Search</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Operation/Files.html">Alorel\Dropbox\Operation\Files</a></em></dt>
                     <dd>Searches for files and folders. Note: Recent changes may not immediately be reflected in search results due to
 a short delay in indexing.</dd><dt><a href="Alorel/Dropbox/Operation/Files/UploadSession/Start.html"><abbr title="Alorel\Dropbox\Operation\Files\UploadSession\Start">Start</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Operation/Files/UploadSession.html">Alorel\Dropbox\Operation\Files\UploadSession</a></em></dt>
                     <dd>Upload sessions allow you to upload a single file using multiple requests. This call starts a new upload
