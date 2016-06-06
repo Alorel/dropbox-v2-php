@@ -10,4 +10,4 @@
 /phpunit-bootstrap.php export-ignore
 /sami.php export-ignore
 /.php.travis.ini export-ignore
-/examples export-ignore
+/CONTRIBUTING.md export-ignore

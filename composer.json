@@ -34,5 +34,10 @@
   },
   "require-dev": {
     "raveren/kint": "^1.0"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "latest-stable"
+    }
   }
 }
