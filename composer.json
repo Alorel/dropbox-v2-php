@@ -24,8 +24,8 @@
     "issues": "https://github.com/Alorel/dropbox-v2-php/issues"
   },
   "require": {
-    "guzzlehttp/guzzle": "^6.2",
-    "guzzlehttp/psr7": "^1.3"
+    "guzzlehttp/guzzle": "^6.0",
+    "guzzlehttp/psr7": "^1.0"
   },
   "autoload": {
     "psr-4": {
@@ -34,10 +34,5 @@
   },
   "require-dev": {
     "raveren/kint": "^1.0"
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "latest-stable-dev"
-    }
   }
 }
