@@ -26,7 +26,7 @@ Output the thumbnail:
 ```
 Or just create a data link (which might be quite large depending on the thumbnail size)
 ```php
-    $base64 = 'data:image/png,base64,' . base64_encode($png128x128->getBody()->getContents());
+    $base64 = 'data:image/png;base64,' . base64_encode($png128x128->getBody()->getContents());
 
     echo '<img src="' . $base64 . '"/>';
 ```
