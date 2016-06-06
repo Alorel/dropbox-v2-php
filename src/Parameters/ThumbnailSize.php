@@ -1,12 +1,13 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Parameters;
 
     use Alorel\Dropbox\Options\Option;
+    use ReflectionClass;
 
     /**
      * The size for the thumbnail image. The default for this union is 64x64.
@@ -75,5 +76,22 @@
          */
         static function w1024h768():self {
             return new self(1024, 768);
+        }
+
+        /**
+         * Return a list ov available thumbnail sizes
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         * @return array
+         */
+        static function availableSizes() {
+            $r = [];
+            foreach ((new ReflectionClass(ThumbnailSize::class))->getMethods() as $m) {
+                if (preg_match('~^w[0-9]+h[0-9]+$~', $m->getName())) {
+                    $r[] = $m->getName();
+                }
+            };
+
+            return $r;
         }
     }

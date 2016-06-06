@@ -1,12 +1,13 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Parameters;
 
     use Alorel\Dropbox\Options\Option as O;
+    use ReflectionClass;
 
     /**
      * The format for the thumbnail image, jpeg (default) or png. For images that are photos, jpeg should be
@@ -59,5 +60,15 @@
          */
         static function png():self {
             return new self(static::PNG);
+        }
+
+        /**
+         * Return the available formats
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         * @return array
+         */
+        static function availableFormats() {
+            return (new ReflectionClass(ThumbnailFormat::class))->getConstants();
         }
     }

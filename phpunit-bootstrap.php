@@ -91,9 +91,11 @@
                             }
                             if (T_CLASS === $i0 || T_TRAIT === $i0 || T_INTERFACE === $i0) {
                                 $index += 2; // Skip class keyword and whitespace
-                                $yield = $namespace . '\\' . $tokens[$index][1];
-                                if (stripos($yield, '=>') === false) {
-                                    yield $yield => $asProviderArgs ? [$yield] : $yield;
+                                if (isset($tokens[$index][1])) {
+                                    $yield = $namespace . '\\' . $tokens[$index][1];
+                                    if (stripos($yield, '=>') === false) {
+                                        yield $yield => $asProviderArgs ? [$yield] : $yield;
+                                    }
                                 }
                             }
                         }
