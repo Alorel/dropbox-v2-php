@@ -50,7 +50,7 @@
                 if ($s[R::DOT_TAG] === 'complete') {
                     $this->assertResponse($s);
                 } else {
-                    TestUtil::err('Failed to SaveURL. self::$URL=' . self::$URL);
+                    TestUtil::err('Failed to SaveURL. self::$URL=' . self::URL);
                     d($s);
                 }
             }
