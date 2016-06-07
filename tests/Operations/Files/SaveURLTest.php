@@ -15,7 +15,7 @@
     class SaveURLTest extends \PHPUnit_Framework_TestCase {
         use NameGenerator;
 
-        const URL = 'https://raw.githubusercontent.com/Alorel/dropbox-v2-php/support-56/tests/inc/lorem-ipsum.txt';
+        const URL = 'https://raw.githubusercontent.com/Alorel/dropbox-v2-php/master/tests/inc/lorem-ipsum.txt';
 
         private static $fn;
 
