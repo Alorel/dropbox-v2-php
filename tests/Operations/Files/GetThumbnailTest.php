@@ -11,11 +11,12 @@
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Options\Builder\GetThumbnailOptions;
     use Alorel\Dropbox\Parameters\ThumbnailSize;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
     use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
-    class GetThumbnailTest extends \PHPUnit_Framework_TestCase {
+    class GetThumbnailTest extends DBTestCase {
 
         use NameGenerator;
 
@@ -39,7 +40,7 @@
                     $this->assertGreaterThanOrEqual($sizes[$i - 1], $sizes[$i]);
                 }
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 $die = true;
             } finally {
                 try {

@@ -12,10 +12,12 @@
     use Alorel\Dropbox\Options\Builder\ListRevisionsOptions;
     use Alorel\Dropbox\Options\Builder\UploadOptions;
     use Alorel\Dropbox\Parameters\WriteMode;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
+    use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
-    class ListRevisionsTest extends \PHPUnit_Framework_TestCase {
+    class ListRevisionsTest extends DBTestCase {
         use NameGenerator;
 
         private static $fname;
@@ -44,7 +46,7 @@
                 $this->assertFalse($rsp['is_deleted']);
                 $this->assertEquals($i + 1, count($rsp['entries']));
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }
@@ -67,7 +69,7 @@
                 //Prep for next test
                 (new Delete())->raw(self::$fname);
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }
@@ -92,7 +94,7 @@
                 $this->assertTrue($rsp['is_deleted']);
                 $this->assertEquals($count, count($rsp['entries']));
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }

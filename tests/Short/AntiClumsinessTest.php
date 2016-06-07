@@ -4,20 +4,20 @@
      * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
      */
 
-    namespace Alorel\Dropbox\ClumsinessPrevention;
+    namespace Alorel\Dropbox;
 
     use Alorel\Dropbox\Operation\AbstractOperation;
     use Alorel\Dropbox\OperationKind\RPCOperation;
     use Alorel\Dropbox\Options\Builder\GetMetadataOptions;
     use Alorel\Dropbox\Options\Mixins\AutoRenameTrait;
     use Alorel\Dropbox\Options\Options;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\TestUtil;
-    use Alorel\Dropbox\Util;
     use ReflectionClass as RC;
 
     if (1 != getenv('TRAVISCI')) {
 
-        class ClumsinessTest extends \PHPUnit_Framework_TestCase {
+        class AntiClumsinessDBTest extends DBTestCase {
 
             private static $BASE_NAMESPACE;
 

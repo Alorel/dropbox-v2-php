@@ -8,10 +8,12 @@
 
     use Alorel\Dropbox\Operation\Files\Download;
     use Alorel\Dropbox\Operation\Files\Upload;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
+    use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
-    class DownloadTest extends \PHPUnit_Framework_TestCase {
+    class DownloadTest extends DBTestCase {
 
         use NameGenerator;
 
@@ -24,7 +26,7 @@
                 $this->assertEquals(filesize(__FILE__), $r->getHeaderLine('content-length'));
                 $this->assertEquals('application/octet-stream', $r->getHeaderLine('content-type'));
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }

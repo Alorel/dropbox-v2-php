@@ -10,29 +10,42 @@
     use Alorel\Dropbox\Operation\Files\Move;
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Response\ResponseAttribute as R;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
+    use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
-    class MoveTest extends \PHPUnit_Framework_TestCase {
+    class MoveTest extends DBTestCase {
         use NameGenerator;
 
+        private static $src;
+
+        static function setUpBeforeClass() {
+            self::$src = self::genFileName();
+        }
+
         function testMove() {
-            $src = self::genFileName();
             $dest = self::genFileName();
-            $meta = new GetMetadata();
 
             try {
-                $srcSize = json_decode((new Upload())->raw($src, __METHOD__)->getBody()->getContents(), true)[R::SIZE];
-                (new Move())->raw($src, $dest);
+                $srcSize =
+                    json_decode((new Upload())->raw(self::$src, __METHOD__)->getBody()->getContents(), true)[R::SIZE];
+                (new Move())->raw(self::$src, $dest);
 
-                $this->assertEquals($srcSize, json_decode($meta->raw($dest)->getBody()->getContents(), true)[R::SIZE]);
-
-                $this->expectException(ClientException::class);
-                $this->expectExceptionCode(409);
-                $meta->raw($src);
+                $this->assertEquals(
+                    $srcSize,
+                    json_decode((new GetMetadata())->raw($dest)->getBody()->getContents(), true)[R::SIZE]
+                );
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
+        }
+
+        /** @depends testMove */
+        function testOldNoExist() {
+            $this->expectException(ClientException::class);
+            $this->expectExceptionCode(409);
+            (new GetMetadata())->raw(self::$src);
         }
     }

@@ -11,11 +11,13 @@
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Options\Builder\SearchOptions as SO;
     use Alorel\Dropbox\Parameters\SearchMode;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
+    use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
     use GuzzleHttp\Promise\PromiseInterface;
 
-    class SearchTest extends \PHPUnit_Framework_TestCase {
+    class SearchTest extends DBTestCase {
         use NameGenerator;
 
         private static $dir;
@@ -56,7 +58,7 @@
 
                 (new Delete())->raw(self::$dir . '/' . self::$deletedFname);
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }
@@ -65,7 +67,7 @@
             try {
                 return json_decode(self::$s->raw('foo', self::$dir, $opts)->getBody()->getContents(), true);
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }
@@ -78,7 +80,7 @@
                 $this->assertEquals(self::NUM_FILES, $r['start']);
                 $this->assertFalse($r['more']);
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }
@@ -91,7 +93,7 @@
                 $this->assertEquals(3, $r['start']);
                 $this->assertTrue($r['more']);
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }
@@ -114,7 +116,7 @@
                 $this->assertEquals($pathDisplay, $match['path_display']);
                 $this->assertEquals(strtolower($pathDisplay), $match['path_lower']);
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }

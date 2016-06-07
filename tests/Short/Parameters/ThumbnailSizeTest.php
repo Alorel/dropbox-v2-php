@@ -6,7 +6,9 @@
 
     namespace Alorel\Dropbox\Parameters;
 
-    class ThumbnailSizeTest extends \PHPUnit_Framework_TestCase {
+    use Alorel\Dropbox\Test\DBTestCase;
+
+    class ThumbnailSizeTest extends DBTestCase {
 
         function testAvailableSizes() {
             $actual = ThumbnailSize::availableSizes();

@@ -9,11 +9,12 @@
     use Alorel\Dropbox\Operation\Files\Delete;
     use Alorel\Dropbox\Operation\Files\GetPreview;
     use Alorel\Dropbox\Operation\Files\Upload;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
     use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
-    class GetPreviewTest extends \PHPUnit_Framework_TestCase {
+    class GetPreviewTest extends DBTestCase {
 
         use NameGenerator;
 
@@ -28,7 +29,7 @@
                                                    TestUtil::$PREVIEW_CONTENT_TYPES,
                                                    true));
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 $die = true;
             } finally {
                 try {

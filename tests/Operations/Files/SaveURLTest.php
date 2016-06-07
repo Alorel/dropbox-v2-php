@@ -9,25 +9,25 @@
     use Alorel\Dropbox\Operation\Files\SaveUrl\CheckJobStatus;
     use Alorel\Dropbox\Operation\Files\SaveUrl\SaveURL;
     use Alorel\Dropbox\Response\ResponseAttribute as R;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
     use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
-    class SaveURLTest extends \PHPUnit_Framework_TestCase {
+    class SaveURLTest extends DBTestCase {
         use NameGenerator;
 
-        const URL = 'https://raw.githubusercontent.com/Alorel/dropbox-v2-php/master/tests/inc/lorem-ipsum.txt';
+        const URL = 'https://www.google.com';
 
         private static $fn;
 
         static function setUpBeforeClass() {
-            self::$fn = self::genFileName('php');
+            self::$fn = self::genFileName();
         }
 
         function assertResponse(array $r) {
             $this->assertEquals(self::$fn, $r['path_display']);
             $this->assertEquals(strtolower(self::$fn), $r['path_lower']);
-            $this->assertEquals(filesize(TestUtil::INC_DIR . 'lorem-ipsum.txt'), $r['size']);
         }
 
         /** @large */
@@ -57,7 +57,7 @@
                     }
                 }
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }

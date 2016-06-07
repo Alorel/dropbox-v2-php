@@ -6,8 +6,27 @@
 
     namespace Alorel\Dropbox\Test;
 
+    use AloFramework\Common\Alo;
     use Alorel\Dropbox\Operation\AbstractOperation;
     use Alorel\Dropbox\Operation\Files\Delete;
+    use Alorel\Dropbox\Options\Mixins\AutoRenameTrait;
+    use Alorel\Dropbox\Options\Mixins\ClientModifiedTrait;
+    use Alorel\Dropbox\Options\Mixins\CloseTrait;
+    use Alorel\Dropbox\Options\Mixins\IncludeDeletedTrait;
+    use Alorel\Dropbox\Options\Mixins\IncludeHasExplicitSharedMembersTrait;
+    use Alorel\Dropbox\Options\Mixins\IncludeMediaInfoTrait;
+    use Alorel\Dropbox\Options\Mixins\LimitTrait;
+    use Alorel\Dropbox\Options\Mixins\MaxResultsTrait;
+    use Alorel\Dropbox\Options\Mixins\MuteTrait;
+    use Alorel\Dropbox\Options\Mixins\RecursiveTrait;
+    use Alorel\Dropbox\Options\Mixins\SearchModeTrait;
+    use Alorel\Dropbox\Options\Mixins\StartTrait;
+    use Alorel\Dropbox\Options\Mixins\ThumbnailFormatTrait;
+    use Alorel\Dropbox\Options\Mixins\ThumbnailSizeTrait;
+    use Alorel\Dropbox\Options\Mixins\TimeoutTrait;
+    use Alorel\Dropbox\Options\Mixins\WriteModeTrait;
+    use Alorel\Dropbox\Options\Options;
+    use GuzzleHttp\Exception\ClientException;
 
     if (!getenv('APIKEY')) {
         $file = __DIR__ . DIRECTORY_SEPARATOR . 'API_KEY';
@@ -58,6 +77,33 @@
             }
 
             return $args;
+        }
+
+        static function decodeClientException(ClientException $e) {
+            echo PHP_EOL;
+            $h = $e->getRequest()->getHeaders();
+            if (Alo::get($h['Content-Type']) != 'application/octet-stream') {
+                $body = json_decode($e->getRequest()->getBody()->getContents(), true);
+            } else {
+                $body = null;
+            }
+            foreach ($h as $k => $v) {
+                if (is_array($v)) {
+                    $v = $v[0];
+                }
+                if (stripos($v, getenv('APIKEY')) !== false) {
+                    unset($h[$k]);
+                }
+            }
+            d([
+                  'RequestBody'     => $body,
+                  'RequestHeaders'  => $h,
+                  'ResponseBody'    => json_decode($e->getResponse()->getBody()->getContents(), true),
+                  'ResponseCode'    => $e->getCode(),
+                  'ResponseMessage' => $e->getMessage()
+              ]);
+
+            self::err($e->getTraceAsString());
         }
 
         static function out(...$messages) {
@@ -202,5 +248,43 @@
         }
     }
 
-    NameGenerator::$uniqid = uniqid(mt_rand(PHP_INT_MAX, PHP_INT_MAX) . serialize($_SERVER), true);
-    require_once TestUtil::INC_DIR . 'AllTheTraits.php';
+    NameGenerator::$uniqid = md5(uniqid(mt_rand(PHP_INT_MIN, PHP_INT_MAX) . serialize($_SERVER), true));
+
+    class AllTheTraits extends Options {
+        use AutoRenameTrait;
+        use ClientModifiedTrait;
+        use CloseTrait;
+        use MuteTrait;
+        use WriteModeTrait;
+        use IncludeDeletedTrait;
+        use IncludeMediaInfoTrait;
+        use IncludeHasExplicitSharedMembersTrait;
+        use ThumbnailFormatTrait;
+        use ThumbnailSizeTrait;
+        use RecursiveTrait;
+        use TimeoutTrait;
+        use LimitTrait;
+        use MaxResultsTrait;
+        use SearchModeTrait;
+        use StartTrait;
+    }
+
+    /**
+     * TestWrapper
+     *
+     * @author Art <a.molcanovas@gmail.com>
+     */
+    class DBTestCase extends \PHPUnit_Framework_TestCase {
+
+        private $getClass;
+
+        function __construct($name = null, array $data = [], $dataName = '') {
+            parent::__construct($name, $data, $dataName);
+            $this->getClass = get_class($this);
+        }
+
+        /** @before */
+        public final function _beforeAnnounceTest() {
+            fwrite(STDOUT, PHP_EOL . 'Running ' . $this->getClass . '::' . $this->getName(true));
+        }
+    }

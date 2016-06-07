@@ -4,7 +4,7 @@
      * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
      */
 
-    namespace Alorel\Dropbox\Options\Mixins;
+    namespace Alorel\Dropbox;
 
     use AloFramework\Common\Alo;
     use Alorel\Dropbox\Options\Option as O;
@@ -13,8 +13,10 @@
     use Alorel\Dropbox\Parameters\ThumbnailFormat as TF;
     use Alorel\Dropbox\Parameters\ThumbnailSize as TS;
     use Alorel\Dropbox\Parameters\WriteMode as WM;
+    use Alorel\Dropbox\Test\AllTheTraits;
+    use Alorel\Dropbox\Test\DBTestCase;
 
-    class TraitTest extends \PHPUnit_Framework_TestCase {
+    class TraitTest extends DBTestCase {
 
         /** @var  AllTheTraits */
         private $cfg;

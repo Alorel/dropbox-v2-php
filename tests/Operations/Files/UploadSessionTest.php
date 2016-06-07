@@ -12,10 +12,12 @@
     use Alorel\Dropbox\Parameters\CommitInfo;
     use Alorel\Dropbox\Parameters\UploadSessionCursor;
     use Alorel\Dropbox\Response\ResponseAttribute as R;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
+    use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
-    class UploadSessionTest extends \PHPUnit_Framework_TestCase {
+    class UploadSessionTest extends DBTestCase {
         use NameGenerator;
 
         function testUploadSession() {
@@ -55,7 +57,7 @@
                     }
                 }
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }

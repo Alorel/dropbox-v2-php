@@ -10,10 +10,12 @@
     use Alorel\Dropbox\Operation\Files\GetMetadata;
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Response\ResponseAttribute as R;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
+    use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
-    class CopyTest extends \PHPUnit_Framework_TestCase {
+    class CopyTest extends DBTestCase {
         use NameGenerator;
 
         function testCopy() {
@@ -30,7 +32,7 @@
                     json_decode($meta->raw($dest)->getBody()->getContents(), true)[R::SIZE]
                 );
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody()), true);
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }

@@ -12,10 +12,12 @@
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Options\Builder\UploadOptions;
     use Alorel\Dropbox\Parameters\WriteMode;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
+    use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
-    class RestoreTest extends \PHPUnit_Framework_TestCase {
+    class RestoreTest extends DBTestCase {
 
         use NameGenerator;
 
@@ -35,7 +37,7 @@
                 self::$r1 = json_decode($up->raw(self::$n, '.', $opts)->getBody()->getContents(), true)['rev'];
                 self::$r2 = json_decode($up->raw(self::$n, '..', $opts)->getBody()->getContents(), true)['rev'];
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }
@@ -48,7 +50,7 @@
                     json_decode((new Restore())->raw(self::$n, self::$r1)->getBody()->getContents(), true)['size']
                 );
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }
@@ -62,7 +64,7 @@
                     json_decode((new Restore())->raw(self::$n, self::$r2)->getBody()->getContents(), true)['size']
                 );
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }

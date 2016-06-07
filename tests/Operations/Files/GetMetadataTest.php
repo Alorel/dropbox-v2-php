@@ -12,10 +12,12 @@
     use Alorel\Dropbox\Options\Builder\UploadOptions;
     use Alorel\Dropbox\Options\Options;
     use Alorel\Dropbox\Response\ResponseAttribute as R;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
+    use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
-    class GetMetadataTest extends \PHPUnit_Framework_TestCase {
+    class GetMetadataTest extends DBTestCase {
 
         use NameGenerator;
 
@@ -39,7 +41,7 @@
                 $this->assertEquals(strlen(__METHOD__), $meta[R::SIZE]);
                 $this->assertTrue(is_bool($meta[R::HAS_EXPLICIT_SHARED_MEMBERS]));
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }

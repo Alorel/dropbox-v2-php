@@ -13,10 +13,12 @@
     use Alorel\Dropbox\OperationKind\SingleArgumentRPCOperation;
     use Alorel\Dropbox\Options\Builder\GetMetadataOptions;
     use Alorel\Dropbox\Response\ResponseAttribute as R;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
+    use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
-    class DeleteTest extends \PHPUnit_Framework_TestCase {
+    class DeleteTest extends DBTestCase {
 
         use NameGenerator;
 
@@ -58,7 +60,7 @@
                     }
                 }
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }

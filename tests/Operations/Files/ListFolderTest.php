@@ -10,11 +10,12 @@
     use Alorel\Dropbox\Operation\Files\ListFolder\ListFolder;
     use Alorel\Dropbox\Operation\Files\ListFolder\ListFolderContinue;
     use Alorel\Dropbox\Operation\Files\Upload;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
     use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
-    class ListFolderTest extends \PHPUnit_Framework_TestCase {
+    class ListFolderTest extends DBTestCase {
 
         use NameGenerator;
 
@@ -56,7 +57,7 @@
                 $this->assertEmpty($lf['entries']);
                 $this->assertNotEquals($lf['cursor'], $prevCursor);
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }
@@ -67,7 +68,7 @@
                 $this->assertEquals(['cursor'], array_keys($r));
                 $this->assertTrue(is_string($r['cursor']));
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }

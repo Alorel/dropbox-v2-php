@@ -12,13 +12,14 @@
     use Alorel\Dropbox\Options\Builder\UploadOptions;
     use Alorel\Dropbox\Options\Option as O;
     use Alorel\Dropbox\Response\ResponseAttribute as R;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
     use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
     use GuzzleHttp\Promise\PromiseInterface;
     use Psr\Http\Message\ResponseInterface;
 
-    class UploadAndAbstractTest extends \PHPUnit_Framework_TestCase {
+    class UploadAndAbstractTest extends DBTestCase {
 
         use NameGenerator;
 
@@ -40,7 +41,7 @@
                 $this->assertInstanceOf(ResponseInterface::class, $rsp);
                 $this->abstraction($rsp, $filename, $opts);
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }
@@ -52,7 +53,7 @@
 
                 $this->assertEquals(self::$fileLength, json_decode($rsp->getBody(), true)[R::SIZE]);
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }
@@ -65,7 +66,7 @@
 
                 $this->assertEquals(self::$fileLength, json_decode($rsp->getBody(), true)[R::SIZE]);
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }
@@ -119,7 +120,7 @@
 
                 $this->abstraction($promise->wait(true), $filename, null);
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }

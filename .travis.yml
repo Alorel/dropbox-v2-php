@@ -27,10 +27,8 @@ before_script:
  - bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"* ]]; then echo "zend_extension = xdebug.so" >> .xdebug.ini && phpenv config-add .xdebug.ini; fi;'
 
 script:
- - vendor/bin/phpunit --coverage-clover coverage.xml --testsuite $SUITE
-
-after_script:
- - bash -c 'if [ -f coverage.xml ]; then chmod 777 coverage.xml && bash <(curl -s https://codecov.io/bash); fi;'
+ - bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"* ]]; then vendor/bin/phpunit --coverage-clover coverage.xml --testsuite $SUITE && chmod 777 coverage.xml && bash <(curl -s https://codecov.io/bash); fi;'
+ - bash -c 'if [[ "$TRAVIS_PHP_VERSION" == *"hhvm"* ]]; then vendor/bin/phpunit --testsuite $SUITE; fi;'
 
 notifications:
  on_success: change

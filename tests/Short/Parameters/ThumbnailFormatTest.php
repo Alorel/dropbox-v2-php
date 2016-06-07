@@ -6,7 +6,9 @@
 
     namespace Alorel\Dropbox\Parameters;
 
-    class ThumbnailFormatTest extends \PHPUnit_Framework_TestCase {
+    use Alorel\Dropbox\Test\DBTestCase;
+
+    class ThumbnailFormatTest extends DBTestCase {
 
         function testThumbnailFormat() {
             $expected = [ThumbnailFormat::JPEG, ThumbnailFormat::PNG];

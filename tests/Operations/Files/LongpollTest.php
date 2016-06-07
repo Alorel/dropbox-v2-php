@@ -11,11 +11,13 @@
     use Alorel\Dropbox\Operation\Files\ListFolder\Longpoll;
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Options\Builder\LongpollOptions;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
+    use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
     use Psr\Http\Message\ResponseInterface;
 
-    class LongpollTest extends \PHPUnit_Framework_TestCase {
+    class LongpollTest extends DBTestCase {
         use NameGenerator;
 
         private static $dir;
@@ -25,7 +27,7 @@
             try {
                 (new CreateFolder())->raw(self::$dir);
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }
@@ -45,17 +47,17 @@
 
                 $this->assertTrue($rsp['changes']);
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }
 
         /** @large */
         function testLong() {
-            fwrite(STDOUT, PHP_EOL . 'Running ' . __METHOD__ . ' - this will take a while.' . PHP_EOL);
             try {
                 $cursor =
                     json_decode((new ListFolder(false))->raw(self::$dir)->getBody()->getContents(), true)['cursor'];
+                TestUtil::out('Running ' . __METHOD__ . ' - this will take a while.');
                 $lp = (new Longpoll(true))->raw($cursor, (new LongpollOptions())->setTimeout(60));
 
                 sleep(31); //Default timeout is 30s
@@ -67,7 +69,7 @@
 
                 $this->assertTrue($rsp['changes']);
             } catch (ClientException $e) {
-                d(json_decode($e->getResponse()->getBody(), true));
+                TestUtil::decodeClientException($e);
                 die(1);
             }
         }

@@ -8,9 +8,10 @@
 
     use Alorel\Dropbox\Options\Option;
     use Alorel\Dropbox\Options\Options;
+    use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\TestUtil;
 
-    class ParametersTest extends \PHPUnit_Framework_TestCase {
+    class ParametersTest extends DBTestCase {
 
         protected function constructedAbstraction($class, array $args, array $expectedArray) {
             $this->abstraction(new $class(...$args), $expectedArray);
