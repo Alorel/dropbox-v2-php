@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Operations\Files;
 
@@ -21,13 +21,18 @@
             $dest = self::genFileName();
             $meta = new GetMetadata();
 
-            $srcSize = json_decode((new Upload())->raw($src, __METHOD__)->getBody()->getContents(), true)[R::SIZE];
-            (new Move())->raw($src, $dest);
+            try {
+                $srcSize = json_decode((new Upload())->raw($src, __METHOD__)->getBody()->getContents(), true)[R::SIZE];
+                (new Move())->raw($src, $dest);
 
-            $this->assertEquals($srcSize, json_decode($meta->raw($dest)->getBody()->getContents(), true)[R::SIZE]);
+                $this->assertEquals($srcSize, json_decode($meta->raw($dest)->getBody()->getContents(), true)[R::SIZE]);
 
-            $this->expectException(ClientException::class);
-            $this->expectExceptionCode(409);
-            $meta->raw($src);
+                $this->expectException(ClientException::class);
+                $this->expectExceptionCode(409);
+                $meta->raw($src);
+            } catch (ClientException $e) {
+                d(json_decode($e->getResponse()->getBody(), true));
+                die(1);
+            }
         }
     }

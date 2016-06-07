@@ -9,6 +9,7 @@
     use Alorel\Dropbox\Operation\Files\GetTemporaryLink;
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Test\NameGenerator;
+    use GuzzleHttp\Exception\ClientException;
 
     class GetTemporaryLinkTest extends \PHPUnit_Framework_TestCase {
 
@@ -20,14 +21,24 @@
 
         static function setUpBeforeClass() {
             self::$n = self::genFileName();
-            (new Upload())->raw(self::$n, self::CONTENTS);
+            try {
+                (new Upload())->raw(self::$n, self::CONTENTS);
+            } catch (ClientException $e) {
+                d(json_decode($e->getResponse()->getBody(), true));
+                die(1);
+            }
         }
 
         function testTempLink() {
-            $r = json_decode((new GetTemporaryLink())->raw(self::$n)->getBody()->getContents(), true);
-            sleep(1);
+            try {
+                $r = json_decode((new GetTemporaryLink())->raw(self::$n)->getBody()->getContents(), true);
+                sleep(1);
 
-            $this->assertTrue(is_string($r['link']));
-            $this->assertEquals(self::CONTENTS, file_get_contents($r['link']));
+                $this->assertTrue(is_string($r['link']));
+                $this->assertEquals(self::CONTENTS, file_get_contents($r['link']));
+            } catch (ClientException $e) {
+                d(json_decode($e->getResponse()->getBody(), true));
+                die(1);
+            }
         }
     }

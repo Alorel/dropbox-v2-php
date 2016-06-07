@@ -16,6 +16,7 @@
     use ReflectionClass as RC;
 
     if (1 != getenv('TRAVISCI')) {
+
         class ClumsinessTest extends \PHPUnit_Framework_TestCase {
 
             private static $BASE_NAMESPACE;
@@ -24,7 +25,7 @@
                 self::$BASE_NAMESPACE = (new RC(Util::class))->getNamespaceName();
             }
 
-            private function abstractionSubclass(string $baseClass, string $testClass, ...$constructorArgs) {
+            private function abstractionSubclass($baseClass, $testClass, ...$constructorArgs) {
                 $rc = new RC($testClass);
 
                 if ($rc->isInstantiable()) {

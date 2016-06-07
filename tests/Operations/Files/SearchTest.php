@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Operations\Files;
 
@@ -12,6 +12,7 @@
     use Alorel\Dropbox\Options\Builder\SearchOptions as SO;
     use Alorel\Dropbox\Parameters\SearchMode;
     use Alorel\Dropbox\Test\NameGenerator;
+    use GuzzleHttp\Exception\ClientException;
     use GuzzleHttp\Promise\PromiseInterface;
 
     class SearchTest extends \PHPUnit_Framework_TestCase {
@@ -40,56 +41,81 @@
             $promises = [];
             $up = new Upload(true);
 
-            for ($i = 1; $i <= self::NUM_FILES; $i++) {
-                $promises[] = $up->raw(self::$dir . '/' . self::PREFIX . '-' . $i . '.txt', '.');
+            try {
+                for ($i = 1; $i <= self::NUM_FILES; $i++) {
+                    $promises[] = $up->raw(self::$dir . '/' . self::PREFIX . '-' . $i . '.txt', '.');
+                }
+
+                self::$deletedFname = self::PREFIX . '-' . $i . '.txt';
+
+                $promises[] = $up->raw(self::$dir . '/' . self::$deletedFname, '.');
+
+                foreach ($promises as $p) {
+                    $p->wait();
+                }
+
+                (new Delete())->raw(self::$dir . '/' . self::$deletedFname);
+            } catch (ClientException $e) {
+                d(json_decode($e->getResponse()->getBody(), true));
+                die(1);
             }
-
-            self::$deletedFname = self::PREFIX . '-' . $i . '.txt';
-
-            $promises[] = $up->raw(self::$dir . '/' . self::$deletedFname, '.');
-
-            foreach ($promises as $p) {
-                $p->wait();
-            }
-
-            (new Delete())->raw(self::$dir . '/' . self::$deletedFname);
         }
 
         private static function getResults(SO $opts = null) {
-            return json_decode(self::$s->raw('foo', self::$dir, $opts)->getBody()->getContents(), true);
+            try {
+                return json_decode(self::$s->raw('foo', self::$dir, $opts)->getBody()->getContents(), true);
+            } catch (ClientException $e) {
+                d(json_decode($e->getResponse()->getBody(), true));
+                die(1);
+            }
         }
 
         function testSearchAll() {
-            $r = self::getResults();
+            try {
+                $r = self::getResults();
 
-            $this->assertEquals(self::NUM_FILES, count($r['matches']));
-            $this->assertEquals(self::NUM_FILES, $r['start']);
-            $this->assertFalse($r['more']);
+                $this->assertEquals(self::NUM_FILES, count($r['matches']));
+                $this->assertEquals(self::NUM_FILES, $r['start']);
+                $this->assertFalse($r['more']);
+            } catch (ClientException $e) {
+                d(json_decode($e->getResponse()->getBody(), true));
+                die(1);
+            }
         }
 
         function testMaxResultsAndStart() {
-            $r = self::getResults((new SO())->setMaxResults(2)->setStart(1));
+            try {
+                $r = self::getResults((new SO())->setMaxResults(2)->setStart(1));
 
-            $this->assertEquals(2, count($r['matches']));
-            $this->assertEquals(3, $r['start']);
-            $this->assertTrue($r['more']);
+                $this->assertEquals(2, count($r['matches']));
+                $this->assertEquals(3, $r['start']);
+                $this->assertTrue($r['more']);
+            } catch (ClientException $e) {
+                d(json_decode($e->getResponse()->getBody(), true));
+                die(1);
+            }
         }
 
         function testDeleted() {
-            $r = self::getResults((new SO())->setSearchMode(SearchMode::deletedFilename()));
+            try {
+                $r = self::getResults((new SO())->setSearchMode(SearchMode::deletedFilename()));
 
-            $this->assertEquals(1, count($r['matches']));
-            $this->assertEquals(1, $r['start']);
-            $this->assertFalse($r['more']);
+                $this->assertEquals(1, count($r['matches']));
+                $this->assertEquals(1, $r['start']);
+                $this->assertFalse($r['more']);
 
-            $match = $r['matches'][0];
-            $this->assertEquals('filename', $match['match_type']['.tag']);
+                $match = $r['matches'][0];
+                $this->assertEquals('filename', $match['match_type']['.tag']);
 
-            $match = $match['metadata'];
-            $pathDisplay = self::$dir . '/' . self::$deletedFname;
+                $match = $match['metadata'];
+                $pathDisplay = self::$dir . '/' . self::$deletedFname;
 
-            $this->assertEquals('deleted', $match['.tag']);
-            $this->assertEquals($pathDisplay, $match['path_display']);
-            $this->assertEquals(strtolower($pathDisplay), $match['path_lower']);
+                $this->assertEquals('deleted', $match['.tag']);
+                $this->assertEquals($pathDisplay, $match['path_display']);
+                $this->assertEquals(strtolower($pathDisplay), $match['path_lower']);
+            } catch (ClientException $e) {
+                d(json_decode($e->getResponse()->getBody(), true));
+                die(1);
+            }
         }
     }

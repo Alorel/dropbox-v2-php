@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Operations\Files;
 
@@ -13,6 +13,7 @@
     use Alorel\Dropbox\Options\Builder\UploadOptions;
     use Alorel\Dropbox\Parameters\WriteMode;
     use Alorel\Dropbox\Test\NameGenerator;
+    use GuzzleHttp\Exception\ClientException;
 
     class ListRevisionsTest extends \PHPUnit_Framework_TestCase {
         use NameGenerator;
@@ -36,11 +37,16 @@
 
         /** @dataProvider providerRevisionIncrement */
         function testRevisionIncrement($i) {
-            self:: $up->raw(self::$fname, (pow(10, $i)), self:: $opt);
-            $rsp = json_decode(self::$lr->raw(self::$fname)->getBody()->getContents(), true);
+            try {
+                self:: $up->raw(self::$fname, (pow(10, $i)), self:: $opt);
+                $rsp = json_decode(self::$lr->raw(self::$fname)->getBody()->getContents(), true);
 
-            $this->assertFalse($rsp['is_deleted']);
-            $this->assertEquals($i + 1, count($rsp['entries']));
+                $this->assertFalse($rsp['is_deleted']);
+                $this->assertEquals($i + 1, count($rsp['entries']));
+            } catch (ClientException $e) {
+                d(json_decode($e->getResponse()->getBody(), true));
+                die(1);
+            }
         }
 
         function providerRevisionIncrement() {
@@ -50,15 +56,20 @@
 
         /** @depends testRevisionIncrement */
         function testLimit() {
-            $rsp = json_decode(
-                self::$lr->raw(self::$fname, (new ListRevisionsOptions())->setLimit(1))->getBody()->getContents(),
-                true
-            );
-            $this->assertFalse($rsp['is_deleted']);
-            $this->assertEquals(1, count($rsp['entries']));
+            try {
+                $rsp = json_decode(
+                    self::$lr->raw(self::$fname, (new ListRevisionsOptions())->setLimit(1))->getBody()->getContents(),
+                    true
+                );
+                $this->assertFalse($rsp['is_deleted']);
+                $this->assertEquals(1, count($rsp['entries']));
 
-            //Prep for next test
-            (new Delete())->raw(self::$fname);
+                //Prep for next test
+                (new Delete())->raw(self::$fname);
+            } catch (ClientException $e) {
+                d(json_decode($e->getResponse()->getBody(), true));
+                die(1);
+            }
         }
 
         /**
@@ -73,12 +84,17 @@
                 $options = null;
                 $count = 2;
             }
-            $rsp = json_decode(
-                self::$lr->raw(self::$fname, $options)->getBody()->getContents(),
-                true
-            );
-            $this->assertTrue($rsp['is_deleted']);
-            $this->assertEquals($count, count($rsp['entries']));
+            try {
+                $rsp = json_decode(
+                    self::$lr->raw(self::$fname, $options)->getBody()->getContents(),
+                    true
+                );
+                $this->assertTrue($rsp['is_deleted']);
+                $this->assertEquals($count, count($rsp['entries']));
+            } catch (ClientException $e) {
+                d(json_decode($e->getResponse()->getBody(), true));
+                die(1);
+            }
         }
 
         function providerDeleted() {

@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Operations\Files;
 
@@ -23,38 +23,43 @@
         /** @dataProvider providerDelete */
         function testDelete($class) {
             $filename = self::genFileName();
-            (new Upload())->raw($filename, '.');
-            $options = (new GetMetadataOptions())->setIncludeDeleted(true);
-            $meta = new GetMetadata();
+            try {
+                (new Upload())->raw($filename, '.');
+                $options = (new GetMetadataOptions())->setIncludeDeleted(true);
+                $meta = new GetMetadata();
 
-            $this->assertEquals('file',
-                                json_decode(
-                                    $meta->raw($filename, $options)->getBody()->getContents(),
-                                    true
-                                )[R::DOT_TAG]);
-
-            /** @var SingleArgumentRPCOperation $obj */
-            $obj = new $class();
-            if ($class === Delete::class) {
-                $obj->raw($filename);
-                $this->assertEquals('deleted',
+                $this->assertEquals('file',
                                     json_decode(
                                         $meta->raw($filename, $options)->getBody()->getContents(),
                                         true
                                     )[R::DOT_TAG]);
-            } else {
-                try {
-                    $obj->raw($filename);
 
-                    $this->expectException(ClientException::class);
-                    $this->expectExceptionCode(409);
-                    $meta->raw($filename, $options)->getBody()->getContents();
-                } catch (ClientException $e) {
-                    $class = (new \ReflectionClass($class))->getShortName();
-                    fwrite(STDERR,
-                           PHP_EOL . 'Failed to ' . $class . ' (most likely due to API permissions): '
-                           . $e->getMessage() . PHP_EOL);
+                /** @var SingleArgumentRPCOperation $obj */
+                $obj = new $class();
+                if ($class === Delete::class) {
+                    $obj->raw($filename);
+                    $this->assertEquals('deleted',
+                                        json_decode(
+                                            $meta->raw($filename, $options)->getBody()->getContents(),
+                                            true
+                                        )[R::DOT_TAG]);
+                } else {
+                    try {
+                        $obj->raw($filename);
+
+                        $this->expectException(ClientException::class);
+                        $this->expectExceptionCode(409);
+                        $meta->raw($filename, $options)->getBody()->getContents();
+                    } catch (ClientException $e) {
+                        $class = (new \ReflectionClass($class))->getShortName();
+                        fwrite(STDERR,
+                               PHP_EOL . 'Failed to ' . $class . ' (most likely due to API permissions): '
+                               . $e->getMessage() . PHP_EOL);
+                    }
                 }
+            } catch (ClientException $e) {
+                d(json_decode($e->getResponse()->getBody(), true));
+                die(1);
             }
         }
 
