@@ -35,5 +35,10 @@
   },
   "require-dev": {
     "raveren/kint": "^1.0"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-users-support": "0.3-dev"
+    }
   }
 }
