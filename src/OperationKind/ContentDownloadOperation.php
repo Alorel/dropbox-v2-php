@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\OperationKind;
 
@@ -39,7 +39,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function send(string $url, string $path, Options $opts = null) {
+        function send($url, $path, Options $opts = null) {
             $params = [
                 Option::PATH => $path
             ];

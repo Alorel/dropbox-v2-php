@@ -19,7 +19,7 @@
         function testGetPreview() {
             $filename = self::genFileName('docx');
             try {
-                (new Upload())->raw($filename, fopen(__DIR__ . DIRECTORY_SEPARATOR . '_forPreview.docx', 'r'));
+                (new Upload())->raw($filename, fopen(TestUtil::INC_DIR . 'forPreview.docx', 'r'));
                 $response = (new GetPreview())->raw($filename);
 
                 $this->assertNotFalse(array_search($response->getHeaderLine('content-type'),

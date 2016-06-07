@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\OperationKind;
 
@@ -40,7 +40,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        protected function send(string $url, $path, Options $options = null) {
+        protected function send($url, $path, Options $options = null) {
             $body = is_array($path) ? $path : [
                 Option::PATH => $path
             ];

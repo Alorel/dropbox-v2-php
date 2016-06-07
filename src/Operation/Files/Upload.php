@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Operation\Files;
 
@@ -35,7 +35,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function raw(string $path, $data, UploadOptions $options = null) {
+        function raw($path, $data, UploadOptions $options = null) {
             return $this->send('upload', $path, $data, $options);
         }
     }

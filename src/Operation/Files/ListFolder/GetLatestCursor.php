@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Operation\Files\ListFolder;
 
@@ -33,7 +33,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function raw(string $path = '', ListFolderOptions $options = null) {
+        function raw($path = '', ListFolderOptions $options = null) {
             return $this->send('files/list_folder/get_latest_cursor', $path, $options);
         }
     }

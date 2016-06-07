@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Operation\Files\ListFolder;
 
@@ -42,7 +42,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function raw(string $cursor, LongpollOptions $opts = null) {
+        function raw($cursor, LongpollOptions $opts = null) {
             $body = [O::CURSOR => $cursor];
             if ($opts) {
                 $body = array_merge($body, $opts->toArray());

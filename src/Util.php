@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox;
 
@@ -22,7 +22,7 @@
          *
          * @return array The trimmed input
          */
-        static function trimNulls(array $in):array {
+        static function trimNulls(array $in) {
             foreach ($in as $k => $v) {
                 if ($v === null) {
                     unset($in[$k]);

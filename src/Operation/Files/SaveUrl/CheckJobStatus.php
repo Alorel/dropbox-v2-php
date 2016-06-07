@@ -30,7 +30,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function raw(string $jobID) {
+        function raw($jobID) {
             return $this->send('files/save_url/check_job_status',
                                [
                                    Option::ASYNC_JOB_ID => $jobID

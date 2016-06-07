@@ -33,7 +33,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function raw(string $path, string $url) {
+        function raw($path, $url) {
             return $this->send('files/save_url', $path, new Options([Option::URL => $url]));
         }
     }

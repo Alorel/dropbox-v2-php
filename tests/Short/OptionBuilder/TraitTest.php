@@ -1,36 +1,18 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Options\Mixins;
 
+    use AloFramework\Common\Alo;
     use Alorel\Dropbox\Options\Option as O;
     use Alorel\Dropbox\Options\Options;
     use Alorel\Dropbox\Parameters\SearchMode as SM;
     use Alorel\Dropbox\Parameters\ThumbnailFormat as TF;
     use Alorel\Dropbox\Parameters\ThumbnailSize as TS;
     use Alorel\Dropbox\Parameters\WriteMode as WM;
-
-    class AllTheTraits extends Options {
-        use AutoRenameTrait;
-        use ClientModifiedTrait;
-        use CloseTrait;
-        use MuteTrait;
-        use WriteModeTrait;
-        use IncludeDeletedTrait;
-        use IncludeMediaInfoTrait;
-        use IncludeHasExplicitSharedMembersTrait;
-        use ThumbnailFormatTrait;
-        use ThumbnailSizeTrait;
-        use RecursiveTrait;
-        use TimeoutTrait;
-        use LimitTrait;
-        use MaxResultsTrait;
-        use SearchModeTrait;
-        use StartTrait;
-    }
 
     class TraitTest extends \PHPUnit_Framework_TestCase {
 
@@ -47,11 +29,11 @@
         }
 
         /** @dataProvider allTraits */
-        function testAllTraits(string $method, string $varname, $value, $outValue = null) {
+        function testAllTraits($method, $varname, $value, $outValue = null) {
             /** @var AllTheTraits $call */
             $call = call_user_func([$this->cfg, $method], $value);
             $this->assertEquals(
-                [$varname => $outValue ?? $value],
+                [$varname => Alo::ifnull($outValue, $value, true)],
                 $call->toArray()
             );
         }

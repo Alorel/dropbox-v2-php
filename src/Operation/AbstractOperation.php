@@ -6,6 +6,7 @@
 
     namespace Alorel\Dropbox\Operation;
 
+    use AloFramework\Common\Alo;
     use Alorel\Dropbox\Exception\NoTokenException;
     use GuzzleHttp\Client;
     use GuzzleHttp\Psr7\Request;
@@ -78,8 +79,8 @@
          *
          * @throws NoTokenException If $accessToken is not provided and the {@link AbstractOperation::$defaultToken default token} hasn't been set via {@link AbstractOperation::setDefaultToken() setDefaultToken()}
          */
-        function __construct($async = null, string $accessToken = null) {
-            $this->token = $accessToken ?? self::$defaultToken;
+        function __construct($async = null, $accessToken = null) {
+            $this->token = Alo::ifnull($accessToken, self::$defaultToken, true);
             if (!$this->token) {
                 throw new NoTokenException();
             }
@@ -88,7 +89,7 @@
                 self::$client = new Client();
             }
 
-            $this->setAsync((bool)($async ?? self::$defaultAsync));
+            $this->setAsync((bool)(Alo::ifnull($async, self::$defaultAsync, true)));
         }
 
         /**
@@ -98,7 +99,7 @@
          *
          * @param string $token The token
          */
-        static final function setDefaultToken(string $token) {
+        static final function setDefaultToken($token) {
             self::$defaultToken = $token;
         }
 
@@ -118,7 +119,7 @@
          * @author Art <a.molcanovas@gmail.com>
          * @return boolean
          */
-        public function isAsync():bool {
+        public function isAsync() {
             return $this->async;
         }
 
@@ -131,7 +132,7 @@
          *
          * @return self
          */
-        public final function setAsync(bool $async) {
+        public final function setAsync($async) {
             $this->async = $async;
             $this->sendCallable = [self::$client, $this->async ? 'sendAsync' : 'send'];
 
@@ -145,7 +146,7 @@
          *
          * @param bool $async The default async value
          */
-        static final function setDefaultAsync(bool $async) {
+        static final function setDefaultAsync($async) {
             self::$defaultAsync = $async;
         }
 
@@ -155,7 +156,7 @@
          * @author Art <a.molcanovas@gmail.com>
          * @return string
          */
-        protected function getToken():string {
+        protected function getToken() {
             return $this->token;
         }
 
@@ -175,7 +176,7 @@
          * @see    \League\OAuth2\Client\Provider\AbstractProvider::getAuthenticatedRequest()
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        protected final function sendAbstract(string $httpMethod, string $url, array $options = []) {
+        protected final function sendAbstract($httpMethod, $url, array $options = []) {
             return call_user_func(
                 $this->sendCallable,
                 new Request(
@@ -183,9 +184,9 @@
                     'https://' . $url,
                     array_merge(
                         ['authorization' => 'Bearer ' . $this->token],
-                        $options['headers'] ?? []
+                        Alo::ifnull($options['headers'], [], true)
                     ),
-                    $options['body'] ?? null)
+                    Alo::nullget($options['body']))
             );
         }
     }

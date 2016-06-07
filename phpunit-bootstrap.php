@@ -28,9 +28,15 @@
     AbstractOperation::setDefaultAsync(false);
     AbstractOperation::setDefaultToken(getenv('APIKEY'));
 
+    if (!defined('PHP_INT_MIN')) {
+        define('PHP_INT_MIN', ~PHP_INT_MAX);
+    }
+
     class TestUtil {
 
         private static $generatedNames = [];
+
+        const INC_DIR = __DIR__ . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR;
 
         public static $key;
 
@@ -55,18 +61,14 @@
         }
 
         static function out(...$messages) {
-            foreach ($messages as $msg) {
-                fwrite(STDOUT, PHP_EOL . $msg . PHP_EOL);
-            }
+            fwrite(STDOUT, PHP_EOL . implode(PHP_EOL, $messages) . PHP_EOL);
         }
 
         static function err(...$messages) {
-            foreach ($messages as $msg) {
-                fwrite(STDERR, PHP_EOL . $msg . PHP_EOL);
-            }
+            fwrite(STDERR, PHP_EOL . implode(PHP_EOL, $messages) . PHP_EOL);
         }
 
-        static function allClassesInDirectory(string $dirname, bool $asProviderArgs = true) {
+        static function allClassesInDirectory($dirname, $asProviderArgs = true) {
             $allFiles = new \RecursiveDirectoryIterator($dirname, self::DIR_ITERATOR_OPTS);
             /** @var \SplFileInfo $f */
             foreach ($allFiles as $f) {
@@ -110,13 +112,13 @@
          *
          * @return \Generator
          */
-        static function allClassesInClassDirectory(string $class, bool $asProviderArgs = true) {
+        static function allClassesInClassDirectory($class, $asProviderArgs = true) {
             $dirname = dirname((new \ReflectionClass($class))->getFileName());
 
             return self::allClassesInDirectory($dirname, $asProviderArgs);
         }
 
-        static function setPropertyValue($object, string $prop, $value) {
+        static function setPropertyValue($object, $prop, $value) {
             $class = self::parseObjectArg($object);
             $prop = $class->getProperty($prop);
             $prop->setAccessible(true);
@@ -135,7 +137,7 @@
             return $class;
         }
 
-        static function getPropertyValue($object, string $prop) {
+        static function getPropertyValue($object, $prop) {
             $class = self::parseObjectArg($object);
 
             $prop = $class->getProperty($prop);
@@ -144,7 +146,7 @@
             return $prop->getValue($object);
         }
 
-        static function invokeMethod($object, string $method, ...$args) {
+        static function invokeMethod($object, $method, ...$args) {
             $class = self::parseObjectArg($object);
 
             $meth = $class->getMethod($method);
@@ -153,7 +155,7 @@
             return $meth->invokeArgs($object, $args);
         }
 
-        static function genFileName(string $prefix = '', array &$storeTo = null, string $ext = 'txt') {
+        static function genFileName($prefix = '', array &$storeTo = null, $ext = 'txt') {
             do {
                 $name = '/' . $prefix . md5(uniqid(__METHOD__, true) . mt_rand(PHP_INT_MIN, PHP_INT_MAX)) . ".$ext";
             } while (array_search($name, self::$generatedNames) !== false);
@@ -180,7 +182,7 @@
 
         public static $uniqid;
 
-        private static function genFileName(string $ext = 'txt') {
+        private static function genFileName($ext = 'txt') {
             return TestUtil::genFileName(self::generatorPrefix() . '/', self::$generatedNames, $ext);
         }
 
@@ -201,3 +203,4 @@
     }
 
     NameGenerator::$uniqid = uniqid(mt_rand(PHP_INT_MAX, PHP_INT_MAX) . serialize($_SERVER), true);
+    require_once TestUtil::INC_DIR . 'AllTheTraits.php';

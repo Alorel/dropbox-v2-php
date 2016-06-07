@@ -1,3 +1,0 @@
- - Added examples for all operations
- - `Alorel\Dropbox\Parameters` now has an `availableSizes()` static method
- - `Alorel\Dropbox\Parameters` now has an `availableFormats()` static method

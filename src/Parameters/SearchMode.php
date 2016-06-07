@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Parameters;
 
@@ -45,7 +45,7 @@
          *
          * @param string $tag The search mode
          */
-        protected function __construct(string $tag) {
+        protected function __construct($tag) {
             parent::__construct([O::DOT_TAG => $tag]);
         }
 
@@ -55,7 +55,7 @@
          * @author Art <a.molcanovas@gmail.com>
          * @return SearchMode
          */
-        static function filename():self {
+        static function filename() {
             return new self(self::TAG_FILENAME);
         }
 
@@ -65,7 +65,7 @@
          * @author Art <a.molcanovas@gmail.com>
          * @return SearchMode
          */
-        static function filenameAndContent():self {
+        static function filenameAndContent() {
             return new self(self::TAG_FILENAME_AND_CONTENT);
         }
 
@@ -75,7 +75,7 @@
          * @author Art <a.molcanovas@gmail.com>
          * @return SearchMode
          */
-        static function deletedFilename():self {
+        static function deletedFilename() {
             return new self(self::DELETED_FILENAME);
         }
     }

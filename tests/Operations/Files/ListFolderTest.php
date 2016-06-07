@@ -11,6 +11,7 @@
     use Alorel\Dropbox\Operation\Files\ListFolder\ListFolderContinue;
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Test\NameGenerator;
+    use Alorel\Dropbox\Test\TestUtil;
 
     class ListFolderTest extends \PHPUnit_Framework_TestCase {
 
@@ -31,7 +32,7 @@
             $img = self::genFileName('jpg');
 
             $pr1 = $up->raw($txt, '.');
-            $pr2 = $up->raw($img, fopen(__DIR__ . DIRECTORY_SEPARATOR . '_get-thumb.jpg', 'r'));
+            $pr2 = $up->raw($img, fopen(TestUtil::INC_DIR . 'get-thumb.jpg', 'r'));
 
             $pr1->wait();
             $pr2->wait();

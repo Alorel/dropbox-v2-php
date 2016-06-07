@@ -12,11 +12,11 @@
 
     class ParametersTest extends \PHPUnit_Framework_TestCase {
 
-        protected function constructedAbstraction(string $class, array $args, array $expectedArray) {
+        protected function constructedAbstraction($class, array $args, array $expectedArray) {
             $this->abstraction(new $class(...$args), $expectedArray);
         }
 
-        protected function factoryAbstraction(string $class, string $method, array $args, array $expectedArray) {
+        protected function factoryAbstraction($class, $method, array $args, array $expectedArray) {
             $this->abstraction(call_user_func_array("$class::$method", $args), $expectedArray);
         }
 
@@ -31,7 +31,7 @@
         }
 
         /** @dataProvider thumbnailFormat */
-        function testThumbnailFormat(string $format) {
+        function testThumbnailFormat($format) {
             $expect = [
                 '.tag' => $format
             ];
@@ -44,7 +44,7 @@
         }
 
         /** @dataProvider thumbnailSize */
-        function testThumbnailSize(int $width, int $height) {
+        function testThumbnailSize($width, $height) {
             $method = 'w' . $width . 'h' . $height;
             $expect = ['.tag' => $method];
             $this->factoryAbstraction(ThumbnailSize::class, $method, [], $expect);
@@ -59,7 +59,7 @@
         }
 
         /** @dataProvider writeMode */
-        function testWriteMode(string $tag, string $rev = null) {
+        function testWriteMode($tag, $rev = null) {
             $expect = [
                 '.tag' => $tag
             ];
@@ -77,7 +77,7 @@
         }
 
         /** @dataProvider searchMode */
-        function testSearchMode(string $method, string $value) {
+        function testSearchMode($method, $value) {
 
             $this->factoryAbstraction(SearchMode::class,
                                       $method,
@@ -94,7 +94,7 @@
         }
 
         /** @dataProvider uploadSessionCursor */
-        function testUploadSessionCursor(int $offset = 0) {
+        function testUploadSessionCursor($offset = 0) {
             $expect = [
                 'session_id' => __METHOD__,
                 'offset'     => $offset
@@ -110,8 +110,8 @@
         /** @dataProvider commitInfo */
         function testCommitInfo(array $expectedArray,
                                 WriteMode $writeMode = null,
-                                bool $autorename = false,
-                                bool $mute = false,
+                                $autorename = false,
+                                $mute = false,
                                 \DateTimeInterface $clientModified = null) {
             $this->constructedAbstraction(CommitInfo::class,
                                           [

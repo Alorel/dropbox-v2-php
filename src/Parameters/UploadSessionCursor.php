@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Parameters;
 
@@ -24,7 +24,7 @@
          * @param int    $offset    The amount of data that has been uploaded so far. We use this to make sure upload
          *                          data isn't lost or duplicated in the event of a network error.
          */
-        function __construct(string $sessionID, int $offset = 0) {
+        function __construct($sessionID, $offset = 0) {
             parent::__construct([
                                     O::SESSION_ID => $sessionID,
                                     O::OFFSET     => $offset
@@ -40,7 +40,7 @@
          *
          * @return self
          */
-        function setOffset(int $offset) {
+        function setOffset($offset) {
             return $this->setArg(O::OFFSET, $offset);
         }
     }

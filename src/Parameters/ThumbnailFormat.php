@@ -38,7 +38,7 @@
          *
          * @param string $format Image format
          */
-        protected function __construct(string $format) {
+        protected function __construct($format) {
             parent::__construct([O::DOT_TAG => $format]);
         }
 
@@ -46,9 +46,9 @@
          * Set the image format to JPEG
          *
          * @author Art <a.molcanovas@gmail.com>
-         * @return ThumbnailFormat
+         * @return self
          */
-        static function jpeg():self {
+        static function jpeg() {
             return new self(static::JPEG);
         }
 
@@ -56,9 +56,9 @@
          * Set the image format to PNG
          *
          * @author Art <a.molcanovas@gmail.com>
-         * @return ThumbnailFormat
+         * @return self
          */
-        static function png():self {
+        static function png() {
             return new self(static::PNG);
         }
 
