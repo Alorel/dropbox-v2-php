@@ -2,6 +2,9 @@
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/alorel/dropbox-v2-php.svg)](http://isitmaintained.com/project/alorel/dropbox-v2-php "Percentage of issues still open")
 [![Build Status](https://travis-ci.org/Alorel/dropbox-v2-php.svg?branch=master)](https://travis-ci.org/Alorel/dropbox-v2-php)
 [![codecov](https://codecov.io/gh/Alorel/dropbox-v2-php/branch/master/graph/badge.svg)](https://codecov.io/gh/Alorel/dropbox-v2-php)
+[![Dependency Status](https://www.versioneye.com/user/projects/5756bd6b7757a0004a1de150/badge.svg)](https://www.versioneye.com/user/projects/5756bd6b7757a0004a1de150)
+[![Reference Status](https://www.versioneye.com/php/alorel:dropbox-v2-php/reference_badge.svg)](https://www.versioneye.com/php/alorel:dropbox-v2-php/references)
+[![HHVM Status](http://hhvm.h4cc.de/badge/alorel/dropbox-v2-php.svg)](http://hhvm.h4cc.de/package/alorel/dropbox-v2-php)
 
 [![Latest Stable Version](https://poser.pugx.org/alorel/dropbox-v2-php/v/stable)](https://packagist.org/packages/alorel/dropbox-v2-php)
 [![Total Downloads](https://poser.pugx.org/alorel/dropbox-v2-php/downloads)](https://packagist.org/packages/alorel/dropbox-v2-php)
@@ -13,14 +16,14 @@ A PHP SDK for Dropbox's v2 API. If you haven't tried Dropbox out yet, [do](https
 
 #Table of Contents
 
- 1. [Requirements](#requirements)
+ 1. [PHP Support](#php-support)
  2. [Installation](#installation)
  3. [Usage](#usage)
  4. [Supported API operations](#supported-api-operations)
  5. [API Documentation](#api-documentation)
 
-#Requirements
-This package requires PHP 7.0+.
+#PHP Support
+This package will run on PHP 5.6 & 7.0. Travis tests have successfully completed on HHVM.
 
 #Installation
 Installation is only available via [Composer](https://getcomposer.org/). Run:

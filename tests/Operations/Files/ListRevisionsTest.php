@@ -35,7 +35,7 @@
         }
 
         /** @dataProvider providerRevisionIncrement */
-        function testRevisionIncrement(int $i) {
+        function testRevisionIncrement($i) {
             self:: $up->raw(self::$fname, (pow(10, $i)), self:: $opt);
             $rsp = json_decode(self::$lr->raw(self::$fname)->getBody()->getContents(), true);
 

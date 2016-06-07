@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Options\Mixins;
 
@@ -24,7 +24,7 @@
          *
          * @return self
          */
-        function setRecursive(bool $set) {
+        function setRecursive($set) {
             $this[Option::RECURSIVE] = $set;
 
             return $this;

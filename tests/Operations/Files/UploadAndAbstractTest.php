@@ -108,7 +108,7 @@
             $this->abstraction($promise->wait(true), $filename, null);
         }
 
-        function abstraction(ResponseInterface $rsp, string $filename, UploadOptions $opts = null) {
+        function abstraction(ResponseInterface $rsp, $filename, UploadOptions $opts = null) {
             $body = json_decode($rsp->getBody()->getContents(), true);
             $this->assertEquals($filename, $body[R::PATH_DISPLAY]);
             $this->assertEquals(strtolower($filename), $body[R::PATH_LOWERCASE]);

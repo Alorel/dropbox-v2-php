@@ -47,7 +47,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function raw(string $path) {
+        function raw($path) {
             return $this->send(self::$map[get_class($this)], $path);
         }
     }

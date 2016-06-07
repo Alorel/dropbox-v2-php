@@ -6,6 +6,7 @@
 
     namespace Alorel\Dropbox\Options;
 
+    use AloFramework\Common\Alo;
     use Alorel\Dropbox\Util;
     use ArrayAccess;
 
@@ -67,7 +68,7 @@
          * @return mixed Can return all value types.
          */
         public function offsetGet($offset) {
-            return $this->options[$offset] ?? null;
+            return Alo::get($this->options[$offset]);
         }
 
         /**
@@ -104,7 +105,7 @@
          *
          * @return Options
          */
-        static function merge(...$options):self {
+        static function merge(...$options) {
             $o = [];
 
             foreach ($options as $opt) {
@@ -124,7 +125,7 @@
          * @author Art <a.molcanovas@gmail.com>
          * @return array
          */
-        function toArray():array {
+        function toArray() {
             return $this->options;
         }
     }

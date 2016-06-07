@@ -24,7 +24,7 @@
          * @param int $width  Thumbnail width
          * @param int $height Thumbnail height
          */
-        function __construct(int $width, int $height) {
+        function __construct($width, $height) {
             parent::__construct([Option::DOT_TAG => 'w' . $width . 'h' . $height]);
         }
 
@@ -32,9 +32,9 @@
          * Make the size 32 pixels wide, 32 pixels height
          *
          * @author Art <a.molcanovas@gmail.com>
-         * @return ThumbnailSize
+         * @return self
          */
-        static function w32h32():self {
+        static function w32h32() {
             return new self(32, 32);
         }
 
@@ -42,9 +42,9 @@
          * Make the size 64 pixels wide, 64 pixels high
          *
          * @author Art <a.molcanovas@gmail.com>
-         * @return ThumbnailSize
+         * @return self
          */
-        static function w64h64():self {
+        static function w64h64() {
             return new self(64, 64);
         }
 
@@ -52,9 +52,9 @@
          * Make the size 128 pixels wide, 128 pixels high
          *
          * @author Art <a.molcanovas@gmail.com>
-         * @return ThumbnailSize
+         * @return self
          */
-        static function w128h128():self {
+        static function w128h128() {
             return new self(128, 128);
         }
 
@@ -62,9 +62,9 @@
          * Make the size 640 pixels wide, 480 pixels high
          *
          * @author Art <a.molcanovas@gmail.com>
-         * @return ThumbnailSize
+         * @return self
          */
-        static function w640h480():self {
+        static function w640h480() {
             return new self(640, 480);
         }
 
@@ -72,9 +72,9 @@
          * Make the size 1024 pixels wide, 768 pixels high
          *
          * @author Art <a.molcanovas@gmail.com>
-         * @return ThumbnailSize
+         * @return self
          */
-        static function w1024h768():self {
+        static function w1024h768() {
             return new self(1024, 768);
         }
 

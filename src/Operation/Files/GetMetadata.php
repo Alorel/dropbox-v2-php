@@ -31,7 +31,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function raw(string $path, GetMetadataOptions $options = null) {
+        function raw($path, GetMetadataOptions $options = null) {
             return $this->send('files/get_metadata', $path, $options);
         }
     }

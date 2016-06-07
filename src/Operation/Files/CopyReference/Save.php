@@ -32,7 +32,7 @@
          *                                                                                  set to false
          * @throws \GuzzleHttp\Exception\ClientException
          */
-        function raw(string $destPath, string $copyReference) {
+        function raw($destPath, $copyReference) {
             return $this->send('files/copy_reference/save',
                                $destPath,
                                new Options([O::COPY_REFERENCE => $copyReference]));

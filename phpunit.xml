@@ -19,17 +19,11 @@
 >
 
     <testsuites>
-        <testsuite name="Parameters">
-            <directory>./tests/Parameters</directory>
+        <testsuite name="SHORT">
+            <directory>./tests/Short</directory>
         </testsuite>
-        <testsuite name="OptionBuilder">
-            <directory>./tests/OptionBuilder</directory>
-        </testsuite>
-        <testsuite name="Files">
+        <testsuite name="FILE_OPS">
             <directory>./tests/Operations/Files</directory>
-        </testsuite>
-        <testsuite name="Misc">
-            <directory>./tests/Misc</directory>
         </testsuite>
     </testsuites>
 
@@ -49,6 +43,7 @@
 
     <php>
         <ini name="allow_url_fopen" value="1"/>
+        <ini name="display_errors" value="stderr"/>
         <ini name="xdebug.auto_trace" value="0"/>
         <ini name="xdebug.cli_color" value="1"/>
         <ini name="xdebug.collect_assignments" value="0"/>

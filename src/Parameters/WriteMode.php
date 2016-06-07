@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Parameters;
 
@@ -56,7 +56,7 @@
          * @param string      $tag The main write mode
          * @param string|null $rev The revision, if updating
          */
-        protected function __construct(string $tag, string $rev = null) {
+        protected function __construct($tag, $rev = null) {
             parent::__construct([
                                     O::DOT_TAG => $tag,
                                     O::UPDATE  => $rev
@@ -69,9 +69,9 @@
          *
          * @author Art <a.molcanovas@gmail.com>
          *
-         * @return WriteMode
+         * @return self
          */
-        static function add():self {
+        static function add() {
             return new self(static::TAG_ADD);
         }
 
@@ -79,9 +79,9 @@
          * Always overwrite the existing file. The autorename strategy is the same as it is for add.
          *
          * @author Art <a.molcanovas@gmail.com>
-         * @return WriteMode
+         * @return self
          */
-        static function overwrite():self {
+        static function overwrite() {
             return new self(static::TAG_OVERWRITE);
         }
 
@@ -94,9 +94,9 @@
          *
          * @param string $rev The "rev" from the description
          *
-         * @return WriteMode
+         * @return self
          */
-        static function update(string $rev):self {
+        static function update($rev) {
             return new self(static::TAG_UPDATE, $rev);
         }
     }

@@ -14,4 +14,3 @@
  - PHPDoc comments are required. **Your pull request will be rejected if the code is not documented**.
 	 - Whilst on the topic, make sure to add `@author` PHPDoc tags to your code so people can contact you personally regarding your code.  
  - Use [generators](https://secure.php.net/manual/en/language.generators.syntax.php) instead of arrays whenever possible - keep that memory footprint as low as possible!
- - Do not bother with compatibility with PHP < 7.0. The project is 7.0+

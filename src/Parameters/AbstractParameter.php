@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Parameters;
 
@@ -44,7 +44,7 @@
          *
          * @return self
          */
-        protected function setArg(string $key, $value) {
+        protected function setArg($key, $value) {
             if ($value !== null) {
                 $this->args[$key] = $value;
             }

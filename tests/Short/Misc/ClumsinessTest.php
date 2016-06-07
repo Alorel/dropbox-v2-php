@@ -39,12 +39,12 @@
             }
 
             /** @dataProvider providerOptionBuilder */
-            function testOptionBuilder(string $class) {
+            function testOptionBuilder($class) {
                 $this->abstractionSubclass(Options::class, $class);
             }
 
             /** @dataProvider providerFilePaths */
-            function testFilePaths(string $class) {
+            function testFilePaths($class) {
                 $rf = new RC($class);
                 $trim = trim(str_replace(self::$BASE_NAMESPACE, '', $rf->getNamespaceName()), '\\');
                 $ns = 'src\\' . $trim . ($trim ? '\\' : '') . $rf->getShortName() . '.php';
@@ -61,7 +61,7 @@
             }
 
             /** @dataProvider providerOptionMixins */
-            function testOptionMixins(string $mixin) {
+            function testOptionMixins($mixin) {
                 $this->assertTrue((new RC($mixin))->isTrait());
             }
 
@@ -70,7 +70,7 @@
             }
 
             /** @dataProvider providerOperationKind */
-            function testOperationKind(string $class) {
+            function testOperationKind($class) {
                 $this->abstractionSubclass(AbstractOperation::class, $class);
             }
 

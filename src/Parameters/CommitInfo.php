@@ -1,8 +1,8 @@
 <?php
     /**
- * Copyright (c) 2016 Alorel, https://github.com/Alorel
- * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
- */
+     * Copyright (c) 2016 Alorel, https://github.com/Alorel
+     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     */
 
     namespace Alorel\Dropbox\Parameters;
 
@@ -41,10 +41,10 @@
          *
          * @see    WriteMode
          */
-        function __construct(string $path,
+        function __construct($path,
                              WriteMode $writeMode = null,
-                             bool $autorename = false,
-                             bool $mute = false,
+                             $autorename = false,
+                             $mute = false,
                              DateTimeInterface $clientModified = null) {
             parent::__construct([
                                     O::PATH            => $path,
