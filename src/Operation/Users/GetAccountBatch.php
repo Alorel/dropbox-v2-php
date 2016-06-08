@@ -9,6 +9,12 @@
     use Alorel\Dropbox\OperationKind\RPCOperation;
     use Alorel\Dropbox\Options\Option;
 
+    /**
+     *Get information about multiple user accounts. At most 300 accounts may be queried per request.
+     *
+     * @author Art <a.molcanovas@gmail.com>
+     * @see    https://www.dropbox.com/developers/documentation/http/documentation#users-get_account_batch
+     */
     class GetAccountBatch extends RPCOperation {
 
         /**

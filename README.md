@@ -121,10 +121,10 @@ Unless specified otherwise, any operation that is not currently supported will b
         - [ ] /update_folder_member
         - [ ] /update_folder_policy
     - Users
-        - [ ] /get_account
-        - [ ] /get_account_batch
+        - [x] /get_account
+        - [x] /get_account_batch
         - [x] /get_current_account
-        - [ ] /get_space_usage
+        - [x] /get_space_usage
  - Business *unable to test due to Dropbox account level*
     - Team
         - [ ] /devices/list_member_devices

@@ -9,6 +9,12 @@
     use Alorel\Dropbox\OperationKind\RPCOperation;
     use Alorel\Dropbox\Options\Option;
 
+    /**
+     * Get information about a user's account.
+     *
+     * @author Art <a.molcanovas@gmail.com>
+     * @see    https://www.dropbox.com/developers/documentation/http/documentation#users-get_account
+     */
     class GetAccount extends RPCOperation {
 
         /**

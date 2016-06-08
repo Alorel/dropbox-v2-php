@@ -10,12 +10,12 @@
     use Alorel\Dropbox\OperationKind\RPCOperation;
 
     /**
-     * Get information about the current user's account.
+     * Get the space usage information for the current user's account.
      *
      * @author Art <a.molcanovas@gmail.com>
-     * @see    https://www.dropbox.com/developers/documentation/http/documentation#users-get_current_account
+     * @see    https://www.dropbox.com/developers/documentation/http/documentation#users-get_space_usage
      */
-    class GetCurrentAccount extends AbstractOperation {
+    class GetSpaceUsage extends AbstractOperation {
 
         /**
          * Perform the operation, returning a promise or raw response object
@@ -30,7 +30,7 @@
         function raw() {
             return $this->sendAbstract(
                 'POST',
-                RPCOperation::HOST . '/' . self::API_VERSION . '/users/get_current_account'
+                RPCOperation::HOST . '/' . self::API_VERSION . '/users/get_space_usage'
             );
         }
     }
