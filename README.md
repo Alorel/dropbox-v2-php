@@ -123,7 +123,7 @@ Unless specified otherwise, any operation that is not currently supported will b
     - Users
         - [ ] /get_account
         - [ ] /get_account_batch
-        - [ ] /get_current_account
+        - [x] /get_current_account
         - [ ] /get_space_usage
  - Business *unable to test due to Dropbox account level*
     - Team
