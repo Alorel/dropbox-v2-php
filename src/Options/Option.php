@@ -28,6 +28,13 @@
         const ACCOUNT_ID = 'account_id';
 
         /**
+         * Account IDs
+         *
+         * @var string
+         */
+        const ACCOUNT_IDS = 'account_ids';
+
+        /**
          * Start index
          *
          * @var string
