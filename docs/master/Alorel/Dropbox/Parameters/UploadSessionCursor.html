@@ -116,8 +116,8 @@
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method___construct">__construct</a>(
-    <abbr title="Alorel\Dropbox\Parameters\string">string</abbr> $sessionID, 
-    <abbr title="Alorel\Dropbox\Parameters\int">int</abbr> $offset)
+                    string $sessionID,
+                    int $offset)
                                             <p>UploadSessionCursor constructor.</p>                </div>
                 <div class="col-md-2"></div>
             </div>
@@ -128,7 +128,7 @@
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_setOffset">setOffset</a>(
-    <abbr title="Alorel\Dropbox\Parameters\int">int</abbr> $offset)
+                    int $offset)
                                             <p>Sets the cursor offset</p>                </div>
                 <div class="col-md-2"></div>
             </div>
@@ -210,8 +210,8 @@ a resource.</td>
         <code>                    
     
     <strong>__construct</strong>(
-    <abbr title="Alorel\Dropbox\Parameters\string">string</abbr> $sessionID, 
-    <abbr title="Alorel\Dropbox\Parameters\int">int</abbr> $offset)</code>
+            string $sessionID,
+            int $offset)</code>
     </h3>
     <div class="details">
                     <div class="method-description">
@@ -222,13 +222,15 @@ a resource.</td>
                     <table class="table table-condensed">
                     <tr>
                 <td>
-    <abbr title="Alorel\Dropbox\Parameters\string">string</abbr></td>
+                    string
+                </td>
                 <td>$sessionID</td>
                 <td>The upload session ID (returned by upload_session/start).</td>
             </tr>
                     <tr>
                 <td>
-    <abbr title="Alorel\Dropbox\Parameters\int">int</abbr></td>
+                    int
+                </td>
                 <td>$offset</td>
                 <td>The amount of data that has been uploaded so far. We use this to make sure upload
                          data isn't lost or duplicated in the event of a network error.</td>
@@ -248,7 +250,7 @@ a resource.</td>
         <code>                    
     <a href="../../../Alorel/Dropbox/Parameters/UploadSessionCursor.html"><abbr title="Alorel\Dropbox\Parameters\UploadSessionCursor">UploadSessionCursor</abbr></a>
     <strong>setOffset</strong>(
-    <abbr title="Alorel\Dropbox\Parameters\int">int</abbr> $offset)</code>
+            int $offset)</code>
     </h3>
     <div class="details">
                     <div class="method-description">
@@ -259,7 +261,8 @@ a resource.</td>
                     <table class="table table-condensed">
                     <tr>
                 <td>
-    <abbr title="Alorel\Dropbox\Parameters\int">int</abbr></td>
+                    int
+                </td>
                 <td>$offset</td>
                 <td>The offset</td>
             </tr>

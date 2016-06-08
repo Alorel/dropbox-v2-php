@@ -139,7 +139,27 @@ get 410 Gone. Content-Type of the link is determined automatically by the file's
                     <dd>Get the file's thumbnail</dd><dt><a href="Alorel/Dropbox/Operation/Files/ListFolder/GetLatestCursor.html"><abbr title="Alorel\Dropbox\Operation\Files\ListFolder\GetLatestCursor">GetLatestCursor</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Operation/Files/ListFolder.html">Alorel\Dropbox\Operation\Files\ListFolder</a></em></dt>
                     <dd>A way to quickly get a cursor for the folder's state. Unlike list<em>folder, list</em>folder/get<em>latest</em>cursor
 doesn't return any entries. This endpoint is for app which only needs to know about new files and
-modifications and doesn't need to know about files that already exist in Dropbox.</dd><dt><a href="Alorel/Dropbox/Options/Builder/GetMetadataOptions.html"><abbr title="Alorel\Dropbox\Options\Builder\GetMetadataOptions">GetMetadataOptions</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Options/Builder.html">Alorel\Dropbox\Options\Builder</a></em></dt>
+                        modifications and doesn't need to know about files that already exist in Dropbox.
+                    </dd>
+            <dt><a href="Alorel/Dropbox/Operation/Users/GetAccount.html"><abbr
+                    title="Alorel\Dropbox\Operation\Users\GetAccount">GetAccount</abbr></a> &mdash; <em>Class in
+                namespace <a href="Alorel/Dropbox/Operation/Users.html">Alorel\Dropbox\Operation\Users</a></em></dt>
+            <dd>Get information about a user's account.</dd>
+            <dt><a href="Alorel/Dropbox/Operation/Users/GetAccountBatch.html"><abbr
+                    title="Alorel\Dropbox\Operation\Users\GetAccountBatch">GetAccountBatch</abbr></a> &mdash; <em>Class
+                in namespace <a href="Alorel/Dropbox/Operation/Users.html">Alorel\Dropbox\Operation\Users</a></em></dt>
+            <dd>Get information about multiple user accounts. At most 300 accounts may be queried per request.</dd>
+            <dt><a href="Alorel/Dropbox/Operation/Users/GetCurrentAccount.html"><abbr
+                    title="Alorel\Dropbox\Operation\Users\GetCurrentAccount">GetCurrentAccount</abbr></a> &mdash; <em>Class
+                in namespace <a href="Alorel/Dropbox/Operation/Users.html">Alorel\Dropbox\Operation\Users</a></em></dt>
+            <dd>Get information about the current user's account.</dd>
+            <dt><a href="Alorel/Dropbox/Operation/Users/GetSpaceUsage.html"><abbr
+                    title="Alorel\Dropbox\Operation\Users\GetSpaceUsage">GetSpaceUsage</abbr></a> &mdash; <em>Class in
+                namespace <a href="Alorel/Dropbox/Operation/Users.html">Alorel\Dropbox\Operation\Users</a></em></dt>
+            <dd>Get the space usage information for the current user's account.</dd>
+            <dt><a href="Alorel/Dropbox/Options/Builder/GetMetadataOptions.html"><abbr
+                    title="Alorel\Dropbox\Options\Builder\GetMetadataOptions">GetMetadataOptions</abbr></a> &mdash; <em>Class
+                in namespace <a href="Alorel/Dropbox/Options/Builder.html">Alorel\Dropbox\Options\Builder</a></em></dt>
                     <dd>Additional options for the GetMetadata operation</dd><dt><a href="Alorel/Dropbox/Options/Builder/GetThumbnailOptions.html"><abbr title="Alorel\Dropbox\Options\Builder\GetThumbnailOptions">GetThumbnailOptions</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Options/Builder.html">Alorel\Dropbox\Options\Builder</a></em></dt>
                     <dd>Options for the get_thumbnail operation</dd>        </dl><h2 id="letterI">I</h2>
         <dl id="index"><dt><a href="Alorel/Dropbox/Operation/AbstractOperation.html#method_isAsync"><abbr title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr>::isAsync</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Operation/AbstractOperation.html"><abbr title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a></em></dt>
@@ -206,6 +226,26 @@ notification. The default for this field is False.</dd><dt><a href="Alorel/Dropb
                     <dd>Perform the operation, returning a promise or raw response object</dd><dt><a href="Alorel/Dropbox/Operation/Files/UploadSession/Append.html#method_raw"><abbr title="Alorel\Dropbox\Operation\Files\UploadSession\Append">Append</abbr>::raw</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Operation/Files/UploadSession/Append.html"><abbr title="Alorel\Dropbox\Operation\Files\UploadSession\Append">Append</abbr></a></em></dt>
                     <dd>Perform the operation, returning a promise or raw response object</dd><dt><a href="Alorel/Dropbox/Operation/Files/UploadSession/Finish.html#method_raw"><abbr title="Alorel\Dropbox\Operation\Files\UploadSession\Finish">Finish</abbr>::raw</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Operation/Files/UploadSession/Finish.html"><abbr title="Alorel\Dropbox\Operation\Files\UploadSession\Finish">Finish</abbr></a></em></dt>
                     <dd>Perform the operation, returning a promise or raw response object</dd><dt><a href="Alorel/Dropbox/Operation/Files/UploadSession/Start.html#method_raw"><abbr title="Alorel\Dropbox\Operation\Files\UploadSession\Start">Start</abbr>::raw</a>() &mdash; <em>Method in class <a href="Alorel/Dropbox/Operation/Files/UploadSession/Start.html"><abbr title="Alorel\Dropbox\Operation\Files\UploadSession\Start">Start</abbr></a></em></dt>
+            <dd>Perform the operation, returning a promise or raw response object</dd>
+            <dt><a href="Alorel/Dropbox/Operation/Users/GetAccount.html#method_raw"><abbr
+                    title="Alorel\Dropbox\Operation\Users\GetAccount">GetAccount</abbr>::raw</a>() &mdash; <em>Method in
+                class <a href="Alorel/Dropbox/Operation/Users/GetAccount.html"><abbr
+                        title="Alorel\Dropbox\Operation\Users\GetAccount">GetAccount</abbr></a></em></dt>
+            <dd>Perform the operation, returning a promise or raw response object</dd>
+            <dt><a href="Alorel/Dropbox/Operation/Users/GetAccountBatch.html#method_raw"><abbr
+                    title="Alorel\Dropbox\Operation\Users\GetAccountBatch">GetAccountBatch</abbr>::raw</a>() &mdash;
+                <em>Method in class <a href="Alorel/Dropbox/Operation/Users/GetAccountBatch.html"><abbr
+                        title="Alorel\Dropbox\Operation\Users\GetAccountBatch">GetAccountBatch</abbr></a></em></dt>
+            <dd>Perform the operation, returning a promise or raw response object</dd>
+            <dt><a href="Alorel/Dropbox/Operation/Users/GetCurrentAccount.html#method_raw"><abbr
+                    title="Alorel\Dropbox\Operation\Users\GetCurrentAccount">GetCurrentAccount</abbr>::raw</a>() &mdash;
+                <em>Method in class <a href="Alorel/Dropbox/Operation/Users/GetCurrentAccount.html"><abbr
+                        title="Alorel\Dropbox\Operation\Users\GetCurrentAccount">GetCurrentAccount</abbr></a></em></dt>
+            <dd>Perform the operation, returning a promise or raw response object</dd>
+            <dt><a href="Alorel/Dropbox/Operation/Users/GetSpaceUsage.html#method_raw"><abbr
+                    title="Alorel\Dropbox\Operation\Users\GetSpaceUsage">GetSpaceUsage</abbr>::raw</a>() &mdash; <em>Method
+                in class <a href="Alorel/Dropbox/Operation/Users/GetSpaceUsage.html"><abbr
+                        title="Alorel\Dropbox\Operation\Users\GetSpaceUsage">GetSpaceUsage</abbr></a></em></dt>
                     <dd>Perform the operation, returning a promise or raw response object</dd><dt><a href="Alorel/Dropbox/Options/Mixins/RecursiveTrait.html"><abbr title="Alorel\Dropbox\Options\Mixins\RecursiveTrait">RecursiveTrait</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Options/Mixins.html">Alorel\Dropbox\Options\Mixins</a></em></dt>
                     <dd>If true, the operation will apply to all subfolders, too. The default value is false.</dd><dt><a href="Alorel/Dropbox/Response/ResponseAttribute.html"><abbr title="Alorel\Dropbox\Response\ResponseAttribute">ResponseAttribute</abbr></a> &mdash; <em>Class in namespace <a href="Alorel/Dropbox/Response.html">Alorel\Dropbox\Response</a></em></dt>
                     <dd>Response attributes</dd>        </dl><h2 id="letterS">S</h2>

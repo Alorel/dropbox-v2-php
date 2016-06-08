@@ -116,10 +116,10 @@
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method___construct">__construct</a>(
-    <abbr title="Alorel\Dropbox\Parameters\string">string</abbr> $path, 
-    <a href="../../../Alorel/Dropbox/Parameters/WriteMode.html"><abbr title="Alorel\Dropbox\Parameters\WriteMode">WriteMode</abbr></a> $writeMode = null, 
-    <abbr title="Alorel\Dropbox\Parameters\bool">bool</abbr> $autorename = false, 
-    <abbr title="Alorel\Dropbox\Parameters\bool">bool</abbr> $mute = false, 
+                    string $path,
+    <a href="../../../Alorel/Dropbox/Parameters/WriteMode.html"><abbr title="Alorel\Dropbox\Parameters\WriteMode">WriteMode</abbr></a> $writeMode = null,
+                    bool $autorename = false,
+                    bool $mute = false,
     <a target="_blank" href="http://php.net/DateTimeInterface">DateTimeInterface</a> $clientModified = null)
                                             <p>CommitInfo constructor.</p>                </div>
                 <div class="col-md-2"></div>
@@ -202,10 +202,10 @@ a resource.</td>
         <code>                    
     
     <strong>__construct</strong>(
-    <abbr title="Alorel\Dropbox\Parameters\string">string</abbr> $path, 
-    <a href="../../../Alorel/Dropbox/Parameters/WriteMode.html"><abbr title="Alorel\Dropbox\Parameters\WriteMode">WriteMode</abbr></a> $writeMode = null, 
-    <abbr title="Alorel\Dropbox\Parameters\bool">bool</abbr> $autorename = false, 
-    <abbr title="Alorel\Dropbox\Parameters\bool">bool</abbr> $mute = false, 
+            string $path,
+    <a href="../../../Alorel/Dropbox/Parameters/WriteMode.html"><abbr title="Alorel\Dropbox\Parameters\WriteMode">WriteMode</abbr></a> $writeMode = null,
+            bool $autorename = false,
+            bool $mute = false,
     <a target="_blank" href="http://php.net/DateTimeInterface">DateTimeInterface</a> $clientModified = null)</code>
     </h3>
     <div class="details">
@@ -217,7 +217,8 @@ a resource.</td>
                     <table class="table table-condensed">
                     <tr>
                 <td>
-    <abbr title="Alorel\Dropbox\Parameters\string">string</abbr></td>
+                    string
+                </td>
                 <td>$path</td>
                 <td>Path in the user's Dropbox to save the file.</td>
             </tr>
@@ -230,7 +231,8 @@ a resource.</td>
             </tr>
                     <tr>
                 <td>
-    <abbr title="Alorel\Dropbox\Parameters\bool">bool</abbr></td>
+                    bool
+                </td>
                 <td>$autorename</td>
                 <td>If there's a conflict, as determined by mode, have the Dropbox
                                               server try to autorename the file to avoid conflict. The default
@@ -238,7 +240,8 @@ a resource.</td>
             </tr>
                     <tr>
                 <td>
-    <abbr title="Alorel\Dropbox\Parameters\bool">bool</abbr></td>
+                    bool
+                </td>
                 <td>$mute</td>
                 <td>Normally, users are made aware of any file modifications in their
                                               Dropbox account via notifications in the client software. If

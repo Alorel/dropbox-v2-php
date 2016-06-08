@@ -35,7 +35,7 @@
 
         <div id="api-tree"></div>
 
-    </div>
+        </div>
     <div id="right-column">
         <nav id="site-nav" class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
@@ -47,7 +47,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="../../../../../index.html">Dropbox v2 PHP SDK</a>
-                </div>
+            </div>
                 <div class="collapse navbar-collapse" id="navbar-elements">
                     <ul class="nav navbar-nav">
                         <li><a href="../../../../../classes.html">Classes</a></li>
@@ -120,7 +120,7 @@
                     <div class="col-md-8 type">
                         <a href="#method___construct">__construct</a>(
                         bool $async = null,
-                        <abbr title="Alorel\Dropbox\Operation\string">string</abbr> $accessToken = null)
+                        string $accessToken = null)
                         <p>Operation constructor.</p></div>
                     <div class="col-md-2">
                         <small>from&nbsp;<a
@@ -131,11 +131,11 @@
                 <div class="row">
                     <div class="col-md-2 type">
                         static&nbsp;
-
-                    </div>
+    
+                </div>
                     <div class="col-md-8 type">
                         <a href="#method_setDefaultToken">setDefaultToken</a>(
-                        <abbr title="Alorel\Dropbox\Operation\string">string</abbr> $token)
+                        string $token)
                         <p>Sets the default token to use with the constructor</p></div>
                     <div class="col-md-2">
                         <small>from&nbsp;<a
@@ -147,7 +147,7 @@
                     <div class="col-md-2 type">
 
                         boolean
-                    </div>
+                </div>
                     <div class="col-md-8 type">
                         <a href="#method_isAsync">isAsync</a>()
                         <p>Return whether we're operating in async mode</p></div>
@@ -162,10 +162,10 @@
 
                         <a href="../../../../../Alorel/Dropbox/Operation/AbstractOperation.html"><abbr
                                 title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a>
-                    </div>
+                </div>
                     <div class="col-md-8 type">
                         <a href="#method_setAsync">setAsync</a>(
-                        <abbr title="Alorel\Dropbox\Operation\bool">bool</abbr> $async)
+                        bool $async)
                         <p>Sets the sync/async operation mode</p></div>
                     <div class="col-md-2">
                         <small>from&nbsp;<a
@@ -176,11 +176,11 @@
                 <div class="row">
                     <div class="col-md-2 type">
                         static&nbsp;
-
-                    </div>
+    
+                </div>
                     <div class="col-md-8 type">
                         <a href="#method_setDefaultAsync">setDefaultAsync</a>(
-                        <abbr title="Alorel\Dropbox\Operation\bool">bool</abbr> $async)
+                        bool $async)
                         <p>Sets the default $async value for the constructor</p></div>
                     <div class="col-md-2">
                         <small>from&nbsp;<a
@@ -193,13 +193,13 @@
 
                         <abbr title="GuzzleHttp\Promise\PromiseInterface">PromiseInterface</abbr>|<abbr
                             title="Psr\Http\Message\ResponseInterface">ResponseInterface</abbr>
-                    </div>
+                </div>
                     <div class="col-md-8 type">
                         <a href="#method_raw">raw</a>(
-                        <abbr title="Alorel\Dropbox\Operation\Files\SaveUrl\string">string</abbr> $jobID)
+                        string $jobID)
                         <p>Perform the operation, returning a promise or raw response object</p></div>
                     <div class="col-md-2"></div>
-                </div>
+            </div>
             </div>
 
 
@@ -211,13 +211,13 @@
                         <div class="location">in <a
                                 href="../../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method___construct"><abbr
                                 title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a> at line
-                            line 81
+                            line 82
                         </div>
                         <code>
 
                             <strong>__construct</strong>(
                             bool $async = null,
-                            <abbr title="Alorel\Dropbox\Operation\string">string</abbr> $accessToken = null)</code>
+                            string $accessToken = null)</code>
                     </h3>
                     <div class="details">
                         <div class="method-description">
@@ -235,7 +235,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <abbr title="Alorel\Dropbox\Operation\string">string</abbr></td>
+                                        string
+                                    </td>
                                     <td>$accessToken</td>
                                     <td>Our access token</td>
                                 </tr>
@@ -266,12 +267,12 @@
                         <div class="location">in <a
                                 href="../../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method_setDefaultToken"><abbr
                                 title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a> at line
-                            line 101
+                            line 102
                         </div>
                         <code>final static
 
                             <strong>setDefaultToken</strong>(
-                            <abbr title="Alorel\Dropbox\Operation\string">string</abbr> $token)</code>
+                            string $token)</code>
                     </h3>
                     <div class="details">
                         <div class="method-description">
@@ -282,7 +283,8 @@
                             <table class="table table-condensed">
                                 <tr>
                                     <td>
-                                        <abbr title="Alorel\Dropbox\Operation\string">string</abbr></td>
+                                        string
+                                    </td>
                                     <td>$token</td>
                                     <td>The token</td>
                                 </tr>
@@ -298,7 +300,7 @@
                         <div class="location">in <a
                                 href="../../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method_isAsync"><abbr
                                 title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a> at line
-                            line 121
+                            line 122
                         </div>
                         <code>
                             boolean
@@ -330,13 +332,13 @@
                         <div class="location">in <a
                                 href="../../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method_setAsync"><abbr
                                 title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a> at line
-                            line 134
+                            line 135
                         </div>
                         <code>final
                             <a href="../../../../../Alorel/Dropbox/Operation/AbstractOperation.html"><abbr
                                     title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a>
                             <strong>setAsync</strong>(
-                            <abbr title="Alorel\Dropbox\Operation\bool">bool</abbr> $async)</code>
+                            bool $async)</code>
                     </h3>
                     <div class="details">
                         <div class="method-description">
@@ -347,7 +349,8 @@
                             <table class="table table-condensed">
                                 <tr>
                                     <td>
-                                        <abbr title="Alorel\Dropbox\Operation\bool">bool</abbr></td>
+                                        bool
+                                    </td>
                                     <td>$async</td>
                                     <td>true to perform operations in async mode, false to perform them in sync</td>
                                 </tr>
@@ -376,12 +379,12 @@
                         <div class="location">in <a
                                 href="../../../../../Alorel/Dropbox/Operation/AbstractOperation.html#method_setDefaultAsync"><abbr
                                 title="Alorel\Dropbox\Operation\AbstractOperation">AbstractOperation</abbr></a> at line
-                            line 148
+                            line 149
                         </div>
                         <code>final static
 
                             <strong>setDefaultAsync</strong>(
-                            <abbr title="Alorel\Dropbox\Operation\bool">bool</abbr> $async)</code>
+                            bool $async)</code>
                     </h3>
                     <div class="details">
                         <div class="method-description">
@@ -392,7 +395,8 @@
                             <table class="table table-condensed">
                                 <tr>
                                     <td>
-                                        <abbr title="Alorel\Dropbox\Operation\bool">bool</abbr></td>
+                                        bool
+                                    </td>
                                     <td>$async</td>
                                     <td>The default async value</td>
                                 </tr>
@@ -410,7 +414,7 @@
                             <abbr title="GuzzleHttp\Promise\PromiseInterface">PromiseInterface</abbr>|<abbr
                                 title="Psr\Http\Message\ResponseInterface">ResponseInterface</abbr>
                             <strong>raw</strong>(
-                            <abbr title="Alorel\Dropbox\Operation\Files\SaveUrl\string">string</abbr> $jobID)</code>
+                            string $jobID)</code>
                     </h3>
                     <div class="details">
                         <div class="method-description">
@@ -421,7 +425,8 @@
                             <table class="table table-condensed">
                                 <tr>
                                     <td>
-                                        <abbr title="Alorel\Dropbox\Operation\Files\SaveUrl\string">string</abbr></td>
+                                        string
+                                    </td>
                                     <td>$jobID</td>
                                     <td>The asynchronous job ID</td>
                                 </tr>
@@ -457,7 +462,7 @@
                         </div>
                     </div>
 
-                </div>
+            </div>
             </div>
 
 
@@ -466,8 +471,8 @@
             Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
         </div>
 
+        </div>
     </div>
-</div>
 </body>
 
 </html>

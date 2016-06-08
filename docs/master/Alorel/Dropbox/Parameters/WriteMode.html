@@ -176,7 +176,7 @@ example, "document.txt" might become "document (2).txt".</p>                </di
                 </div>
                 <div class="col-md-8 type">
                     <a href="#method_update">update</a>(
-    <abbr title="Alorel\Dropbox\Parameters\string">string</abbr> $rev)
+                    string $rev)
                                             <p>Overwrite if the given "rev" matches the existing file's "rev". The autorename strategy is to append the
 string "conflicted copy" to the file name. For example, "document.txt" might become "document (conflicted
 copy).txt" or "document (Panda's conflicted copy).txt".</p>                </div>
@@ -317,7 +317,7 @@ example, "document.txt" might become "document (2).txt".</p>                    
         <code>        static            
     <a href="../../../Alorel/Dropbox/Parameters/WriteMode.html"><abbr title="Alorel\Dropbox\Parameters\WriteMode">WriteMode</abbr></a>
     <strong>update</strong>(
-    <abbr title="Alorel\Dropbox\Parameters\string">string</abbr> $rev)</code>
+            string $rev)</code>
     </h3>
     <div class="details">
                     <div class="method-description">
@@ -330,7 +330,8 @@ copy).txt" or "document (Panda's conflicted copy).txt".</p>                     
                     <table class="table table-condensed">
                     <tr>
                 <td>
-    <abbr title="Alorel\Dropbox\Parameters\string">string</abbr></td>
+                    string
+                </td>
                 <td>$rev</td>
                 <td>The "rev" from the description</td>
             </tr>
