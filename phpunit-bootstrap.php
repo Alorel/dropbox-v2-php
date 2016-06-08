@@ -269,22 +269,24 @@
         use StartTrait;
     }
 
-    /**
-     * TestWrapper
-     *
-     * @author Art <a.molcanovas@gmail.com>
-     */
-    class DBTestCase extends \PHPUnit_Framework_TestCase {
+    if (class_exists('\PHPUnit_Framework_TestCase')) {
+        /**
+         * TestWrapper
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         */
+        class DBTestCase extends \PHPUnit_Framework_TestCase {
 
-        private $getClass;
+            private $getClass;
 
-        function __construct($name = null, array $data = [], $dataName = '') {
-            parent::__construct($name, $data, $dataName);
-            $this->getClass = get_class($this);
-        }
+            function __construct($name = null, array $data = [], $dataName = '') {
+                parent::__construct($name, $data, $dataName);
+                $this->getClass = get_class($this);
+            }
 
-        /** @before */
-        public final function _beforeAnnounceTest() {
-            fwrite(STDOUT, PHP_EOL . 'Running ' . $this->getClass . '::' . $this->getName(true));
+            /** @before */
+            public final function _beforeAnnounceTest() {
+                fwrite(STDOUT, PHP_EOL . 'Running ' . $this->getClass . '::' . $this->getName(true));
+            }
         }
     }
