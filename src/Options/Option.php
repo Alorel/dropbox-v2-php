@@ -21,6 +21,13 @@
         const COPY_REFERENCE = 'copy_reference';
 
         /**
+         * Account ID
+         *
+         * @var string
+         */
+        const ACCOUNT_ID = 'account_id';
+
+        /**
          * Start index
          *
          * @var string
