@@ -11,3 +11,4 @@
 /sami.php export-ignore
 /.php.travis.ini export-ignore
 /CONTRIBUTING.md export-ignore
+/examples export-ignore
