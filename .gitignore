@@ -6,3 +6,4 @@
 /.sami-cache
 /coverage
 /examples/*.php
+/CHANGELOG.md
