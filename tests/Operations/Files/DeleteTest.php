@@ -15,7 +15,6 @@
     use Alorel\Dropbox\Response\ResponseAttribute as R;
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
-    use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
     /**
@@ -29,43 +28,38 @@
         /** @dataProvider providerDelete */
         function testDelete($class) {
             $filename = self::genFileName();
-            try {
-                (new Upload())->raw($filename, '.');
-                $options = (new GetMetadataOptions())->setIncludeDeleted(true);
-                $meta = new GetMetadata();
+            (new Upload())->raw($filename, '.');
+            $options = (new GetMetadataOptions())->setIncludeDeleted(true);
+            $meta = new GetMetadata();
 
-                $this->assertEquals('file',
+            $this->assertEquals('file',
+                                json_decode(
+                                    $meta->raw($filename, $options)->getBody()->getContents(),
+                                    true
+                                )[R::DOT_TAG]);
+
+            /** @var SingleArgumentRPCOperation $obj */
+            $obj = new $class();
+            if ($class === Delete::class) {
+                $obj->raw($filename);
+                $this->assertEquals('deleted',
                                     json_decode(
                                         $meta->raw($filename, $options)->getBody()->getContents(),
                                         true
                                     )[R::DOT_TAG]);
-
-                /** @var SingleArgumentRPCOperation $obj */
-                $obj = new $class();
-                if ($class === Delete::class) {
+            } else {
+                try {
                     $obj->raw($filename);
-                    $this->assertEquals('deleted',
-                                        json_decode(
-                                            $meta->raw($filename, $options)->getBody()->getContents(),
-                                            true
-                                        )[R::DOT_TAG]);
-                } else {
-                    try {
-                        $obj->raw($filename);
 
-                        $this->expectException(ClientException::class);
-                        $this->expectExceptionCode(409);
-                        $meta->raw($filename, $options)->getBody()->getContents();
-                    } catch (ClientException $e) {
-                        $class = (new \ReflectionClass($class))->getShortName();
-                        fwrite(STDERR,
-                               PHP_EOL . 'Failed to ' . $class . ' (most likely due to API permissions): '
-                               . $e->getMessage() . PHP_EOL);
-                    }
+                    $this->expectException(ClientException::class);
+                    $this->expectExceptionCode(409);
+                    $meta->raw($filename, $options)->getBody()->getContents();
+                } catch (ClientException $e) {
+                    $class = (new \ReflectionClass($class))->getShortName();
+                    fwrite(STDERR,
+                           PHP_EOL . 'Failed to ' . $class . ' (most likely due to API permissions): '
+                           . $e->getMessage() . PHP_EOL);
                 }
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
             }
         }
 

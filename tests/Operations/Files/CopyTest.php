@@ -12,8 +12,6 @@
     use Alorel\Dropbox\Response\ResponseAttribute as R;
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
-    use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
 
     /**
      * @sleepTime  5
@@ -27,17 +25,12 @@
             $dest = self::genFileName();
             $meta = new GetMetadata();
 
-            try {
-                (new Upload())->raw($src, __METHOD__);
-                (new Copy())->raw($src, $dest);
+            (new Upload())->raw($src, __METHOD__);
+            (new Copy())->raw($src, $dest);
 
-                $this->assertEquals(
-                    json_decode($meta->raw($src)->getBody()->getContents(), true)[R::SIZE],
-                    json_decode($meta->raw($dest)->getBody()->getContents(), true)[R::SIZE]
-                );
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $this->assertEquals(
+                json_decode($meta->raw($src)->getBody()->getContents(), true)[R::SIZE],
+                json_decode($meta->raw($dest)->getBody()->getContents(), true)[R::SIZE]
+            );
         }
     }

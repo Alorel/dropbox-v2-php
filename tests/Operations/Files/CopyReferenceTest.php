@@ -12,8 +12,6 @@
     use Alorel\Dropbox\Response\ResponseAttribute as R;
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
-    use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
 
     /**
      * @sleepTime  5
@@ -25,22 +23,16 @@
         /** @large */
         function testCopyReference() {
             $src = self::genFileName();
+            (new Upload())->raw($src, __METHOD__);
+            $dst = self::genFileName();
 
-            try {
-                (new Upload())->raw($src, __METHOD__);
-                $dst = self::genFileName();
+            $r1 = json_decode((new Get())->raw($src)->getBody()->getContents(), true);
+            $copyRef = $r1[R::COPY_REFERENCE];
 
-                $r1 = json_decode((new Get())->raw($src)->getBody()->getContents(), true);
-                $copyRef = $r1[R::COPY_REFERENCE];
+            $this->assertTrue(is_string($copyRef));
 
-                $this->assertTrue(is_string($copyRef));
+            $r2 = json_decode((new Save())->raw($dst, $r1[R::COPY_REFERENCE])->getBody()->getContents(), true);
 
-                $r2 = json_decode((new Save())->raw($dst, $r1[R::COPY_REFERENCE])->getBody()->getContents(), true);
-
-                $this->assertEquals($r1[R::METADATA][R::SIZE], $r2[R::METADATA][R::SIZE]);
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $this->assertEquals($r1[R::METADATA][R::SIZE], $r2[R::METADATA][R::SIZE]);
         }
     }
