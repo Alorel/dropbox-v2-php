@@ -35,5 +35,10 @@
   "require-dev": {
     "raveren/kint": "^1.0",
     "alorel/phpunit-auto-rerun": "^0.1"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-dev-retriable-tests": "0.3.3-dev"
+    }
   }
 }
