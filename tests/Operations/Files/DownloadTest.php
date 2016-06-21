@@ -10,8 +10,6 @@
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
-    use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
 
     /**
      * @sleepTime  5
@@ -23,16 +21,11 @@
 
         function testDownload() {
             $fn = self::genFileName();
-            try {
-                (new Upload())->raw($fn, fopen(__FILE__, 'r'));
-                $r = (new Download())->raw($fn);
+            (new Upload())->raw($fn, fopen(__FILE__, 'r'));
+            $r = (new Download())->raw($fn);
 
-                $this->assertEquals(filesize(__FILE__), $r->getHeaderLine('content-length'));
-                $this->assertEquals('application/octet-stream', $r->getHeaderLine('content-type'));
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $this->assertEquals(filesize(__FILE__), $r->getHeaderLine('content-length'));
+            $this->assertEquals('application/octet-stream', $r->getHeaderLine('content-type'));
         }
 
     }

@@ -12,7 +12,6 @@
     use Alorel\Dropbox\Response\ResponseAttribute as R;
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
-    use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
     /**
@@ -31,19 +30,14 @@
         function testMove() {
             $dest = self::genFileName();
 
-            try {
-                $srcSize =
-                    json_decode((new Upload())->raw(self::$src, __METHOD__)->getBody()->getContents(), true)[R::SIZE];
-                (new Move())->raw(self::$src, $dest);
+            $srcSize =
+                json_decode((new Upload())->raw(self::$src, __METHOD__)->getBody()->getContents(), true)[R::SIZE];
+            (new Move())->raw(self::$src, $dest);
 
-                $this->assertEquals(
-                    $srcSize,
-                    json_decode((new GetMetadata())->raw($dest)->getBody()->getContents(), true)[R::SIZE]
-                );
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $this->assertEquals(
+                $srcSize,
+                json_decode((new GetMetadata())->raw($dest)->getBody()->getContents(), true)[R::SIZE]
+            );
         }
 
         /** @depends testMove */

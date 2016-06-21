@@ -12,7 +12,6 @@
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
     use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
 
     /**
      * @sleepTime  5
@@ -36,33 +35,28 @@
 
         /** @large */
         function testTheThing() {
-            try {
-                $request = json_decode((new SaveURL())->raw(self::$fn, self::URL)->getBody()->getContents(), true);
-                $check = new CheckJobStatus();
-                sleep(1);
+            $request = json_decode((new SaveURL())->raw(self::$fn, self::URL)->getBody()->getContents(), true);
+            $check = new CheckJobStatus();
+            sleep(1);
 
-                $this->assertTrue(isset($request['complete']) || isset($request['async_job_id']));
+            $this->assertTrue(isset($request['complete']) || isset($request['async_job_id']));
 
-                if (isset($request['complete'])) {
-                    $this->assertResponse($request);
-                } else {
-                    do {
-                        if (isset($s)) {
-                            sleep(1);
-                        }
-                        $s = json_decode($check->raw($request['async_job_id'])->getBody()->getContents(), true);
-                    } while (isset($s[R::DOT_TAG]) && $s[R::DOT_TAG] == 'in_progress');
-
-                    if ($s[R::DOT_TAG] === 'complete') {
-                        $this->assertResponse($s);
-                    } else {
-                        TestUtil::err('Failed to SaveURL. self::$URL=' . self::URL);
-                        d($s);
+            if (isset($request['complete'])) {
+                $this->assertResponse($request);
+            } else {
+                do {
+                    if (isset($s)) {
+                        sleep(1);
                     }
+                    $s = json_decode($check->raw($request['async_job_id'])->getBody()->getContents(), true);
+                } while (isset($s[R::DOT_TAG]) && $s[R::DOT_TAG] == 'in_progress');
+
+                if ($s[R::DOT_TAG] === 'complete') {
+                    $this->assertResponse($s);
+                } else {
+                    TestUtil::err('Failed to SaveURL. self::$URL=' . self::URL);
+                    d($s);
                 }
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
             }
         }
     }

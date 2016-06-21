@@ -14,8 +14,6 @@
     use Alorel\Dropbox\Response\ResponseAttribute as R;
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
-    use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
 
     /**
      * @sleepTime  5
@@ -28,25 +26,20 @@
         function testGetMetadata() {
             $filename = self::genFileName();
             $dt = new \DateTime('2001-01-01');
-            try {
-                (new Upload())->raw($filename, __METHOD__, (new UploadOptions())->setClientModified($dt));
-                $meta = json_decode(
-                    (new GetMetadata())->raw(
-                        $filename,
-                        (new GetMetadataOptions())->setIncludeHasExplicitSharedMembers(true)
-                    )->getBody()->getContents(),
-                    true
-                );
+            (new Upload())->raw($filename, __METHOD__, (new UploadOptions())->setClientModified($dt));
+            $meta = json_decode(
+                (new GetMetadata())->raw(
+                    $filename,
+                    (new GetMetadataOptions())->setIncludeHasExplicitSharedMembers(true)
+                )->getBody()->getContents(),
+                true
+            );
 
-                $this->assertEquals('file', $meta[R::DOT_TAG]);
-                $this->assertEquals($filename, $meta[R::PATH_DISPLAY]);
-                $this->assertEquals(strtolower($filename), $meta[R::PATH_LOWERCASE]);
-                $this->assertEquals($dt->format(Options::DATETIME_FORMAT), $meta[R::CLIENT_MODIFIED]);
-                $this->assertEquals(strlen(__METHOD__), $meta[R::SIZE]);
-                $this->assertTrue(is_bool($meta[R::HAS_EXPLICIT_SHARED_MEMBERS]));
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $this->assertEquals('file', $meta[R::DOT_TAG]);
+            $this->assertEquals($filename, $meta[R::PATH_DISPLAY]);
+            $this->assertEquals(strtolower($filename), $meta[R::PATH_LOWERCASE]);
+            $this->assertEquals($dt->format(Options::DATETIME_FORMAT), $meta[R::CLIENT_MODIFIED]);
+            $this->assertEquals(strlen(__METHOD__), $meta[R::SIZE]);
+            $this->assertTrue(is_bool($meta[R::HAS_EXPLICIT_SHARED_MEMBERS]));
         }
     }

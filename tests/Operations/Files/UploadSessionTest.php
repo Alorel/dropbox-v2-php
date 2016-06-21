@@ -14,8 +14,6 @@
     use Alorel\Dropbox\Response\ResponseAttribute as R;
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
-    use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
 
     /**
      * @sleepTime  5
@@ -31,38 +29,34 @@
                 '789' => 6,
                 '!'   => 9
             ];
-            try {
-                $sessionID = json_decode(
-                                 (new Start())->raw()->getBody()->getContents(),
-                                 true
-                             )[R::SESSION_ID];
 
-                $append = new Append();
-                $lastOffset = $chunks[array_keys($chunks)[count($chunks) - 1]];
-                $cursor = new UploadSessionCursor($sessionID);
+            $sessionID = json_decode(
+                             (new Start())->raw()->getBody()->getContents(),
+                             true
+                         )[R::SESSION_ID];
 
-                foreach ($chunks as $data => $offset) {
-                    $cursor->setOffset($offset);
-                    $filename = self::genFileName();
-                    if ($offset == $lastOffset) {
-                        $r = (new Finish())
-                            ->raw(
-                                $data,
-                                $cursor,
-                                new CommitInfo($filename)
-                            );
-                        $r = json_decode($r->getBody()->getContents(), true);
+            $append = new Append();
+            $lastOffset = $chunks[array_keys($chunks)[count($chunks) - 1]];
+            $cursor = new UploadSessionCursor($sessionID);
 
-                        $this->assertEquals($filename, $r[R::PATH_DISPLAY]);
-                        $this->assertEquals(strtolower($filename), $r[R::PATH_LOWERCASE]);
-                        $this->assertEquals(10, $r[R::SIZE]);
-                    } else {
-                        $append->raw($data, $cursor);
-                    }
+            foreach ($chunks as $data => $offset) {
+                $cursor->setOffset($offset);
+                $filename = self::genFileName();
+                if ($offset == $lastOffset) {
+                    $r = (new Finish())
+                        ->raw(
+                            $data,
+                            $cursor,
+                            new CommitInfo($filename)
+                        );
+                    $r = json_decode($r->getBody()->getContents(), true);
+
+                    $this->assertEquals($filename, $r[R::PATH_DISPLAY]);
+                    $this->assertEquals(strtolower($filename), $r[R::PATH_LOWERCASE]);
+                    $this->assertEquals(10, $r[R::SIZE]);
+                } else {
+                    $append->raw($data, $cursor);
                 }
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
             }
         }
     }

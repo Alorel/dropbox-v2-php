@@ -15,7 +15,6 @@
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
     use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
     use GuzzleHttp\Promise\PromiseInterface;
     use Psr\Http\Message\ResponseInterface;
 
@@ -39,40 +38,25 @@
             $opts = (new UploadOptions())
                 ->setClientModified(new \DateTime('2000-01-01'));
 
-            try {
-                $rsp = (new Upload())->raw($filename, __CLASS__, $opts);
+            $rsp = (new Upload())->raw($filename, __CLASS__, $opts);
 
-                $this->assertInstanceOf(ResponseInterface::class, $rsp);
-                $this->abstraction($rsp, $filename, $opts);
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $this->assertInstanceOf(ResponseInterface::class, $rsp);
+            $this->abstraction($rsp, $filename, $opts);
         }
 
         function testResourceUpload() {
             $filename = self::genFileName();
-            try {
-                $rsp = (new Upload())->raw($filename, fopen(__FILE__, 'r'));
+            $rsp = (new Upload())->raw($filename, fopen(__FILE__, 'r'));
 
-                $this->assertEquals(self::$fileLength, json_decode($rsp->getBody(), true)[R::SIZE]);
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $this->assertEquals(self::$fileLength, json_decode($rsp->getBody(), true)[R::SIZE]);
         }
 
         function testStreamUpload() {
 
-            try {
-                $filename = self::genFileName();
-                $rsp = (new Upload())->raw($filename, \GuzzleHttp\Psr7\stream_for(fopen(__FILE__, 'r')));
+            $filename = self::genFileName();
+            $rsp = (new Upload())->raw($filename, \GuzzleHttp\Psr7\stream_for(fopen(__FILE__, 'r')));
 
-                $this->assertEquals(self::$fileLength, json_decode($rsp->getBody(), true)[R::SIZE]);
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $this->assertEquals(self::$fileLength, json_decode($rsp->getBody(), true)[R::SIZE]);
         }
 
         function testDefaultToken() {
@@ -117,16 +101,11 @@
         }
 
         function testAsync() {
-            try {
-                $filename = self::genFileName();
-                $promise = (new Upload(true))->raw($filename, __CLASS__);
-                $this->assertInstanceOf(PromiseInterface::class, $promise);
+            $filename = self::genFileName();
+            $promise = (new Upload(true))->raw($filename, __CLASS__);
+            $this->assertInstanceOf(PromiseInterface::class, $promise);
 
-                $this->abstraction($promise->wait(true), $filename, null);
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $this->abstraction($promise->wait(true), $filename, null);
         }
 
         function abstraction(ResponseInterface $rsp, $filename, UploadOptions $opts = null) {

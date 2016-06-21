@@ -10,8 +10,6 @@
     use Alorel\Dropbox\Operation\Files\Upload;
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
-    use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
 
     /**
      * @sleepTime  5
@@ -27,24 +25,14 @@
 
         static function setUpBeforeClass() {
             self::$n = self::genFileName();
-            try {
-                (new Upload())->raw(self::$n, self::CONTENTS);
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            (new Upload())->raw(self::$n, self::CONTENTS);
         }
 
         function testTempLink() {
-            try {
-                $r = json_decode((new GetTemporaryLink())->raw(self::$n)->getBody()->getContents(), true);
-                sleep(1);
+            $r = json_decode((new GetTemporaryLink())->raw(self::$n)->getBody()->getContents(), true);
+            sleep(1);
 
-                $this->assertTrue(is_string($r['link']));
-                $this->assertEquals(self::CONTENTS, file_get_contents($r['link']));
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $this->assertTrue(is_string($r['link']));
+            $this->assertEquals(self::CONTENTS, file_get_contents($r['link']));
         }
     }

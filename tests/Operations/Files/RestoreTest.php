@@ -14,8 +14,6 @@
     use Alorel\Dropbox\Parameters\WriteMode;
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
-    use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
 
     /**
      * @sleepTime  5
@@ -37,39 +35,24 @@
             self::$n = self::genFileName();
             $opts = (new UploadOptions())->setWriteMode(WriteMode::overwrite());
             $up = new Upload();
-            try {
-                self::$r1 = json_decode($up->raw(self::$n, '.', $opts)->getBody()->getContents(), true)['rev'];
-                self::$r2 = json_decode($up->raw(self::$n, '..', $opts)->getBody()->getContents(), true)['rev'];
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            self::$r1 = json_decode($up->raw(self::$n, '.', $opts)->getBody()->getContents(), true)['rev'];
+            self::$r2 = json_decode($up->raw(self::$n, '..', $opts)->getBody()->getContents(), true)['rev'];
         }
 
         function testRestoreNonDeleted() {
-            try {
-                $this->assertEquals(2, strlen((new Download())->raw(self::$n)->getBody()));
-                $this->assertEquals(
-                    1,
-                    json_decode((new Restore())->raw(self::$n, self::$r1)->getBody()->getContents(), true)['size']
-                );
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $this->assertEquals(2, strlen((new Download())->raw(self::$n)->getBody()));
+            $this->assertEquals(
+                1,
+                json_decode((new Restore())->raw(self::$n, self::$r1)->getBody()->getContents(), true)['size']
+            );
         }
 
         /** @depends testRestoreNonDeleted */
         function testRestoreDeleted() {
-            try {
-                (new Delete())->raw(self::$n);
-                $this->assertEquals(
-                    2,
-                    json_decode((new Restore())->raw(self::$n, self::$r2)->getBody()->getContents(), true)['size']
-                );
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            (new Delete())->raw(self::$n);
+            $this->assertEquals(
+                2,
+                json_decode((new Restore())->raw(self::$n, self::$r2)->getBody()->getContents(), true)['size']
+            );
         }
     }

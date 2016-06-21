@@ -9,8 +9,6 @@
     use Alorel\Dropbox\Operation\Users\GetAccount;
     use Alorel\Dropbox\Operation\Users\GetCurrentAccount;
     use Alorel\Dropbox\Test\DBTestCase;
-    use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
 
     /**
      * @sleepTime  5
@@ -23,16 +21,11 @@
         private static $getAccount;
 
         static function setUpBeforeClass() {
-            try {
-                self::$existing = json_decode((new GetCurrentAccount())->raw()->getBody()->getContents(), true);
-                self::$getAccount = json_decode(
-                    (new GetAccount())->raw(self::$existing['account_id'])->getBody()->getContents(),
-                    true
-                );
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            self::$existing = json_decode((new GetCurrentAccount())->raw()->getBody()->getContents(), true);
+            self::$getAccount = json_decode(
+                (new GetAccount())->raw(self::$existing['account_id'])->getBody()->getContents(),
+                true
+            );
         }
 
         /** @dataProvider providerTestValidity */
@@ -48,16 +41,12 @@
 
         function testPrepend() {
             $id = str_ireplace('dbid:', '', self::$existing['account_id']);
-            try {
-                $a = json_decode(
-                    (new GetAccount())->raw($id)->getBody()->getContents(),
-                    true
-                );
-                $this->assertEquals(self::$getAccount, $a);
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+
+            $a = json_decode(
+                (new GetAccount())->raw($id)->getBody()->getContents(),
+                true
+            );
+            $this->assertEquals(self::$getAccount, $a);
         }
 
         function providerTestValidity() {

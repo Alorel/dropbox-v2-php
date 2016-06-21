@@ -14,8 +14,6 @@
     use Alorel\Dropbox\Parameters\WriteMode;
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
-    use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
 
     /**
      * @sleepTime  5
@@ -43,16 +41,11 @@
 
         /** @dataProvider providerRevisionIncrement */
         function testRevisionIncrement($i) {
-            try {
-                self:: $up->raw(self::$fname, (pow(10, $i)), self:: $opt);
-                $rsp = json_decode(self::$lr->raw(self::$fname)->getBody()->getContents(), true);
+            self:: $up->raw(self::$fname, (pow(10, $i)), self:: $opt);
+            $rsp = json_decode(self::$lr->raw(self::$fname)->getBody()->getContents(), true);
 
-                $this->assertFalse($rsp['is_deleted']);
-                $this->assertEquals($i + 1, count($rsp['entries']));
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $this->assertFalse($rsp['is_deleted']);
+            $this->assertEquals($i + 1, count($rsp['entries']));
         }
 
         function providerRevisionIncrement() {
@@ -62,20 +55,15 @@
 
         /** @depends testRevisionIncrement */
         function testLimit() {
-            try {
-                $rsp = json_decode(
-                    self::$lr->raw(self::$fname, (new ListRevisionsOptions())->setLimit(1))->getBody()->getContents(),
-                    true
-                );
-                $this->assertFalse($rsp['is_deleted']);
-                $this->assertEquals(1, count($rsp['entries']));
+            $rsp = json_decode(
+                self::$lr->raw(self::$fname, (new ListRevisionsOptions())->setLimit(1))->getBody()->getContents(),
+                true
+            );
+            $this->assertFalse($rsp['is_deleted']);
+            $this->assertEquals(1, count($rsp['entries']));
 
-                //Prep for next test
-                (new Delete())->raw(self::$fname);
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            //Prep for next test
+            (new Delete())->raw(self::$fname);
         }
 
         /**
@@ -90,17 +78,13 @@
                 $options = null;
                 $count = 2;
             }
-            try {
-                $rsp = json_decode(
-                    self::$lr->raw(self::$fname, $options)->getBody()->getContents(),
-                    true
-                );
-                $this->assertTrue($rsp['is_deleted']);
-                $this->assertEquals($count, count($rsp['entries']));
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+
+            $rsp = json_decode(
+                self::$lr->raw(self::$fname, $options)->getBody()->getContents(),
+                true
+            );
+            $this->assertTrue($rsp['is_deleted']);
+            $this->assertEquals($count, count($rsp['entries']));
         }
 
         function providerDeleted() {

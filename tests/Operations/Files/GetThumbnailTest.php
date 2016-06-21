@@ -14,7 +14,6 @@
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
     use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
 
     /**
      * @sleepTime  5
@@ -31,7 +30,6 @@
 
             $sizes = [];
             $fname = self::genFileName('jpg');
-            $die = false;
             try {
                 (new Upload())->raw($fname, fopen(TestUtil::INC_DIR . 'get-thumb.jpg', 'r'));
                 foreach (['w32h32', 'w64h64', 'w128h128', 'w640h480', 'w1024h768'] as $d) {
@@ -43,18 +41,11 @@
                 for ($i = 1; $i < $numSizes; $i++) {
                     $this->assertGreaterThanOrEqual($sizes[$i - 1], $sizes[$i]);
                 }
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                $die = true;
             } finally {
                 try {
                     (new Delete())->raw($fname);
                 } catch (\Exception $e) {
                     fwrite(STDERR, $e->getMessage());
-                }
-
-                if ($die) {
-                    die(1);
                 }
             }
         }

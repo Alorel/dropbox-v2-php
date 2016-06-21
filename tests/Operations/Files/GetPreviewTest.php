@@ -12,7 +12,6 @@
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
     use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
 
     /**
      * @sleepTime  5
@@ -24,7 +23,6 @@
 
         function testGetPreview() {
             $filename = self::genFileName('docx');
-            $die = false;
             try {
                 (new Upload())->raw($filename, fopen(TestUtil::INC_DIR . 'forPreview.docx', 'r'));
                 $response = (new GetPreview())->raw($filename);
@@ -32,18 +30,11 @@
                 $this->assertNotFalse(array_search($response->getHeaderLine('content-type'),
                                                    TestUtil::$PREVIEW_CONTENT_TYPES,
                                                    true));
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                $die = true;
             } finally {
                 try {
                     (new Delete())->raw($filename);
                 } catch (\Exception $e) {
                     fwrite(STDERR, $e->getMessage());
-                }
-
-                if ($die) {
-                    die(1);
                 }
             }
         }

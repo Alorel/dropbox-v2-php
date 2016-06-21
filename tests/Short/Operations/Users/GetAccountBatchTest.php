@@ -9,8 +9,6 @@
     use Alorel\Dropbox\Operation\Users\GetAccountBatch;
     use Alorel\Dropbox\Operation\Users\GetCurrentAccount;
     use Alorel\Dropbox\Test\DBTestCase;
-    use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
 
     /**
      * @sleepTime  5
@@ -25,17 +23,12 @@
         private static $batch;
 
         static function setUpBeforeClass() {
-            try {
-                self::$curr = json_decode((new GetCurrentAccount())->raw()->getBody()->getContents(), true);
-                self::$accountID = self::$curr['account_id'];
-                self::$batch = json_decode(
-                    (new GetAccountBatch())->raw(self::$accountID)->getBody()->getContents(),
-                    true
-                );
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            self::$curr = json_decode((new GetCurrentAccount())->raw()->getBody()->getContents(), true);
+            self::$accountID = self::$curr['account_id'];
+            self::$batch = json_decode(
+                (new GetAccountBatch())->raw(self::$accountID)->getBody()->getContents(),
+                true
+            );
         }
 
         function testCount() {
@@ -49,16 +42,11 @@
         }
 
         function testWithArray() {
-            try {
-                $b = json_decode(
-                    (new GetAccountBatch())->raw(...[self::$accountID])->getBody()->getContents(),
-                    true
-                );
-                $this->assertEquals(self::$batch[0], $b[0]);
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $b = json_decode(
+                (new GetAccountBatch())->raw(...[self::$accountID])->getBody()->getContents(),
+                true
+            );
+            $this->assertEquals(self::$batch[0], $b[0]);
         }
 
         function providerFields() {

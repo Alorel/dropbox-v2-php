@@ -13,7 +13,6 @@
     use Alorel\Dropbox\Test\DBTestCase;
     use Alorel\Dropbox\Test\NameGenerator;
     use Alorel\Dropbox\Test\TestUtil;
-    use GuzzleHttp\Exception\ClientException;
 
     /**
      * @sleepTime  5
@@ -37,43 +36,33 @@
             $txt = self::genFileName('txt');
             $img = self::genFileName('jpg');
 
-            try {
-                $pr1 = $up->raw($txt, '.');
-                $pr2 = $up->raw($img, fopen(TestUtil::INC_DIR . 'get-thumb.jpg', 'r'));
+            $pr1 = $up->raw($txt, '.');
+            $pr2 = $up->raw($img, fopen(TestUtil::INC_DIR . 'get-thumb.jpg', 'r'));
 
-                $pr1->wait();
-                $pr2->wait();
+            $pr1->wait();
+            $pr2->wait();
 
-                $lf = json_decode((new ListFolder())->raw(self::$dir)->getBody()->getContents(), true);
+            $lf = json_decode((new ListFolder())->raw(self::$dir)->getBody()->getContents(), true);
 
-                $this->assertFalse($lf['has_more']);
-                $this->assertTrue(is_array($lf['entries']));
-                $this->assertTrue(is_string($lf['cursor']));
-                $this->assertEquals(2, count($lf['entries']));
+            $this->assertFalse($lf['has_more']);
+            $this->assertTrue(is_array($lf['entries']));
+            $this->assertTrue(is_string($lf['cursor']));
+            $this->assertEquals(2, count($lf['entries']));
 
-                // /continue
-                $prevCursor = $lf['cursor'];
-                $lf = json_decode((new ListFolderContinue())->raw($prevCursor)->getBody()->getContents(), true);
+            // /continue
+            $prevCursor = $lf['cursor'];
+            $lf = json_decode((new ListFolderContinue())->raw($prevCursor)->getBody()->getContents(), true);
 
-                $this->assertFalse($lf['has_more']);
-                $this->assertTrue(is_array($lf['entries']));
-                $this->assertTrue(is_string($lf['cursor']));
-                $this->assertEmpty($lf['entries']);
-                $this->assertNotEquals($lf['cursor'], $prevCursor);
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $this->assertFalse($lf['has_more']);
+            $this->assertTrue(is_array($lf['entries']));
+            $this->assertTrue(is_string($lf['cursor']));
+            $this->assertEmpty($lf['entries']);
+            $this->assertNotEquals($lf['cursor'], $prevCursor);
         }
 
         function testGetLatestCursor() {
-            try {
-                $r = json_decode((new GetLatestCursor())->raw()->getBody()->getContents(), true);
-                $this->assertEquals(['cursor'], array_keys($r));
-                $this->assertTrue(is_string($r['cursor']));
-            } catch (ClientException $e) {
-                TestUtil::decodeClientException($e);
-                die(1);
-            }
+            $r = json_decode((new GetLatestCursor())->raw()->getBody()->getContents(), true);
+            $this->assertEquals(['cursor'], array_keys($r));
+            $this->assertTrue(is_string($r['cursor']));
         }
     }
