@@ -19,6 +19,10 @@
     use GuzzleHttp\Promise\PromiseInterface;
     use Psr\Http\Message\ResponseInterface;
 
+    /**
+     * @sleepTime  5
+     * @retryCount 10
+     */
     class UploadAndAbstractTest extends DBTestCase {
 
         use NameGenerator;

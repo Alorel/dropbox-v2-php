@@ -17,6 +17,10 @@
     use GuzzleHttp\Exception\ClientException;
     use Psr\Http\Message\ResponseInterface;
 
+    /**
+     * @sleepTime  5
+     * @retryCount 10
+     */
     class LongpollTest extends DBTestCase {
         use NameGenerator;
 

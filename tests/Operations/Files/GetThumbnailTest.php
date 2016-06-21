@@ -16,6 +16,10 @@
     use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
+    /**
+     * @sleepTime  5
+     * @retryCount 10
+     */
     class GetThumbnailTest extends DBTestCase {
 
         use NameGenerator;

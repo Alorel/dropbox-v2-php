@@ -17,6 +17,10 @@
     use GuzzleHttp\Exception\ClientException;
     use GuzzleHttp\Promise\PromiseInterface;
 
+    /**
+     * @sleepTime  5
+     * @retryCount 10
+     */
     class SearchTest extends DBTestCase {
         use NameGenerator;
 

@@ -14,6 +14,10 @@
     use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
+    /**
+     * @sleepTime  5
+     * @retryCount 10
+     */
     class CreateFolderTest extends DBTestCase {
         function testCreateFolder() {
             $srcFile = '/' . md5(__CLASS__ . __METHOD__);

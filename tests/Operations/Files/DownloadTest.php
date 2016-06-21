@@ -13,6 +13,10 @@
     use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
+    /**
+     * @sleepTime  5
+     * @retryCount 10
+     */
     class DownloadTest extends DBTestCase {
 
         use NameGenerator;

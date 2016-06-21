@@ -275,7 +275,7 @@
          *
          * @author Art <a.molcanovas@gmail.com>
          */
-        class DBTestCase extends \PHPUnit_Framework_TestCase {
+        class DBTestCase extends \PHPUnit_Retriable_TestCase {
 
             private $getClass;
 

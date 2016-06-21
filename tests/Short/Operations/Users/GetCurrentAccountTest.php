@@ -12,6 +12,10 @@
     use Alorel\Dropbox\Test\TestUtil;
     use GuzzleHttp\Exception\ClientException;
 
+    /**
+     * @sleepTime  5
+     * @retryCount 10
+     */
     class GetCurrentAccountTest extends DBTestCase {
 
         function testGetCurrentAccount() {
