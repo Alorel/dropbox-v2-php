@@ -41,23 +41,31 @@
             self::$dir = '/' . self::generatorPrefix();
             self::$s = new Search();
 
-            /** @var PromiseInterface[] $promises */
-            $promises = [];
-            $up = new Upload(true);
+            for ($i = 0; $i < 10; $i++) {
+                try {
+                    /** @var PromiseInterface[] $promises */
+                    $promises = [];
+                    $up = new Upload(true);
 
-            for ($i = 1; $i <= self::NUM_FILES; $i++) {
-                $promises[] = $up->raw(self::$dir . '/' . self::PREFIX . '-' . $i . '.txt', '.');
+                    for ($i = 1; $i <= self::NUM_FILES; $i++) {
+                        $promises[] = $up->raw(self::$dir . '/' . self::PREFIX . '-' . $i . '.txt', '.');
+                    }
+
+                    self::$deletedFname = self::PREFIX . '-' . $i . '.txt';
+
+                    $promises[] = $up->raw(self::$dir . '/' . self::$deletedFname, '.');
+
+                    foreach ($promises as $p) {
+                        $p->wait();
+                    }
+
+                    (new Delete())->raw(self::$dir . '/' . self::$deletedFname);
+
+                    return;
+                } catch (\Exception $e) {
+                    sleep(5);
+                }
             }
-
-            self::$deletedFname = self::PREFIX . '-' . $i . '.txt';
-
-            $promises[] = $up->raw(self::$dir . '/' . self::$deletedFname, '.');
-
-            foreach ($promises as $p) {
-                $p->wait();
-            }
-
-            (new Delete())->raw(self::$dir . '/' . self::$deletedFname);
         }
 
         private static function getResults(SO $opts = null) {

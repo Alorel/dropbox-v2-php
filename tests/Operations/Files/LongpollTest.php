@@ -26,8 +26,16 @@
         private static $dir;
 
         static function setUpBeforeClass() {
-            self::$dir = '/' . self::generatorPrefix();
-            (new CreateFolder())->raw(self::$dir);
+            for ($i = 0; $i < 10; $i++) {
+                try {
+                    self::$dir = '/' . self::generatorPrefix();
+                    (new CreateFolder())->raw(self::$dir);
+
+                    return;
+                } catch (\Exception $e) {
+                    sleep(5);
+                }
+            }
         }
 
         /** @large */

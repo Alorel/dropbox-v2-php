@@ -24,8 +24,17 @@
         const CONTENTS = __CLASS__;
 
         static function setUpBeforeClass() {
-            self::$n = self::genFileName();
-            (new Upload())->raw(self::$n, self::CONTENTS);
+            for ($i = 0; $i < 20; $i++) {
+                try {
+                    self::$n = self::genFileName();
+                    (new Upload())->raw(self::$n, self::CONTENTS);
+
+                    return;
+                } catch (\Exception $e) {
+                    fwrite(STDERR, PHP_EOL . $e->getMessage());
+                    sleep(3);
+                }
+            }
         }
 
         function testTempLink() {

@@ -32,11 +32,19 @@
         const SLEEP_TIME = 5;
 
         static function setUpBeforeClass() {
-            self::$n = self::genFileName();
             $opts = (new UploadOptions())->setWriteMode(WriteMode::overwrite());
             $up = new Upload();
-            self::$r1 = json_decode($up->raw(self::$n, '.', $opts)->getBody()->getContents(), true)['rev'];
-            self::$r2 = json_decode($up->raw(self::$n, '..', $opts)->getBody()->getContents(), true)['rev'];
+            for ($i = 0; $i < 10; $i++) {
+                try {
+                    self::$n = self::genFileName();
+                    self::$r1 = json_decode($up->raw(self::$n, '.', $opts)->getBody()->getContents(), true)['rev'];
+                    self::$r2 = json_decode($up->raw(self::$n, '..', $opts)->getBody()->getContents(), true)['rev'];
+
+                    return;
+                } catch (\Exception $e) {
+                    sleep(5);
+                }
+            }
         }
 
         function testRestoreNonDeleted() {

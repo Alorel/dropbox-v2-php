@@ -23,12 +23,20 @@
         private static $batch;
 
         static function setUpBeforeClass() {
-            self::$curr = json_decode((new GetCurrentAccount())->raw()->getBody()->getContents(), true);
-            self::$accountID = self::$curr['account_id'];
-            self::$batch = json_decode(
-                (new GetAccountBatch())->raw(self::$accountID)->getBody()->getContents(),
-                true
-            );
+            for ($i = 0; $i < 10; $i++) {
+                try {
+                    self::$curr = json_decode((new GetCurrentAccount())->raw()->getBody()->getContents(), true);
+                    self::$accountID = self::$curr['account_id'];
+                    self::$batch = json_decode(
+                        (new GetAccountBatch())->raw(self::$accountID)->getBody()->getContents(),
+                        true
+                    );
+
+                    return;
+                } catch (\Exception $e) {
+                    sleep(5);
+                }
+            }
         }
 
         function testCount() {

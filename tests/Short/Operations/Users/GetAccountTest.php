@@ -21,11 +21,19 @@
         private static $getAccount;
 
         static function setUpBeforeClass() {
-            self::$existing = json_decode((new GetCurrentAccount())->raw()->getBody()->getContents(), true);
-            self::$getAccount = json_decode(
-                (new GetAccount())->raw(self::$existing['account_id'])->getBody()->getContents(),
-                true
-            );
+            for ($i = 0; $i < 10; $i++) {
+                try {
+                    self::$existing = json_decode((new GetCurrentAccount())->raw()->getBody()->getContents(), true);
+                    self::$getAccount = json_decode(
+                        (new GetAccount())->raw(self::$existing['account_id'])->getBody()->getContents(),
+                        true
+                    );
+
+                    return;
+                } catch (\Exception $e) {
+                    sleep(5);
+                }
+            }
         }
 
         /** @dataProvider providerTestValidity */
