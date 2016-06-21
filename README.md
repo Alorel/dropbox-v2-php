@@ -74,7 +74,7 @@ All except:
 - [ ] /properties/update | *In Beta/Alpha on Dropbox - will implement once stable*
 
 ## Sharing
-None
+Currently in building
 
 ## Users
 All
@@ -92,5 +92,5 @@ None
 
 # Links
  - [Changelog](https://github.com/Alorel/dropbox-v2-php/releases)
- - [Dropbox REST API docs](https://www.dropbox.com/developers/documentation/http/documentation)
+ - [Dropbox HTTP API docs](https://www.dropbox.com/developers/documentation/http/documentation) (this library is merely a HTTP request wrapper)
  - [Dropbox API explorer](https://dropbox.github.io/dropbox-api-v2-explorer)
