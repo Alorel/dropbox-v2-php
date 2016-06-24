@@ -26,18 +26,26 @@ A PHP SDK for Dropbox's v2 API. If you haven't tried Dropbox out yet, [do](https
 This package will run on PHP 5.6 & 7.0. Travis tests have successfully completed on HHVM.
 
 #Installation
-Installation is only available via [Composer](https://getcomposer.org/). Run:
-
-    composer require alorel/dropbox-v2-php
-And include the Composer autoloader somewhere in your code:
-```php
-<?php
-    require_once 'vendor/autoload.php';
+Installation is only available via [Composer](https://getcomposer.org/).
+##Quick version:
+```sh
+composer require alorel/dropbox-v2-php
 ```
-Mind, since this package is currently still in the `0.x` version range, the default composer setup
-will not update your installation unless you specify it with a `>=`. This is risky since, according to [semver](http://semver.org/),
-`0.x` versions are allowed to break backwards compatibility (although I put in a lot of effort to not break anything). Use your best
-judgement.
+##More informed version:
+The package is still in its `0.x` development stage, therefore some adding it as a `^` dependency, e.g. `"alorel/dropbox-v2-php":"^0.1"` will severely limit the amount of updates you receive, as, per [semver](http://semver.org/#spec-item-4) specification, `0.2` is allowed to be backwards-incompatible with `0.1`. While I definitely cannot guarantee **full** backwards compatibility if you fiddle with protected methods and derive your own subclasses, I do guarantee that the public API will remain backwards-compatible, therefore, if you only use the `raw` methods in your application e.g.
+```php
+$options = new UploadOptions(); //set your options
+(new Upload())->raw('/file.txt', 'data', $options);
+```
+You can safely add the following as a dependency in your composer.json:
+```json
+{
+  "require": {
+    "alorel/dropbox-v2-php": ">=0.1 <1.0"
+  }
+}
+```
+Additionally, `composer outdated` is a useful command to know during the `0.x` development stage!
 
 #Usage
 Every Dropbox API operation is located in the [\Alorel\Dropbox\Operation](https://cdn.rawgit.com/Alorel/dropbox-v2-php/0.3.3/docs/master/Alorel/Dropbox/Operation.html) namespace and is a class named after the API endpoint. There are a few exceptions to this, however, e.g. the class for `https://content.dropboxapi.com/2/files/upload_session/start` is `\Alorel\Dropbox\Operation\Files\UploadSession\Start`. 
