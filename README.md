@@ -32,7 +32,7 @@ Installation is only available via [Composer](https://getcomposer.org/).
 composer require alorel/dropbox-v2-php
 ```
 ##More informed version:
-The package is still in its `0.x` development stage, therefore some adding it as a `^` dependency, e.g. `"alorel/dropbox-v2-php":"^0.1"` will severely limit the amount of updates you receive, as, per [semver](http://semver.org/#spec-item-4) specification, `0.2` is allowed to be backwards-incompatible with `0.1`. While I definitely cannot guarantee **full** backwards compatibility if you fiddle with protected methods and derive your own subclasses, I do guarantee that the public API will remain backwards-compatible, therefore, if you only use the `raw` methods in your application e.g.
+The package is still in its `0.x` development stage, therefore adding it as a `^` dependency, e.g. `"alorel/dropbox-v2-php":"^0.1"` will severely limit the amount of updates you receive, as, per [semver](http://semver.org/#spec-item-4) specification, `0.2` is allowed to be backwards-incompatible with `0.1`. While I definitely cannot guarantee **full** backwards compatibility if you fiddle with protected methods and derive your own subclasses, I do guarantee that the public API will remain backwards-compatible, therefore, if you only use the `raw` methods in your application e.g.
 ```php
 $options = new UploadOptions(); //set your options
 (new Upload())->raw('/file.txt', 'data', $options);
