@@ -23,7 +23,7 @@ A PHP SDK for Dropbox's v2 API. If you haven't tried Dropbox out yet, [do](https
  5. [API Documentation](#api-documentation)
 
 #PHP Support
-This package will run on PHP 5.6 & 7.0. Travis tests have successfully completed on HHVM.
+This package will run on PHP 5.6 & 7.x. Travis tests have successfully completed on HHVM.
 
 #Installation
 Installation is only available via [Composer](https://getcomposer.org/).
@@ -41,7 +41,7 @@ You can safely add the following as a dependency in your composer.json:
 ```json
 {
   "require": {
-    "alorel/dropbox-v2-php": ">=0.1 <1.0"
+    "alorel/dropbox-v2-php": ">=0.4 <1.0"
   }
 }
 ```
@@ -58,7 +58,7 @@ All operation classes inherit the AbstractOperation constructor:
     * @param bool   $async       Whether requests should be asynchronous
     * @param string $accessToken Our access token
     */
-    function __construct($async = null, string $accessToken = null) {}
+    public function __construct($async = null, string $accessToken = null) {}
 ```
 The first parameter is a boolean determining whether operations should run synchronously or asynchronously (defaults to synchronous), the second is the access token created when the user authorises your application. Both can have default values set via [AbstractOperation::setDefaultToken()](https://cdn.rawgit.com/Alorel/dropbox-v2-php/0.3.3/docs/master/Alorel/Dropbox/Operation/AbstractOperation.html#method_setDefaultToken) and [AbstractOperation::setDefaultAsync()](https://cdn.rawgit.com/Alorel/dropbox-v2-php/0.3.3/docs/master/Alorel/Dropbox/Operation/AbstractOperation.html#method_setDefaultAsync) respectively.
 
@@ -81,16 +81,11 @@ All except:
 - [ ] /properties/template/list | *In Beta/Alpha on Dropbox - will implement once stable*
 - [ ] /properties/update | *In Beta/Alpha on Dropbox - will implement once stable*
 
-## Sharing
-Currently in building
-
 ## Users
 All
 
-## Team
-None
-
 #API Documentation
+[0.4](https://cdn.rawgit.com/Alorel/dropbox-v2-php/0.4/docs/master/index.html) |
 [0.3.3](https://cdn.rawgit.com/Alorel/dropbox-v2-php/0.3.3/docs/master/index.html) |
 [0.2](https://cdn.rawgit.com/Alorel/dropbox-v2-php/0.2/docs/master/index.html) |
 [0.1.1](https://cdn.rawgit.com/Alorel/dropbox-v2-php/0.1.1/docs/master/index.html) |

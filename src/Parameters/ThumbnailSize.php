@@ -1,7 +1,19 @@
 <?php
     /**
-     * Copyright (c) 2016 Alorel, https://github.com/Alorel
-     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     *    Copyright (c) Arturas Molcanovas <a.molcanovas@gmail.com> 2016.
+     *    https://github.com/Alorel/dropbox-v2-php
+     *
+     *    Licensed under the Apache License, Version 2.0 (the "License");
+     *    you may not use this file except in compliance with the License.
+     *    You may obtain a copy of the License at
+     *
+     *        http://www.apache.org/licenses/LICENSE-2.0
+     *
+     *    Unless required by applicable law or agreed to in writing, software
+     *    distributed under the License is distributed on an "AS IS" BASIS,
+     *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     *    See the License for the specific language governing permissions and
+     *    limitations under the License.
      */
 
     namespace Alorel\Dropbox\Parameters;
@@ -24,7 +36,7 @@
          * @param int $width  Thumbnail width
          * @param int $height Thumbnail height
          */
-        function __construct($width, $height) {
+        public function __construct($width, $height) {
             parent::__construct([Option::DOT_TAG => 'w' . $width . 'h' . $height]);
         }
 
@@ -34,7 +46,7 @@
          * @author Art <a.molcanovas@gmail.com>
          * @return self
          */
-        static function w32h32() {
+        public static function w32h32() {
             return new self(32, 32);
         }
 
@@ -44,7 +56,7 @@
          * @author Art <a.molcanovas@gmail.com>
          * @return self
          */
-        static function w64h64() {
+        public static function w64h64() {
             return new self(64, 64);
         }
 
@@ -54,7 +66,7 @@
          * @author Art <a.molcanovas@gmail.com>
          * @return self
          */
-        static function w128h128() {
+        public static function w128h128() {
             return new self(128, 128);
         }
 
@@ -64,7 +76,7 @@
          * @author Art <a.molcanovas@gmail.com>
          * @return self
          */
-        static function w640h480() {
+        public static function w640h480() {
             return new self(640, 480);
         }
 
@@ -74,7 +86,7 @@
          * @author Art <a.molcanovas@gmail.com>
          * @return self
          */
-        static function w1024h768() {
+        public static function w1024h768() {
             return new self(1024, 768);
         }
 
@@ -84,7 +96,7 @@
          * @author Art <a.molcanovas@gmail.com>
          * @return array
          */
-        static function availableSizes() {
+        public static function availableSizes() {
             $r = [];
             foreach ((new ReflectionClass(ThumbnailSize::class))->getMethods() as $m) {
                 if (preg_match('~^w[0-9]+h[0-9]+$~', $m->getName())) {

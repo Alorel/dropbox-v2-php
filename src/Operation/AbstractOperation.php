@@ -1,7 +1,19 @@
 <?php
     /**
-     * Copyright (c) 2016 Alorel, https://github.com/Alorel
-     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     *    Copyright (c) Arturas Molcanovas <a.molcanovas@gmail.com> 2016.
+     *    https://github.com/Alorel/dropbox-v2-php
+     *
+     *    Licensed under the Apache License, Version 2.0 (the "License");
+     *    you may not use this file except in compliance with the License.
+     *    You may obtain a copy of the License at
+     *
+     *        http://www.apache.org/licenses/LICENSE-2.0
+     *
+     *    Unless required by applicable law or agreed to in writing, software
+     *    distributed under the License is distributed on an "AS IS" BASIS,
+     *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     *    See the License for the specific language governing permissions and
+     *    limitations under the License.
      */
 
     namespace Alorel\Dropbox\Operation;
@@ -79,7 +91,7 @@
          *
          * @throws NoTokenException If $accessToken is not provided and the {@link AbstractOperation::$defaultToken default token} hasn't been set via {@link AbstractOperation::setDefaultToken() setDefaultToken()}
          */
-        function __construct($async = null, $accessToken = null) {
+        public function __construct($async = null, $accessToken = null) {
             $this->token = Alo::ifnull($accessToken, self::$defaultToken, true);
             if (!$this->token) {
                 throw new NoTokenException();
@@ -99,7 +111,7 @@
          *
          * @param string $token The token
          */
-        static final function setDefaultToken($token) {
+        public static final function setDefaultToken($token) {
             self::$defaultToken = $token;
         }
 
@@ -173,7 +185,6 @@
          *                                                                                  async is set to true and the
          *                                                                                  request interface if it is
          *                                                                                  set to false
-         * @see    \League\OAuth2\Client\Provider\AbstractProvider::getAuthenticatedRequest()
          * @throws \GuzzleHttp\Exception\ClientException
          */
         protected final function sendAbstract($httpMethod, $url, array $options = []) {
