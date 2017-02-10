@@ -12,6 +12,12 @@
 
 ----------
 
+# Maintainer(s) needed!
+
+[10 Feb 2017] Unfortunately, I do not have time to maintain this SDK. I do not expect it to become out-of-date in terms of functionality for at least another year, but it won't be adding any new functionality. Please [open an issue](https://github.com/Alorel/dropbox-v2-php/issues) if you're interested.
+
+-----
+
 A PHP SDK for Dropbox's v2 API. If you haven't tried Dropbox out yet, [do](https://db.tt/u56WHf8q "referral link") - it's great!
 
 #Table of Contents
