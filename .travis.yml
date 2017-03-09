@@ -1,42 +1,43 @@
 language: php
+
 cache:
   directories:
-  - "$HOME/.composer"
-  - vendor
+    - "$HOME/.composer"
+    - vendor
+
 env:
   matrix:
-  - SUITE=FILE_OPS
-  - SUITE=SHORT
+    - SUITE=FILE_OPS
+    - SUITE=SHORT
   global:
     secure: ChOBOG8C8UiRsLyhJsvpp7/a21AKmRb4Bi4yMWBcKpj1aYfAwIO8LzB3WNXrhvHAbxECw+6yheuMaNfxC/iXTzpvV8vZ08jBEY3afSG50sfN13dX3uOepMpesrRPVwbJvuLb74S5RLLF82t33qK/eeAQ3MiAlj6WhvcO4mmK8yTBKF3TknIJvDNB2IGQ0FMoqlseF5s9Ux1WJhP4f23XSAVIFll4h1UqEoy62g5YcSbfUyr1PeYmzKrZI+3JWM0jiK251ImRH8R+KUETCWWMl4OPnzjVTYE58URXR3vu2nE6ch0VELpxQgUdRo7Q16zSDAetPA/Sjn5sJDvESnzfWPjONYewJ4bLV3VXLZUomPxTNFX9VvIdcVkIranLNT3NkqU/G4z6E5+3AiFGJzndr4SzEoE11DRZ1j/OsQmbyrAbYpU0Yycb0vdy/OPnuXv8+TZ8ETBQPtY/pwT0o+0xFxC077K4qdZ/0akj080URaF2nsgXgYhZ08YyvAh5lqgrEhx2+7IvpUPP3dlVvq07ozD67eMb66+82z6S0cMs0fE5zrjSp1T51HqHsmnhpE1U0d1Txyyj8mOZElb5JAQVjv+Y+p/TmdbMEfs3/MF28oDMUJ/E51t+gyMXWaX0KRJu4MEp6Iz75Fj0d39053C231NXUIEL2p4PNihGXm5X/os=
+
 php:
-- 7.1
-- 7.0
-- 5.6
-- hhvm
-- nightly
+  - 7.1
+  - 7.0
+  - 5.6
+  - hhvm
+  - nightly
+
 before_install:
-- git config --global user.name Alorel
-- git config --global user.email a.molcanovas@gmail.com
-- echo $TRAVIS_PHP_VERSION
+  - echo $TRAVIS_PHP_VERSION
+
 before_script:
-- bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"* && "$TRAVIS_PHP_VERSION" != *"7.1"*
-  ]]; then phpenv config-rm xdebug.ini; else mkdir -p ~/.phpenv/versions/hhvm/etc;
-  fi;'
-- echo "date.timezone = Europe/London" >> .date-timezone.ini && phpenv config-add
-  .date-timezone.ini
-- composer install
-- bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"* && "$TRAVIS_PHP_VERSION" != *"7.1"*
-  ]]; then echo "zend_extension = xdebug.so" >> .xdebug.ini && phpenv config-add .xdebug.ini;
-  fi;'
+  - bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"* && "$TRAVIS_PHP_VERSION" != *"7.1"* ]]; then phpenv config-rm xdebug.ini; else mkdir -p ~/.phpenv/versions/hhvm/etc; fi;'
+  - echo "date.timezone = Europe/London" >> .date-timezone.ini && phpenv config-add .date-timezone.ini
+  - composer install
+  - bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"* && "$TRAVIS_PHP_VERSION" != *"7.1"* ]]; then echo "zend_extension = xdebug.so" >> .xdebug.ini && phpenv config-add .xdebug.ini; fi;'
+
 script:
-- bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"*  && "$TRAVIS_PHP_VERSION" != *"7.1"*
-  ]]; then vendor/bin/phpunit --coverage-clover coverage.xml --testsuite $SUITE &&
-  chmod 777 coverage.xml && bash <(curl -s https://codecov.io/bash); else vendor/bin/phpunit
-  --testsuite $SUITE; fi;'
+  - bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"*  && "$TRAVIS_PHP_VERSION" != *"7.1"* ]]; then vendor/bin/phpunit --coverage-clover coverage.xml --testsuite $SUITE; else vendor/bin/phpunit --testsuite $SUITE; fi;'
+
+after_success:
+  - bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"*  && "$TRAVIS_PHP_VERSION" != *"7.1"* ]]; then chmod 777 coverage.xml && bash <(curl -s https://codecov.io/bash); fi;'
+
 notifications:
   on_success: change
   on_failure: always
+
 matrix:
   fast_finish: true
   allow_failures:
