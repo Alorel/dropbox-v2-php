@@ -35,7 +35,8 @@
   "require-dev": {
     "raveren/kint": "^1.0",
     "alorel/phpunit-auto-rerun": "^0.1",
-    "phpunit/phpunit": "^5.0"
+    "phpunit/phpunit": "^5.0",
+    "ramsey/uuid": "^3.5"
   },
   "extra": {
     "branch-alias": {

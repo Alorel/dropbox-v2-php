@@ -18,6 +18,7 @@
 
     namespace Alorel\Dropbox\Operations\Files;
 
+    use Alorel\Dropbox\Operation\Files\Delete;
     use Alorel\Dropbox\Operation\Files\ListFolder\GetLatestCursor;
     use Alorel\Dropbox\Operation\Files\ListFolder\ListFolder;
     use Alorel\Dropbox\Operation\Files\ListFolder\ListFolderContinue;
@@ -42,8 +43,14 @@
 
         /** @large */
         function testListFolder() {
-            //Upload our data
+            try {
+                $del = new Delete(false);
+                $del->raw(self::$dir)->getBody()->getContents();
+            } catch (\Exception $e) {
+                //no harm done
+            }
 
+            //Upload our data
             $up = new Upload(true);
             $txt = self::genFileName('txt');
             $img = self::genFileName('jpg');

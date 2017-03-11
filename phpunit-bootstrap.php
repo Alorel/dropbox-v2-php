@@ -1,7 +1,19 @@
 <?php
     /**
-     * Copyright (c) 2016 Alorel, https://github.com/Alorel
-     * Licenced under MIT: https://github.com/Alorel/dropbox-v2-php/blob/master/LICENSE
+     *    Copyright (c) Arturas Molcanovas <a.molcanovas@gmail.com> 2016.
+     *    https://github.com/Alorel/dropbox-v2-php
+     *
+     *    Licensed under the Apache License, Version 2.0 (the "License");
+     *    you may not use this file except in compliance with the License.
+     *    You may obtain a copy of the License at
+     *
+     *        http://www.apache.org/licenses/LICENSE-2.0
+     *
+     *    Unless required by applicable law or agreed to in writing, software
+     *    distributed under the License is distributed on an "AS IS" BASIS,
+     *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     *    See the License for the specific language governing permissions and
+     *    limitations under the License.
      */
 
     namespace Alorel\Dropbox\Test;
@@ -27,6 +39,7 @@
     use Alorel\Dropbox\Options\Mixins\WriteModeTrait;
     use Alorel\Dropbox\Options\Options;
     use GuzzleHttp\Exception\ClientException;
+    use Ramsey\Uuid\Uuid;
 
     if (!getenv('APIKEY')) {
         $file = __DIR__ . DIRECTORY_SEPARATOR . 'API_KEY';
@@ -214,31 +227,28 @@
 
             return $name;
         }
-
-        static function releaseName(...$names) {
-            foreach ($names as $name) {
-                unset(self::$generatedNames[$name]);
-            }
-        }
     }
 
     trait NameGenerator {
 
         private static $generatedNames = [];
 
-        public static $uniqid;
+        private static $classUUIDs = [];
 
         private static function genFileName($ext = 'txt') {
             return TestUtil::genFileName(self::generatorPrefix() . '/', self::$generatedNames, $ext);
         }
 
         private static function generatorPrefix() {
-            return md5(self::$uniqid . __CLASS__);
+            if (!array_key_exists(__CLASS__, self::$classUUIDs)) {
+                self::$classUUIDs[__CLASS__] = Uuid::uuid4();
+            }
+
+            return self::$classUUIDs[__CLASS__];
         }
 
         static function tearDownAfterClass() {
             if (!empty(self::$generatedNames)) {
-                TestUtil::releaseName(...self::$generatedNames);
                 try {
                     (new Delete())->raw('/' . self::generatorPrefix());
                 } catch (\Exception $e) {
@@ -247,8 +257,6 @@
             }
         }
     }
-
-    NameGenerator::$uniqid = md5(uniqid(mt_rand(PHP_INT_MIN, PHP_INT_MAX) . serialize($_SERVER), true));
 
     class AllTheTraits extends Options {
         use AutoRenameTrait;
@@ -286,7 +294,7 @@
 
             /** @before */
             public final function _beforeAnnounceTest() {
-                fwrite(STDOUT, PHP_EOL . 'Running ' . $this->getClass . '::' . $this->getName(true));
+                fwrite(STDOUT, 'Running ' . $this->getClass . '::' . $this->getName(true) . PHP_EOL);
             }
         }
     }
