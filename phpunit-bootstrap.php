@@ -250,7 +250,9 @@
         static function tearDownAfterClass() {
             if (!empty(self::$generatedNames)) {
                 try {
-                    (new Delete())->raw('/' . self::generatorPrefix());
+                    $path = '/' . self::generatorPrefix();
+                    fwrite(STDOUT, PHP_EOL . 'Cleaning up: ' . $path . PHP_EOL);
+                    (new Delete(false))->raw($path);
                 } catch (\Exception $e) {
 
                 }
