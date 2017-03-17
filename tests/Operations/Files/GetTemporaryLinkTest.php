@@ -48,7 +48,7 @@
                 }
             }
 
-            throw new \Exception("Upload failed.");
+            trigger_error('Upload failed', E_USER_ERROR);
         }
 
         function testTempLink() {

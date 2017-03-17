@@ -299,4 +299,24 @@
                 fwrite(STDOUT, 'Running ' . $this->getClass . '::' . $this->getName(true) . PHP_EOL);
             }
         }
+    } else {
+        /**
+         * TestWrapper
+         *
+         * @author Art <a.molcanovas@gmail.com>
+         */
+        class DBTestCase extends \PHPUnit_Framework_TestCase {
+
+            private $getClass;
+
+            function __construct($name = null, array $data = [], $dataName = '') {
+                parent::__construct($name, $data, $dataName);
+                $this->getClass = get_class($this);
+            }
+
+            /** @before */
+            public final function _beforeAnnounceTest() {
+                fwrite(STDOUT, 'Running ' . $this->getClass . '::' . $this->getName(true) . PHP_EOL);
+            }
+        }
     }
