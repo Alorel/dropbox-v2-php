@@ -35,44 +35,49 @@
 
         use NameGenerator;
 
-        private static $r1;
-
-        private static $r2;
-
-        private static $n;
-
         const SLEEP_TIME = 5;
 
-        static function setUpBeforeClass() {
+        private $name;
+
+        private $rev1;
+
+        private $rev2;
+
+        /** @before */
+        public function createFile() {
             $opts = (new UploadOptions())->setWriteMode(WriteMode::overwrite());
             $up = new Upload();
             for ($i = 0; $i < 10; $i++) {
                 try {
-                    self::$n = self::genFileName();
-                    self::$r1 = json_decode($up->raw(self::$n, '.', $opts)->getBody()->getContents(), true)['rev'];
-                    self::$r2 = json_decode($up->raw(self::$n, '..', $opts)->getBody()->getContents(), true)['rev'];
+                    $this->name = self::genFileName();
+                    $this->rev1 = json_decode($up->raw($this->name, '.', $opts)->getBody()->getContents(), true)['rev'];
+                    $this->rev2 =
+                        json_decode($up->raw($this->name, '..', $opts)->getBody()->getContents(), true)['rev'];
 
                     return;
                 } catch (\Exception $e) {
+                    fwrite(STDOUT,
+                           PHP_EOL . 'Failed to upload and get revisions for ' . $this->name . ': ' . $e->getMessage() .
+                           PHP_EOL);
                     sleep(5);
                 }
             }
         }
 
         function testRestoreNonDeleted() {
-            $this->assertEquals(2, strlen((new Download())->raw(self::$n)->getBody()));
+            $this->assertEquals(2, strlen((new Download())->raw($this->name)->getBody()));
             $this->assertEquals(
                 1,
-                json_decode((new Restore())->raw(self::$n, self::$r1)->getBody()->getContents(), true)['size']
+                json_decode((new Restore())->raw($this->name, $this->rev1)->getBody()->getContents(), true)['size']
             );
         }
 
         /** @depends testRestoreNonDeleted */
         function testRestoreDeleted() {
-            (new Delete())->raw(self::$n);
+            (new Delete())->raw($this->name);
             $this->assertEquals(
                 2,
-                json_decode((new Restore())->raw(self::$n, self::$r2)->getBody()->getContents(), true)['size']
+                json_decode((new Restore())->raw($this->name, $this->rev2)->getBody()->getContents(), true)['size']
             );
         }
     }
