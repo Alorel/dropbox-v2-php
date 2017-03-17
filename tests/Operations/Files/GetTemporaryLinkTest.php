@@ -36,7 +36,7 @@
         const CONTENTS = __CLASS__;
 
         static function setUpBeforeClass() {
-            for ($i = 0; $i < 20; $i++) {
+            for ($i = 0; $i < 10; $i++) {
                 try {
                     self::$n = self::genFileName();
                     (new Upload())->raw(self::$n, self::CONTENTS);
@@ -47,6 +47,8 @@
                     sleep(3);
                 }
             }
+
+            throw new \Exception("Upload failed.");
         }
 
         function testTempLink() {
