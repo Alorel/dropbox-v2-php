@@ -78,30 +78,30 @@
             (new Delete())->raw(self::$fname);
         }
 
-        /**
-         * @dataProvider providerDeleted
-         * @depends      testLimit
-         */
-        function testDeleted($limit) {
-            if ($limit) {
-                $options = (new ListRevisionsOptions())->setLimit($limit);
-                $count = $limit - 1;
-            } else {
-                $options = null;
-                $count = 2;
-            }
+//         /**
+//          * @dataProvider providerDeleted
+//          * @depends      testLimit
+//          */
+//         function testDeleted($limit) {
+//             if ($limit) {
+//                 $options = (new ListRevisionsOptions())->setLimit($limit);
+//                 $count = $limit - 1;
+//             } else {
+//                 $options = null;
+//                 $count = 2;
+//             }
 
-            $rsp = json_decode(
-                self::$lr->raw(self::$fname, $options)->getBody()->getContents(),
-                true
-            );
-            $this->assertTrue($rsp['is_deleted']);
-            $this->assertEquals($count, count($rsp['entries']));
-        }
-
-        function providerDeleted() {
-            yield '1' => [1];
-            yield '2' => [2];
-            yield 'null' => [null];
-        }
+//             $rsp = json_decode(
+//                 self::$lr->raw(self::$fname, $options)->getBody()->getContents(),
+//                 true
+//             );
+//             $this->assertTrue($rsp['is_deleted']);
+//             $this->assertEquals($count, count($rsp['entries']));
+//         }
+//
+//         function providerDeleted() {
+//             yield '1' => [1];
+//             yield '2' => [2];
+//             yield 'null' => [null];
+//         }
     }
