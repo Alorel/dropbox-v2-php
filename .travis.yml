@@ -11,9 +11,6 @@ env:
 #  matrix:
 #    - SUITE=FILE_OPS
 #    - SUITE=SHORT
-#  global:
-# API key
-#    secure: uC4/srZg9D0Wufpo5KQxEh1uPXgKevAlBg/W0EcMNDp9oFXREZGpZvh3pz4BVOkpZal6p/m4KPHNd5prKA87G5BZgW3Y/iTpgS1ElKizIprN9MlJ6PzBctN/UTmF5abo6AhhzdK3bfxyTNNdnOiMJP+IcP9/jbbiANUCoJGthygFDFd3wNv16jD+U96LIgckhggpPvEjWkCNpsLLMQTh26KXsZP93a2psFMPaM49HAAQtSBwNmdTNFP7iLfzDSeaNPcS3dxmu7zX/HWse3YOJefaxbsv9Xu8bp8toQZzsbe+QWI6leJvhsc/c/5GXUphry4z1WIz1hRJYZP8hhiVg+NzlHVPIDMWzObsWe9IWsAJJR0VHIlaYxpncweF3R32xyID69Ps2OBKtJqUAfBbxJRALfLXdqMqw3piNmNlZNhZRhhC2kScfRvV81uAoUsElRdOuBLL9dYZROEhTwqTEJLE5EcktmGL+qAxi4eUSNqJZDgqRL5lgR3JJFNQ9d/n+5bGqhsQ7t4U0Fo6Xh6pe48gNYT+JyAMWCmsGR9c/EvoDRYqxcLrVVoMMzcP0ED94DMeQElgV6C0nELRHvW/l/9kwtl7IKWUiv+xQKVvWJoVDJs9rrkzbQyBRDmJB+paHnx69liLCnusxTrTW6gDKG1E666ue/yqrKFGUHxeTf4=
 
 php:
 - 7.1
@@ -51,5 +48,5 @@ notifications:
   on_success: change
   on_failure: change
 
-matrix:
-  fast_finish: true
+#matrix:
+  fast_finish: false
