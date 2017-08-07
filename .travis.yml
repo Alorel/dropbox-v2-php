@@ -49,7 +49,7 @@ after_success:
 
 notifications:
   on_success: change
-  on_failure: always
+  on_failure: change
 
 matrix:
   fast_finish: true
