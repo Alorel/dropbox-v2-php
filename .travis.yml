@@ -1,16 +1,9 @@
 language: php
-
-dist: trusty
 sudo: false
 
 cache:
   directories:
-    - "$HOME/.composer"
     - vendor
-env:
-#  matrix:
-#    - SUITE=FILE_OPS
-#    - SUITE=SHORT
 
 php:
 - 7.1
@@ -18,31 +11,15 @@ php:
 - 5.6
 - hhvm
 
-before_install:
-- echo $TRAVIS_PHP_VERSION
-
 before_script:
-- bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"* && "$TRAVIS_PHP_VERSION" != *"7.1"*
-  ]]; then phpenv config-rm xdebug.ini; else mkdir -p ~/.phpenv/versions/hhvm/etc;
-  fi;'
-- echo "date.timezone = Europe/London" >> .date-timezone.ini && phpenv config-add
-  .date-timezone.ini
+- bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"* && "$TRAVIS_PHP_VERSION" != *"7.1"* ]]; then phpenv config-rm xdebug.ini; else mkdir -p ~/.phpenv/versions/hhvm/etc; fi;'
+- echo "date.timezone = Europe/London" >> .date-timezone.ini && phpenv config-add .date-timezone.ini
 - composer install
-- bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"* && "$TRAVIS_PHP_VERSION" != *"7.1"*
-  ]]; then echo "zend_extension = xdebug.so" >> .xdebug.ini && phpenv config-add .xdebug.ini;
-  fi;'
+- bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"* && "$TRAVIS_PHP_VERSION" != *"7.1"* ]]; then echo "zend_extension = xdebug.so" >> .xdebug.ini && phpenv config-add .xdebug.ini; fi;'
 
-script:
-#- bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"*  && "$TRAVIS_PHP_VERSION" != *"7.1"*
-#  ]]; then vendor/bin/phpunit --coverage-clover coverage.xml --testsuite $SUITE; else
-#  vendor/bin/phpunit --testsuite $SUITE; fi;'
-- bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"*  && "$TRAVIS_PHP_VERSION" != *"7.1"*
-  ]]; then vendor/bin/phpunit --coverage-clover coverage.xml; else
-  vendor/bin/phpunit; fi;'
+script: bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"*  && "$TRAVIS_PHP_VERSION" != *"7.1"* ]]; then vendor/bin/phpunit --coverage-clover coverage.xml; else vendor/bin/phpunit; fi;'
 
-after_success:
-- bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"*  && "$TRAVIS_PHP_VERSION" != *"7.1"*
-  ]]; then chmod 777 coverage.xml && bash <(curl -s https://codecov.io/bash); fi;'
+after_success: bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"*  && "$TRAVIS_PHP_VERSION" != *"7.1"* ]]; then chmod 777 coverage.xml && bash <(curl -s https://codecov.io/bash); fi;'
 
 matrix:
   fast_finish: false
