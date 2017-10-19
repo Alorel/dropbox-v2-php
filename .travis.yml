@@ -20,6 +20,3 @@ before_script:
 script: bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"*  && "$TRAVIS_PHP_VERSION" != *"7.1"* ]]; then vendor/bin/phpunit --coverage-clover coverage.xml; else vendor/bin/phpunit; fi;'
 
 after_success: bash -c 'if [[ "$TRAVIS_PHP_VERSION" != *"hhvm"*  && "$TRAVIS_PHP_VERSION" != *"7.1"* ]]; then chmod 777 coverage.xml && bash <(curl -s https://codecov.io/bash); fi;'
-
-matrix:
-  fast_finish: false
